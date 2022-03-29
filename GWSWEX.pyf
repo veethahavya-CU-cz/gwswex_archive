@@ -1,0 +1,69 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module run__user__routines 
+    interface run_user_interface 
+        function vangi(d) result (eq) ! in :fortrapper:GWSWEX.f90:gwswex:run:unknown_interface
+            intent(out) vangi
+            real*8 intent(in) :: d
+            real*8 intent(out) :: eq
+        end function vangi
+        function ksm(sm) result (k) ! in :fortrapper:GWSWEX.f90:gwswex:run:unknown_interface
+            intent(out) ksm
+            real*8 intent(in) :: sm
+            real*8 intent(out) :: k
+        end function ksm
+    end interface run_user_interface
+end python module run__user__routines
+python module fortrapper ! in 
+    interface  ! in :fortrapper
+        module gwswex ! in :fortrapper:GWSWEX.f90
+            use omp_lib
+            integer :: elems
+            integer :: nts
+            integer :: dt
+            logical, allocatable,dimension(:) :: chd
+            real*8 :: n
+            real*8 :: sy
+            real*8 :: theta_s
+            real*8 :: theta_r
+            real*8 :: alpha
+            real*8 :: beta
+            real*8 :: sw_th
+            real*8, allocatable,dimension(:) :: gok
+            real*8, allocatable,dimension(:) :: k
+            real*8, allocatable,dimension(:,:) :: p
+            real*8, allocatable,dimension(:,:) :: et
+            subroutine build(el,ts,ts_size,gok_l,n_l) ! in :fortrapper:GWSWEX.f90:gwswex
+                integer intent(in) :: el
+                integer intent(in) :: ts
+                integer intent(in) :: ts_size
+                integer dimension(:),intent(in) :: gok_l
+                real*8 intent(in) :: n_l
+            end subroutine build
+            subroutine init(chd_l,p_l,et_l) ! in :fortrapper:GWSWEX.f90:gwswex
+                logical dimension(:),intent(in) :: chd_l
+                real*8 dimension(:,:),intent(in) :: p_l
+                real*8 dimension(:,:),intent(in) :: et_l
+            end subroutine init
+            subroutine run(vangi,ksm,gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
+                use run__user__routines
+                external vangi
+                external ksm
+                real*8 dimension(:,:),intent(inout) :: gws
+                real*8 dimension(:,:),intent(inout) :: sws
+                real*8 dimension(:,:),intent(in) :: sm
+                real*8 dimension(:,:),intent(inout) :: epv
+                real*8 dimension(:,:),intent(inout) :: gw_dis
+                real*8 dimension(:,:),intent(inout) :: sw_dis
+                real*8 dimension(:,:),intent(inout) :: sm_dis
+                real*8 dimension(:,:),intent(inout) :: qin
+                real*8 dimension(:,:),intent(inout) :: qout
+                real*8 dimension(:,:),intent(inout) :: qdiff
+            end subroutine run
+        end module gwswex
+    end interface 
+end python module fortrapper
+
+! This file was auto-generated with f2py (version:1.21.4).
+! See http://cens.ioc.ee/projects/f2py2e/

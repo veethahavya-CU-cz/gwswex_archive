@@ -1,0 +1,68 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module fortrapper ! in 
+    interface  ! in :fortrapper
+        module gwswex ! in :fortrapper:GWSWEX.f90
+            use omp_lib
+            integer :: elems
+            integer :: nts
+            integer :: dt
+            logical, allocatable,dimension(:) :: chd
+            real(kind=8) :: n
+            real(kind=8) :: m
+            real(kind=8) :: n_gw
+            real(kind=8) :: beta
+            real(kind=8) :: alpha
+            real(kind=8) :: sw_th
+            real(kind=8), allocatable,dimension(:) :: gok
+            real(kind=8), allocatable,dimension(:) :: k
+            real(kind=8), allocatable,dimension(:) :: p
+            real(kind=8), allocatable,dimension(:) :: et
+            real(kind=8), allocatable,dimension(:) :: gws_ini
+            real(kind=8), allocatable,dimension(:) :: sws_ini
+            real(kind=8), allocatable,dimension(:) :: epv_ini
+            real(kind=8), allocatable,dimension(:) :: sm_ini
+            subroutine build(el,ts,ts_size,gok_l) ! in :fortrapper:GWSWEX.f90:gwswex
+                integer intent(in) :: el
+                integer intent(in) :: ts
+                integer intent(in) :: ts_size
+                integer dimension(:),intent(in) :: gok_l
+            end subroutine build
+            subroutine params(n_l,m_l,n_gw_l,beta_l,alpha_l,sw_th_l,k_l) ! in :fortrapper:GWSWEX.f90:gwswex
+                real(kind=8) intent(in) :: n_l
+                real(kind=8) intent(in) :: m_l
+                real(kind=8) intent(in) :: n_gw_l
+                real(kind=8) intent(in) :: beta_l
+                real(kind=8) intent(in) :: alpha_l
+                real(kind=8) intent(in) :: sw_th_l
+                real(kind=8) dimension(:),intent(in) :: k_l
+            end subroutine params
+            subroutine init(chd_l,p_l,et_l,gws_ini_l,sws_ini_l,epv_ini_l,sm_ini_l) ! in :fortrapper:GWSWEX.f90:gwswex
+                logical dimension(:),intent(in) :: chd_l
+                real(kind=8) dimension(:),intent(in) :: p_l
+                real(kind=8) dimension(:),intent(in) :: et_l
+                real(kind=8) dimension(:),intent(in) :: gws_ini_l
+                real(kind=8) dimension(:),intent(in) :: sws_ini_l
+                real(kind=8) dimension(:),intent(in) :: epv_ini_l
+                real(kind=8) dimension(:),intent(in) :: sm_ini_l
+            end subroutine init
+            subroutine run(gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
+                threadsafe 
+                real(kind=8) dimension(:,:),intent(inout) :: gws
+                real(kind=8) dimension(:,:),intent(inout) :: sws
+                real(kind=8) dimension(:,:),intent(inout) :: sm
+                real(kind=8) dimension(:,:),intent(inout) :: epv
+                real(kind=8) dimension(:,:),intent(inout) :: gw_dis
+                real(kind=8) dimension(:,:),intent(inout) :: sw_dis
+                real(kind=8) dimension(:,:),intent(inout) :: sm_dis
+                real(kind=8) dimension(:,:),intent(inout) :: qin
+                real(kind=8) dimension(:,:),intent(inout) :: qout
+                real(kind=8) dimension(:,:),intent(inout) :: qdiff
+            end subroutine run
+        end module gwswex
+    end interface 
+end python module fortrapper
+
+! This file was auto-generated with f2py (version:1.21.4).
+! See http://cens.ioc.ee/projects/f2py2e/
