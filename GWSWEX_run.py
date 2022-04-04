@@ -17,7 +17,7 @@ def vanGI(d):
 def kSM(sm):
     return np.float64(1e-2)
 
-elems = int(5000)
+elems = int(1)
 nts = int(100)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 100

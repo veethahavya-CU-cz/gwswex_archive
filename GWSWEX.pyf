@@ -47,7 +47,6 @@ python module fortrapper ! in
                 real*8 dimension(:,:),intent(in) :: et_l
             end subroutine init
             subroutine run(vangi,ksm,gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
-                threadsafe 
                 use run__user__routines
                 external vangi
                 external ksm
