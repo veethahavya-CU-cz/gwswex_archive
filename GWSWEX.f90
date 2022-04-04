@@ -29,6 +29,7 @@ contains
     end subroutine
 
     subroutine run(vanGI, kSM, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+    !f2py threadsafe
         external :: vanGI
         real*8 :: vanGI
         !f2py real*8, intent(in):: d
@@ -48,6 +49,8 @@ contains
 
         do j = 2, nts
             write(*,*) "outer loop entered. ts ", j-1
+            !$OMP PARALLEL DEFAULT(none), PRIVATE(i, vanGI,kSM), SHARED(j, gws,sws,sm,epv, gw_dis,sw_dis,sm_dis, L,sw_et_deficit,excess_gw_vol,sm_eq,k_inf,inf,excess_p,inf_deficit,sw_inf,k_inf_gw,gw_inf,et_deficit,sw_et)
+            !$OMP DO 
             do i = 1, elems
                 write(*,*) "inner loop entered. elem", i
                 if(.NOT. chd(i)) then
@@ -155,8 +158,9 @@ contains
                     Qout(i,j) = gw_dis(i,j) + sw_dis(i,j) + sm_dis(i,j)
                 end if
             end do
+            !$OMP END DO
+            !$OMP END PARALLEL
         end do
-
         Qdiff = Qin - Qout
     end subroutine
 end module gwswex
