@@ -82,7 +82,9 @@ contains
                         !write(*,*) "L is", L
                         !write(*,*) "P is", p(i,j)*dt
                         !write(*,*) "sm is", sm(i,j-1)
-                        k_inf = kSM(sm(i,j-1)) !calc K from wetness at the begining of this dt i.e. end of last dt
+                        !write(*,*) "epv is", epv(i,j-1)
+                        !write(*,*) "sm/epv", sm(i,j-1)/epv(i,j-1)
+                        k_inf = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from wetness at the begining of this dt i.e. end of last dt
                         !write(*,*) "got k", k_inf*dt
                         inf = min(k_inf*dt, p(i,j)*dt)
                         !write(*,*) "inf is", inf
@@ -100,7 +102,7 @@ contains
                         sm_eq = vanGI(-L) !!!consider doing GW push and gw-sm bal after ET extraction
                         !write(*,*) "gws is ", gws(i,j-1)
                         !write(*,*) "vanGI called. sm_eq is ", sm_eq
-                        k_inf_gw = kSM(sm(i,j)) !calc K from current wetness (after P and SW inf)
+                        k_inf_gw = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from current wetness (after P and SW inf)
                         gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, gw_inf is -ve ...
                         !write(*,*) "k_inf_gw is", k_inf_gw*dt
                         !write(*,*) "gw_inf is", gw_inf
@@ -127,7 +129,7 @@ contains
                         !write(*,*) "sm is", sm(i,j)
                         sm_eq = vanGI(-(gok(i) - gws(i,j))) !!!gw-sm balancing: consider adding a convergence criteria here
                         !write(*,*) "new sm_eq", sm_eq
-                        k_inf_gw = kSM(sm(i,j))*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
+                        k_inf_gw = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n)*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                         !write(*,*) "k_inf_gw remaining", k_inf_gw
                         gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt)
                         !write(*,*) "addnl gw_inf", gw_inf

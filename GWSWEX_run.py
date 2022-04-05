@@ -11,11 +11,16 @@ def vanGI(d):
         theta_r = 0.1
         alpha = 0.4
         n = 2.5
-        return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**(1-(1/n)))
+        m = (1-(1/n))
+        return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
     return np.float64(quad(theta,d,0)[0])
 
-def kSM(sm):
-    return np.float64(1e-2)
+def kSM(s):
+    ks = 3e-2
+    n = 2.5
+    m = (1-(1/n))
+    k = ks*s*(1-(1-(s)**1/m)**m)**2
+    return np.float64(k)
 
 elems = int(1)
 nts = int(100)
@@ -42,11 +47,11 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.mkdir(fig_path)
 elem = 0
-plotWlev = False
+plotWlev = True
 plotPrec = False
 plotDis = False
 plotBal = False
-savefig = False
+savefig = True
 dDPI = 90
 pDPI = 1600
 alpha_scatter = 0.7
@@ -66,7 +71,7 @@ def disPlot(elem):
     alpha=alpha_scatter, s=scatter_size)
     plt.legend(loc="best", fontsize="small")
 
-def wlevPlot(elem):
+def wlevPlot(elem,gws,sws,sm):
     plt.figure(dpi=dDPI)
     plt.xlabel("Time Steps")
     plt.ylabel("Water Levels")
@@ -92,12 +97,12 @@ def balPlot():
     plt.plot(Qdiff[ind], "r")
 
 if plotDis:
-    disPlot()
+    disPlot(0)
     if savefig:
         plt.savefig(fig_path+"discharges."+format, format=format, dpi=pDPI)
 
 if plotWlev:
-    wlevPlot()
+    wlevPlot(0,gws,sws,sm)
     if savefig:
         plt.savefig(fig_path+"water_levels."+format, format=format, dpi=pDPI)
 
