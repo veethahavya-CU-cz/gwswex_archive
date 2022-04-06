@@ -23,7 +23,7 @@ def kSM(s):
     return np.float64(k)
 
 elems = int(1)
-nts = int(100)
+nts = int(100+1)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 100
 n = 0.3
@@ -47,7 +47,7 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.mkdir(fig_path)
 elem = 0
-plotWlev = True
+plotWlev = False
 plotPrec = False
 plotDis = False
 plotBal = False

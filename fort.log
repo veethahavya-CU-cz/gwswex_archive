@@ -1,0 +1,3103 @@
+ built
+ initialised
+ run entered
+ outer loop entered. ts            1
+ inner loop entered. elem           1
+ UZ entered
+ L is   57.036344139259434     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   17.197277872337537     
+ sm/epv  0.50000000000000000     
+ got k   6.7858869798304619E-002
+ inf is   6.7858869798304619E-002
+ excess_p   3.2321411302016951     
+ inf_deficit   0.0000000000000000     
+ sws is   8.8427004954516386E-002
+ sw_inf   0.0000000000000000     
+ sws calcd   3.3205681351562113     
+ sm calcd   8.6664978059670723     
+ gws is    40.963655860740566     
+ vanGI called. sm_eq is    7.4410323386186183     
+ k_inf_gw is   6.7858869798304619E-002
+ gw_inf is   6.7858869798304619E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   41.189852093401583     
+ gws recalcd   41.189852093401583     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.4177882937660726     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        41.189852093401583     
+ outer loop entered. ts            2
+ inner loop entered. elem           1
+ UZ entered
+ L is   56.810147906598417     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   17.043044371979523     
+ sm/epv  0.50452482247278518     
+ got k   6.9795696813138131E-002
+ inf is   6.9795696813138131E-002
+ excess_p   3.2302043031868619     
+ inf_deficit   0.0000000000000000     
+ sws is  0.32056813515621130     
+ sw_inf   0.0000000000000000     
+ sws calcd   3.5507724383430732     
+ sm calcd   8.6684346329819064     
+ gws is    41.189852093401583     
+ vanGI called. sm_eq is    7.4177882937660726     
+ k_inf_gw is   6.9795696813138131E-002
+ gw_inf is   6.9795696813138131E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   41.422504416112041     
+ gws recalcd   41.422504416112041     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.3938769167421627     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        41.422504416112041     
+ outer loop entered. ts            3
+ inner loop entered. elem           1
+ UZ entered
+ L is   56.577495583887959     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.973248675166388     
+ sm/epv  0.50659947902309732     
+ got k   7.0696466769968852E-002
+ inf is   7.0696466769968852E-002
+ excess_p   3.2293035332300311     
+ inf_deficit   0.0000000000000000     
+ sws is  0.55077243834307321     
+ sw_inf   0.0000000000000000     
+ sws calcd   3.7800759715731043     
+ sm calcd   8.6693354029387368     
+ gws is    41.422504416112041     
+ vanGI called. sm_eq is    7.3938769167421627     
+ k_inf_gw is   7.0696466769968852E-002
+ gw_inf is   7.0696466769968852E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   41.658159305345272     
+ gws recalcd   41.658159305345272     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.3696528699607429     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        41.658159305345272     
+ outer loop entered. ts            4
+ inner loop entered. elem           1
+ UZ entered
+ L is   56.341840694654728     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.902552208396418     
+ sm/epv  0.50871837756533334     
+ got k   7.1624764199375218E-002
+ inf is   7.1624764199375218E-002
+ excess_p   3.2283752358006246     
+ inf_deficit   0.0000000000000000     
+ sws is  0.78007597157310427     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.0084512073737288     
+ sm calcd   8.6702637003681442     
+ gws is    41.658159305345272     
+ vanGI called. sm_eq is    7.3696528699607429     
+ k_inf_gw is   7.1624764199375218E-002
+ gw_inf is   7.1624764199375218E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   41.896908519343192     
+ gws recalcd   41.896908519343192     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.3451065181908168     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        41.896908519343192     
+ outer loop entered. ts            5
+ inner loop entered. elem           1
+ UZ entered
+ L is   56.103091480656808     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.830927444197041     
+ sm/epv  0.51088325136434498     
+ got k   7.2581932004372560E-002
+ inf is   7.2581932004372560E-002
+ excess_p   3.2274180679956275     
+ inf_deficit   0.0000000000000000     
+ sws is   1.0084512073737288     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.2358692753693568     
+ sm calcd   8.6712208681731404     
+ gws is    41.896908519343192     
+ vanGI called. sm_eq is    7.3451065181908168     
+ k_inf_gw is   7.2581932004372560E-002
+ gw_inf is   7.2581932004372560E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   42.138848292691101     
+ gws recalcd   42.138848292691101     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.3202277531078890     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        42.138848292691101     
+ outer loop entered. ts            6
+ inner loop entered. elem           1
+ UZ entered
+ L is   55.861151707308899     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.758345512192669     
+ sm/epv  0.51309593359993444     
+ got k   7.3569403902379898E-002
+ inf is   7.3569403902379898E-002
+ excess_p   3.2264305960976198     
+ inf_deficit   0.0000000000000000     
+ sws is   1.2358692753693568     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.4622998714669766     
+ sm calcd   8.6722083400711476     
+ gws is    42.138848292691101     
+ vanGI called. sm_eq is    7.3202277531078890     
+ k_inf_gw is   7.3569403902379898E-002
+ gw_inf is   7.3569403902379898E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   42.384079639032365     
+ gws recalcd   42.384079639032365     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.2950059611266322     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        42.384079639032365     
+ outer loop entered. ts            7
+ inner loop entered. elem           1
+ UZ entered
+ L is   55.615920360967635     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.684776108290290     
+ sm/epv  0.51535836503651367     
+ got k   7.4588712337486721E-002
+ inf is   7.4588712337486721E-002
+ excess_p   3.2254112876625132     
+ inf_deficit   0.0000000000000000     
+ sws is   1.4622998714669766     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.6877111591294902     
+ sm calcd   8.6732276485062556     
+ gws is    42.384079639032365     
+ vanGI called. sm_eq is    7.2950059611266322     
+ k_inf_gw is   7.4588712337486721E-002
+ gw_inf is   7.4588712337486721E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   42.632708680157322     
+ gws recalcd   42.632708680157322     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.2694299884175573     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        42.632708680157322     
+ outer loop entered. ts            8
+ inner loop entered. elem           1
+ UZ entered
+ L is   55.367291319842678     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.610187395952803     
+ sm/epv  0.51767260243336521     
+ got k   7.5641497241909217E-002
+ inf is   7.5641497241909217E-002
+ excess_p   3.2243585027580908     
+ inf_deficit   0.0000000000000000     
+ sws is   1.6877111591294902     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.9120696618875810     
+ sm calcd   8.6742804334106776     
+ gws is    42.632708680157322     
+ vanGI called. sm_eq is    7.2694299884175573     
+ k_inf_gw is   7.5641497241909217E-002
+ gw_inf is   7.5641497241909217E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   42.884847004297022     
+ gws recalcd   42.884847004297022     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.2434881028041431     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        42.884847004297022     
+ outer loop entered. ts            9
+ inner loop entered. elem           1
+ UZ entered
+ L is   55.115152995702978     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.534545898710892     
+ sm/epv  0.52004082778222271     
+ got k   7.6729515755564387E-002
+ inf is   7.6729515755564387E-002
+ excess_p   3.2232704842444355     
+ inf_deficit   0.0000000000000000     
+ sws is   1.9120696618875810     
+ sw_inf   0.0000000000000000     
+ sws calcd   5.1353401461320161     
+ sm calcd   8.6753684519243333     
+ gws is    42.884847004297022     
+ vanGI called. sm_eq is    7.2434881028041431     
+ k_inf_gw is   7.6729515755564387E-002
+ gw_inf is   7.6729515755564387E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   43.140612056815570     
+ gws recalcd   43.140612056815570     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.2171679521977978     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        43.140612056815570     
+ outer loop entered. ts           10
+ inner loop entered. elem           1
+ UZ entered
+ L is   54.859387943184430     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.457816382955329     
+ sm/epv  0.52246535847088549     
+ got k   7.7854653029024862E-002
+ inf is   7.7854653029024862E-002
+ excess_p   3.2221453469709749     
+ inf_deficit   0.0000000000000000     
+ sws is   2.1353401461320161     
+ sw_inf   0.0000000000000000     
+ sws calcd   5.3574854931029909     
+ sm calcd   8.6764935891977935     
+ gws is    43.140612056815570     
+ vanGI called. sm_eq is    7.2171679521977978     
+ k_inf_gw is   7.7854653029024862E-002
+ gw_inf is   7.7854653029024862E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   43.400127566912317     
+ gws recalcd   43.400127566912317     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.1904565191830621     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        43.400127566912317     
+ outer loop entered. ts           11
+ inner loop entered. elem           1
+ UZ entered
+ L is   54.599872433087683     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.379961729926304     
+ sm/epv  0.52494865848550765     
+ got k   7.9018934254275863E-002
+ inf is   7.9018934254275863E-002
+ excess_p   3.2209810657457241     
+ inf_deficit   0.0000000000000000     
+ sws is   2.3574854931029909     
+ sw_inf   0.0000000000000000     
+ sws calcd   5.5784665588487155     
+ sm calcd   8.6776578704230438     
+ gws is    43.400127566912317     
+ vanGI called. sm_eq is    7.1904565191830621     
+ k_inf_gw is   7.9018934254275863E-002
+ gw_inf is   7.9018934254275863E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   43.663524014426571     
+ gws recalcd   43.663524014426571     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.1633400713135513     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        43.663524014426571     
+ outer loop entered. ts           12
+ inner loop entered. elem           1
+ UZ entered
+ L is   54.336475985573429     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.300942795672029     
+ sm/epv  0.52749335078040671     
+ got k   8.0224538090226796E-002
+ inf is   8.0224538090226796E-002
+ excess_p   3.2197754619097729     
+ inf_deficit   0.0000000000000000     
+ sws is   2.5784665588487155     
+ sw_inf   0.0000000000000000     
+ sws calcd   5.7982420207584884     
+ sm calcd   8.6788634742589945     
+ gws is    43.663524014426571     
+ vanGI called. sm_eq is    7.1633400713135513     
+ k_inf_gw is   8.0224538090226796E-002
+ gw_inf is   8.0224538090226796E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   43.930939141393992     
+ gws recalcd   43.930939141393992     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.1358041066191786     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        43.930939141393992     
+ outer loop entered. ts           13
+ inner loop entered. elem           1
+ UZ entered
+ L is   54.069060858606008     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.220718257581801     
+ sm/epv  0.53010223096314735     
+ got k   8.1473811676506941E-002
+ inf is   8.1473811676506941E-002
+ excess_p   3.2185261883234930     
+ inf_deficit   0.0000000000000000     
+ sws is   2.7982420207584884     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.0167682090819810     
+ sm calcd   8.6801127478452749     
+ gws is    43.930939141393992     
+ vanGI called. sm_eq is    7.1358041066191786     
+ k_inf_gw is   8.1473811676506941E-002
+ gw_inf is   8.1473811676506941E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   44.202518513649018     
+ gws recalcd   44.202518513649018     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.1078332937555615     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        44.202518513649018     
+ outer loop entered. ts           14
+ inner loop entered. elem           1
+ UZ entered
+ L is   53.797481486350982     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.139244445905295     
+ sm/epv  0.53277828246478653     
+ got k   8.2769287460523810E-002
+ inf is   8.2769287460523810E-002
+ excess_p   3.2172307125394761     
+ inf_deficit   0.0000000000000000     
+ sws is   3.0167682090819810     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.2339989216214571     
+ sm calcd   8.6814082236292922     
+ gws is    44.202518513649018     
+ vanGI called. sm_eq is    7.1078332937555615     
+ k_inf_gw is   8.2769287460523810E-002
+ gw_inf is   8.2769287460523810E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   44.478416138517431     
+ gws recalcd   44.478416138517431     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.0794114061456082     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        44.478416138517431     
+ outer loop entered. ts           15
+ inner loop entered. elem           1
+ UZ entered
+ L is   53.521583861482569     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   16.056475158444769     
+ sm/epv  0.53552469339115105     
+ got k   8.4113702100102106E-002
+ inf is   8.4113702100102106E-002
+ excess_p   3.2158862978998979     
+ inf_deficit   0.0000000000000000     
+ sws is   3.2339989216214571     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.4498852195213550     
+ sm calcd   8.6827526382688713     
+ gws is    44.478416138517431     
+ vanGI called. sm_eq is    7.0794114061456082     
+ k_inf_gw is   8.4113702100102106E-002
+ gw_inf is   8.4113702100102106E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   44.758795145517773     
+ gws recalcd   44.758795145517773     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.0505212493688116     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        44.758795145517773     
+ outer loop entered. ts           16
+ inner loop entered. elem           1
+ UZ entered
+ L is   53.241204854482227     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.972361456344668     
+ sm/epv  0.53834487528161645     
+ got k   8.5510017748503364E-002
+ inf is   8.5510017748503364E-002
+ excess_p   3.2144899822514965     
+ inf_deficit   0.0000000000000000     
+ sws is   3.4498852195213550     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.6643752017728515     
+ sm calcd   8.6841489539172727     
+ gws is    44.758795145517773     
+ vanGI called. sm_eq is    7.0505212493688116     
+ k_inf_gw is   8.5510017748503364E-002
+ gw_inf is   8.5510017748503364E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   45.043828538012782     
+ gws recalcd   45.043828538012782     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   7.0211445809433153     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        45.043828538012782     
+ outer loop entered. ts           17
+ inner loop entered. elem           1
+ UZ entered
+ L is   52.956171461987218     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.886851438596164     
+ sm/epv  0.54124248403801933     
+ got k   8.6961446081808100E-002
+ inf is   8.6961446081808100E-002
+ excess_p   3.2130385539181918     
+ inf_deficit   0.0000000000000000     
+ sws is   3.6643752017728515     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.8774137556910429     
+ sm calcd   8.6856003822505770     
+ gws is    45.043828538012782     
+ vanGI called. sm_eq is    7.0211445809433153     
+ k_inf_gw is   8.6961446081808100E-002
+ gw_inf is   8.6961446081808100E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   45.333700024952144     
+ gws recalcd   45.333700024952144     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.9912620215160119     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        45.333700024952144     
+ outer loop entered. ts           18
+ inner loop entered. elem           1
+ UZ entered
+ L is   52.666299975047856     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.799889992514355     
+ sm/epv  0.54422144332920142     
+ got k   8.8471475492459997E-002
+ inf is   8.8471475492459997E-002
+ excess_p   3.2115285245075400     
+ inf_deficit   0.0000000000000000     
+ sws is   3.8774137556910429     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.0889422801985829     
+ sm calcd   8.6871104116612283     
+ gws is    45.333700024952144     
+ vanGI called. sm_eq is    6.9912620215160119     
+ k_inf_gw is   8.8471475492459997E-002
+ gw_inf is   8.8471475492459997E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   45.628604943260342     
+ gws recalcd   45.628604943260342     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.9608529563232091     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        45.628604943260342     
+ outer loop entered. ts           19
+ inner loop entered. elem           1
+ UZ entered
+ L is   52.371395056739658     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.711418517021897     
+ sm/epv  0.54728597082770869     
+ got k   9.0043901949652241E-002
+ inf is   9.0043901949652241E-002
+ excess_p   3.2099560980503474     
+ inf_deficit   0.0000000000000000     
+ sws is   4.0889422801985829     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.2988983782489303     
+ sm calcd   8.6886828381184209     
+ gws is    45.628604943260342     
+ vanGI called. sm_eq is    6.9608529563232091     
+ k_inf_gw is   9.0043901949652241E-002
+ gw_inf is   9.0043901949652241E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   45.928751283092517     
+ gws recalcd   45.928751283092517     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.9298954256035614     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        45.928751283092517     
+ outer loop entered. ts           20
+ inner loop entered. elem           1
+ UZ entered
+ L is   52.071248716907483     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.621374615072245     
+ sm/epv  0.55044060769609815     
+ got k   9.1682864120220114E-002
+ inf is   9.1682864120220114E-002
+ excess_p   3.2083171358797795     
+ inf_deficit   0.0000000000000000     
+ sws is   4.2988983782489303     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.5072155141287098     
+ sm calcd   8.6903218002889879     
+ gws is    45.928751283092517     
+ vanGI called. sm_eq is    6.9298954256035614     
+ k_inf_gw is   9.1682864120220114E-002
+ gw_inf is   9.1682864120220114E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   46.234360830159915     
+ gws recalcd   46.234360830159915     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.8983660024307882     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        46.234360830159915     
+ outer loop entered. ts           21
+ inner loop entered. elem           1
+ UZ entered
+ L is   51.765639169840085     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.529691750952026     
+ sm/epv  0.55369025181337816     
+ got k   9.3392883456651601E-002
+ inf is   9.3392883456651601E-002
+ excess_p   3.2066071165433483     
+ inf_deficit   0.0000000000000000     
+ sws is   4.5072155141287098     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.7138226306720581     
+ sm calcd   8.6920318196254200     
+ gws is    46.234360830159915     
+ vanGI called. sm_eq is    6.8983660024307882     
+ k_inf_gw is   9.3392883456651601E-002
+ gw_inf is   9.3392883456651601E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   46.545670441682084     
+ gws recalcd   46.545670441682084     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.8662396561782373     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        46.545670441682084     
+ outer loop entered. ts           22
+ inner loop entered. elem           1
+ UZ entered
+ L is   51.454329558317916     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.436298867495374     
+ sm/epv  0.55704019532008098     
+ got k   9.5178910096615707E-002
+ inf is   9.5178910096615707E-002
+ excess_p   3.2048210899033842     
+ inf_deficit   0.0000000000000000     
+ sws is   4.7138226306720581     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.9186437205754423     
+ sm calcd   8.6938178462653841     
+ gws is    46.545670441682084     
+ vanGI called. sm_eq is    6.8662396561782373     
+ k_inf_gw is   9.5178910096615707E-002
+ gw_inf is   9.5178910096615707E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   46.862933475337471     
+ gws recalcd   46.862933475337471     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.8334895995221210     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        46.862933475337471     
+ outer loop entered. ts           23
+ inner loop entered. elem           1
+ UZ entered
+ L is   51.137066524662529     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.341119957398758     
+ sm/epv  0.56049616716684314     
+ got k   9.7046375587286959E-002
+ inf is   9.7046375587286959E-002
+ excess_p   3.2029536244127130     
+ inf_deficit   0.0000000000000000     
+ sws is   4.9186437205754423     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.1215973449881549     
+ sm calcd   8.6956853117560549     
+ gws is    46.862933475337471     
+ vanGI called. sm_eq is    6.8334895995221210     
+ k_inf_gw is   9.7046375587286959E-002
+ gw_inf is   9.7046375587286959E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   47.186421393961758     
+ gws recalcd   47.186421393961758     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.8000871165235663     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        47.186421393961758     
+ outer loop entered. ts           24
+ inner loop entered. elem           1
+ UZ entered
+ L is   50.813578606038242     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.244073581811472     
+ sm/epv  0.56406438148056892     
+ got k   9.9001253655722127E-002
+ inf is   9.9001253655722127E-002
+ excess_p   3.2009987463442777     
+ inf_deficit   0.0000000000000000     
+ sws is   5.1215973449881549     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.3225960913324322     
+ sm calcd   8.6976401898244902     
+ gws is    47.186421393961758     
+ vanGI called. sm_eq is    6.8000871165235663     
+ k_inf_gw is   9.9001253655722127E-002
+ gw_inf is   9.9001253655722127E-002
+ sm recalcd    8.5986389361687685     
+ gws calcd   47.516425572814164     
+ gws recalcd   47.516425572814164     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.7660013688874390     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        47.516425572814164     
+ outer loop entered. ts           25
+ inner loop entered. elem           1
+ UZ entered
+ L is   50.483574427185836     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.145072328155750     
+ sm/epv  0.56775159271991693     
+ got k  0.10105013050398422     
+ inf is  0.10105013050398422     
+ excess_p   3.1989498694960155     
+ inf_deficit   0.0000000000000000     
+ sws is   5.3225960913324322     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.5215459608284476     
+ sm calcd   8.6996890666727520     
+ gws is    47.516425572814164     
+ vanGI called. sm_eq is    6.7660013688874390     
+ k_inf_gw is  0.10105013050398422     
+ gw_inf is  0.10105013050398422     
+ sm recalcd    8.5986389361687685     
+ gws calcd   47.853259341160779     
+ gws recalcd   47.853259341160779     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.7311991769600459     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        47.853259341160779     
+ outer loop entered. ts           26
+ inner loop entered. elem           1
+ UZ entered
+ L is   50.146740658839221     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   15.044022197651765     
+ sm/epv  0.57156515878519099     
+ got k  0.10320028642804840     
+ inf is  0.10320028642804840     
+ excess_p   3.1967997135719513     
+ inf_deficit   0.0000000000000000     
+ sws is   5.5215459608284476     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.7183456744003998     
+ sm calcd   8.7018392225968171     
+ gws is    47.853259341160779     
+ vanGI called. sm_eq is    6.7311991769600459     
+ k_inf_gw is  0.10320028642804840     
+ gw_inf is  0.10320028642804840     
+ sm recalcd    8.5986389361687685     
+ gws calcd   48.197260295920941     
+ gws recalcd   48.197260295920941     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.6956447713753553     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        48.197260295920941     
+ outer loop entered. ts           27
+ inner loop entered. elem           1
+ UZ entered
+ L is   49.802739704079059     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.940821911223717     
+ sm/epv  0.57551311348603740     
+ got k  0.10545979096038681     
+ inf is  0.10545979096038681     
+ excess_p   3.1945402090396131     
+ inf_deficit   0.0000000000000000     
+ sws is   5.7183456744003998     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.9128858834400120     
+ sm calcd   8.7040987271291552     
+ gws is    48.197260295920941     
+ vanGI called. sm_eq is    6.6956447713753553     
+ k_inf_gw is  0.10545979096038681     
+ gw_inf is  0.10545979096038681     
+ sm recalcd    8.5986389361687685     
+ gws calcd   48.548792932455562     
+ gws recalcd   48.548792932455562     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.6592995104609276     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        48.548792932455562     
+ outer loop entered. ts           28
+ inner loop entered. elem           1
+ UZ entered
+ L is   49.451207067544438     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.835362120263330     
+ sm/epv  0.57960425006573024     
+ got k  0.10783761424069545     
+ inf is  0.10783761424069545     
+ excess_p   3.1921623857593042     
+ inf_deficit   0.0000000000000000     
+ sws is   5.9128858834400120     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.1050482691993153     
+ sm calcd   8.7064765504094641     
+ gws is    48.548792932455562     
+ vanGI called. sm_eq is    6.6592995104609276     
+ k_inf_gw is  0.10783761424069545     
+ gw_inf is  0.10783761424069545     
+ sm recalcd    8.5986389361687685     
+ gws calcd   48.908251646591211     
+ gws recalcd   48.908251646591211     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.6221215575322834     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        48.908251646591211     
+ outer loop entered. ts           29
+ inner loop entered. elem           1
+ UZ entered
+ L is   49.091748353408789     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.727524506022636     
+ sm/epv  0.58384821784899854     
+ got k  0.11034375795827042     
+ inf is  0.11034375795827042     
+ excess_p   3.1896562420417296     
+ inf_deficit   0.0000000000000000     
+ sws is   6.1050482691993153     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.2947045112410454     
+ sm calcd   8.7089826941270392     
+ gws is    48.908251646591211     
+ vanGI called. sm_eq is    6.6221215575322834     
+ k_inf_gw is  0.11034375795827042     
+ gw_inf is  0.11034375795827042     
+ sm recalcd    8.5986389361687685     
+ gws calcd   49.276064173118776     
+ gws recalcd   49.276064173118776     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.5840655109887125     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        49.276064173118776     
+ outer loop entered. ts           30
+ inner loop entered. elem           1
+ UZ entered
+ L is   48.723935826881224     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.617180748064367     
+ sm/epv  0.58825563454207241     
+ got k  0.11298941002420798     
+ inf is  0.11298941002420798     
+ excess_p   3.1870105899757917     
+ inf_deficit   0.0000000000000000     
+ sws is   6.2947045112410454     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.4817151012168370     
+ sm calcd   8.7116283461929758     
+ gws is    49.276064173118776     
+ vanGI called. sm_eq is    6.5840655109887125     
+ k_inf_gw is  0.11298941002420798     
+ gw_inf is  0.11298941002420798     
+ sm recalcd    8.5986389361687685     
+ gws calcd   49.652695539866137     
+ gws recalcd   49.652695539866137     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.5450819786103152     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        49.652695539866137     
+ outer loop entered. ts           31
+ inner loop entered. elem           1
+ UZ entered
+ L is   48.347304460133863     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.504191338040158     
+ sm/epv  0.59283821729634167     
+ got k  0.11578712817735481     
+ inf is  0.11578712817735481     
+ excess_p   3.1842128718226448     
+ inf_deficit   0.0000000000000000     
+ sws is   6.4817151012168370     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.6659279730394818     
+ sm calcd   8.7144260643461227     
+ gws is    49.652695539866137     
+ vanGI called. sm_eq is    6.5450819786103152     
+ k_inf_gw is  0.11578712817735481     
+ gw_inf is  0.11578712817735481     
+ sm recalcd    8.5986389361687685     
+ gws calcd   50.038652633790655     
+ gws recalcd   50.038652633790655     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.5051170855602791     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        50.038652633790655     
+ outer loop entered. ts           32
+ inner loop entered. elem           1
+ UZ entered
+ L is   47.961347366209345     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.388404209862804     
+ sm/epv  0.59760893638744650     
+ got k  0.11875105908016086     
+ inf is  0.11875105908016086     
+ excess_p   3.1812489409198390     
+ inf_deficit   0.0000000000000000     
+ sws is   6.6659279730394818     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.8471769139593199     
+ sm calcd   8.7173899952489293     
+ gws is    50.038652633790655     
+ vanGI called. sm_eq is    6.5051170855602791     
+ k_inf_gw is  0.11875105908016086     
+ gw_inf is  0.11875105908016086     
+ sm recalcd    8.5986389361687685     
+ gws calcd   50.434489497391191     
+ gws recalcd   50.434489497391191     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.4641119032057208     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        50.434489497391191     
+ outer loop entered. ts           33
+ inner loop entered. elem           1
+ UZ entered
+ L is   47.565510502608809     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.269653150782643     
+ sm/epv  0.60258219630917675     
+ got k  0.12189720122270450     
+ inf is  0.12189720122270450     
+ excess_p   3.1781027987772954     
+ inf_deficit   0.0000000000000000     
+ sws is   6.8471769139593199     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.025279712736616     
+ sm calcd   8.7205361373914734     
+ gws is    50.434489497391191     
+ vanGI called. sm_eq is    6.4641119032057208     
+ k_inf_gw is  0.12189720122270450     
+ gw_inf is  0.12189720122270450     
+ sm recalcd    8.5986389361687685     
+ gws calcd   50.840813501466869     
+ gws recalcd   50.840813501466869     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.4220017828339735     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        50.840813501466869     
+ outer loop entered. ts           34
+ inner loop entered. elem           1
+ UZ entered
+ L is   47.159186498533131     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.147755949559938     
+ sm/epv  0.60777405030344944     
+ got k  0.12524372226839342     
+ inf is  0.12524372226839342     
+ excess_p   3.1747562777316065     
+ inf_deficit   0.0000000000000000     
+ sws is   7.0252797127366158     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.200035990468223     
+ sm calcd   8.7238826584371623     
+ gws is    50.840813501466869     
+ vanGI called. sm_eq is    6.4220017828339735     
+ k_inf_gw is  0.12524372226839342     
+ gw_inf is  0.12524372226839342     
+ sm recalcd    8.5986389361687685     
+ gws calcd   51.258292575694846     
+ gws recalcd   51.258292575694846     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.3787155744552138     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        51.258292575694846     
+ outer loop entered. ts           35
+ inner loop entered. elem           1
+ UZ entered
+ L is   46.741707424305154     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   14.022512227291546     
+ sm/epv  0.61320245593607148     
+ got k  0.12881134454358559     
+ inf is  0.12881134454358559     
+ excess_p   3.1711886554564144     
+ inf_deficit   0.0000000000000000     
+ sws is   7.2000359904682227     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.371224645924638     
+ sm calcd   8.7274502807123540     
+ gws is    51.258292575694846     
+ vanGI called. sm_eq is    6.3787155744552138     
+ k_inf_gw is  0.12881134454358559     
+ gw_inf is  0.12881134454358559     
+ sm recalcd    8.5986389361687685     
+ gws calcd   51.687663724173461     
+ gws recalcd   51.687663724173461     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.3341747058692812     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        51.687663724173461     
+ outer loop entered. ts           36
+ inner loop entered. elem           1
+ UZ entered
+ L is   46.312336275826539     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.893700882747961     
+ sm/epv  0.61888758141078459     
+ got k  0.13262381647899607     
+ inf is  0.13262381647899607     
+ excess_p   3.1673761835210037     
+ inf_deficit   0.0000000000000000     
+ sws is   7.3712246459246380     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.538600829445642     
+ sm calcd   8.7312627526477637     
+ gws is    51.687663724173461     
+ vanGI called. sm_eq is    6.3341747058692812     
+ k_inf_gw is  0.13262381647899607     
+ gw_inf is  0.13262381647899607     
+ sm recalcd    8.5986389361687685     
+ gws calcd   52.129743112436785     
+ gws recalcd   52.129743112436785     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.2882920906511908     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        52.129743112436785     
+ outer loop entered. ts           37
+ inner loop entered. elem           1
+ UZ entered
+ L is   45.870256887563215     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.761077066268964     
+ sm/epv  0.62485217507034241     
+ got k  0.13670849335876473     
+ inf is  0.13670849335876473     
+ excess_p   3.1632915066412353     
+ inf_deficit   0.0000000000000000     
+ sws is   7.5386008294456417     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.701892336086877     
+ sm calcd   8.7353474295275326     
+ gws is    52.129743112436785     
+ vanGI called. sm_eq is    6.2882920906511908     
+ k_inf_gw is  0.13670849335876473     
+ gw_inf is  0.13670849335876473     
+ sm recalcd    8.5986389361687685     
+ gws calcd   52.585438090299334     
+ gws recalcd   52.585438090299334     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.2409708251434646     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        52.585438090299334     
+ outer loop entered. ts           38
+ inner loop entered. elem           1
+ UZ entered
+ L is   45.414561909700666     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.624368572910200     
+ sm/epv  0.63112201421691849     
+ got k  0.14109705831073807     
+ inf is  0.14109705831073807     
+ excess_p   3.1589029416892616     
+ inf_deficit   0.0000000000000000     
+ sws is   7.7018923360868765     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.860795277776138     
+ sm calcd   8.7397359944795063     
+ gws is    52.585438090299334     
+ vanGI called. sm_eq is    6.2409708251434646     
+ k_inf_gw is  0.14109705831073807     
+ gw_inf is  0.14109705831073807     
+ sm recalcd    8.5986389361687685     
+ gws calcd   53.055761618001796     
+ gws recalcd   53.055761618001796     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.1921026231820742     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        53.055761618001796     
+ outer loop entered. ts           39
+ inner loop entered. elem           1
+ UZ entered
+ L is   44.944238381998204     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.483271514599460     
+ sm/epv  0.63772645435926334     
+ got k  0.14582642494096287     
+ inf is  0.14582642494096287     
+ excess_p   3.1541735750590369     
+ inf_deficit   0.0000000000000000     
+ sws is   7.8607952777761376     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.014968852835175     
+ sm calcd   8.7444653611097323     
+ gws is    53.055761618001796     
+ vanGI called. sm_eq is    6.1921026231820742     
+ k_inf_gw is  0.14582642494096287     
+ gw_inf is  0.14582642494096287     
+ sm recalcd    8.5986389361687685     
+ gws calcd   53.541849701138339     
+ gws recalcd   53.541849701138339     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.1415659220545384     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        53.541849701138339     
+ outer loop entered. ts           40
+ inner loop entered. elem           1
+ UZ entered
+ L is   44.458150298861661     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.337445089658498     
+ sm/epv  0.64469910679039466     
+ got k  0.15093987766009836     
+ inf is  0.15093987766009836     
+ excess_p   3.1490601223399013     
+ inf_deficit   0.0000000000000000     
+ sws is   8.0149688528351746     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.164028975175075     
+ sm calcd   8.7495788138288670     
+ gws is    53.541849701138339     
+ vanGI called. sm_eq is    6.1415659220545384     
+ k_inf_gw is  0.15093987766009836     
+ gw_inf is  0.15093987766009836     
+ sm recalcd    8.5986389361687685     
+ gws calcd   54.044982626672002     
+ gws recalcd   54.044982626672002     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.0892235734526778     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        54.044982626672002     
+ outer loop entered. ts           41
+ inner loop entered. elem           1
+ UZ entered
+ L is   43.955017373327998     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.186505211998400     
+ sm/epv  0.65207868179848505     
+ got k  0.15648852650985728     
+ inf is  0.15648852650985728     
+ excess_p   3.1435114734901424     
+ inf_deficit   0.0000000000000000     
+ sws is   8.1640289751750750     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.307540448665218     
+ sm calcd   8.7551274626786260     
+ gws is    54.044982626672002     
+ vanGI called. sm_eq is    6.0892235734526778     
+ k_inf_gw is  0.15648852650985728     
+ gw_inf is  0.15648852650985728     
+ sm recalcd    8.5986389361687685     
+ gws calcd   54.566611048371527     
+ gws recalcd   54.566611048371527     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   6.0349199975627350     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        54.566611048371527     
+ outer loop entered. ts           42
+ inner loop entered. elem           1
+ UZ entered
+ L is   43.433388951628473     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   13.030016685488542     
+ sm/epv  0.65991004798520525     
+ got k  0.16253318315635629     
+ inf is  0.16253318315635629     
+ excess_p   3.1374668168436437     
+ inf_deficit   0.0000000000000000     
+ sws is   8.3075404486652182     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.445007265508861     
+ sm calcd   8.7611721193251242     
+ gws is    54.566611048371527     
+ vanGI called. sm_eq is    6.0349199975627350     
+ k_inf_gw is  0.16253318315635629     
+ gw_inf is  0.16253318315635629     
+ sm recalcd    8.5986389361687685     
+ gws calcd   55.108388325559382     
+ gws recalcd   55.108388325559382     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.9784776644928703     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        55.108388325559382     
+ outer loop entered. ts           43
+ inner loop entered. elem           1
+ UZ entered
+ L is   42.891611674440618     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   12.867483502332185     
+ sm/epv  0.66824557689235009     
+ got k  0.16914680834221499     
+ inf is  0.16914680834221499     
+ excess_p   3.1308531916577849     
+ inf_deficit   0.0000000000000000     
+ sws is   8.4450072655088615     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.575860457166646     
+ sm calcd   8.7677857445109844     
+ gws is    55.108388325559382     
+ vanGI called. sm_eq is    5.9784776644928703     
+ k_inf_gw is  0.16914680834221499     
+ gw_inf is  0.16914680834221499     
+ sm recalcd    8.5986389361687685     
+ gws calcd   55.672211020033430     
+ gws recalcd   55.672211020033430     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.9196926606244888     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        55.672211020033430     
+ outer loop entered. ts           44
+ inner loop entered. elem           1
+ UZ entered
+ L is   42.327788979966570     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   12.698336693989971     
+ sm/epv  0.67714686918314593     
+ got k  0.17641774592959655     
+ inf is  0.17641774592959655     
+ excess_p   3.1235822540704032     
+ inf_deficit   0.0000000000000000     
+ sws is   8.5758604571666464     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.699442711237049     
+ sm calcd   8.7750566820983646     
+ gws is    55.672211020033430     
+ vanGI called. sm_eq is    5.9196926606244888     
+ k_inf_gw is  0.17641774592959655     
+ gw_inf is  0.17641774592959655     
+ sm recalcd    8.5986389361687685     
+ gws calcd   56.260270173132085     
+ gws recalcd   56.260270173132085     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.8583290813589821     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        56.260270173132085     
+ outer loop entered. ts           45
+ inner loop entered. elem           1
+ UZ entered
+ L is   41.739729826867915     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   12.521918948060375     
+ sm/epv  0.68668699836143599     
+ got k  0.18445405686699229     
+ inf is  0.18445405686699229     
+ excess_p   3.1155459431330077     
+ inf_deficit   0.0000000000000000     
+ sws is   8.6994427112370492     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.814988654370056     
+ sm calcd   8.7830929930357602     
+ gws is    56.260270173132085     
+ vanGI called. sm_eq is    5.8583290813589821     
+ k_inf_gw is  0.18445405686699229     
+ gw_inf is  0.18445405686699229     
+ sm recalcd    8.5986389361687685     
+ gws calcd   56.875117029355394     
+ gws recalcd   56.875117029355394     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.7941118243250811     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        56.875117029355394     
+ outer loop entered. ts           46
+ inner loop entered. elem           1
+ UZ entered
+ L is   41.124882970644606     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   12.337464891193381     
+ sm/epv  0.69695346750745946     
+ got k  0.19338941824308120     
+ inf is  0.19338941824308120     
+ excess_p   3.1066105817569185     
+ inf_deficit   0.0000000000000000     
+ sws is   8.8149886543700564     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.921599236126974     
+ sm calcd   8.7920283544118494     
+ gws is    56.875117029355394     
+ vanGI called. sm_eq is    5.7941118243250811     
+ k_inf_gw is  0.19338941824308120     
+ gw_inf is  0.19338941824308120     
+ sm recalcd    8.5986389361687685     
+ gws calcd   57.519748423498996     
+ gws recalcd   57.519748423498996     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.7267172088246028     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        57.519748423498996     
+ outer loop entered. ts           47
+ inner loop entered. elem           1
+ UZ entered
+ L is   40.480251576501004     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   12.144075472950300     
+ sm/epv  0.70805216546301664     
+ got k  0.20339129276722062     
+ inf is  0.20339129276722062     
+ excess_p   3.0966087072327793     
+ inf_deficit   0.0000000000000000     
+ sws is   8.9215992361269745     
+ sw_inf   0.0000000000000000     
+ sws calcd   12.018207943359753     
+ sm calcd   8.8020302289359886     
+ gws is    57.519748423498996     
+ vanGI called. sm_eq is    5.7267172088246028     
+ k_inf_gw is  0.20339129276722062     
+ gw_inf is  0.20339129276722062     
+ sm recalcd    8.5986389361687685     
+ gws calcd   58.197719399389733     
+ gws recalcd   58.197719399389733     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.6557605777283877     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        58.197719399389733     
+ outer loop entered. ts           48
+ inner loop entered. elem           1
+ UZ entered
+ L is   39.802280600610267     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   11.940684180183080     
+ sm/epv  0.72011275119722074     
+ got k  0.21467246372242760     
+ inf is  0.21467246372242760     
+ excess_p   3.0853275362775721     
+ inf_deficit   0.0000000000000000     
+ sws is   9.0182079433597533     
+ sw_inf   0.0000000000000000     
+ sws calcd   12.103535479637326     
+ sm calcd   8.8133113998911963     
+ gws is    58.197719399389733     
+ vanGI called. sm_eq is    5.6557605777283877     
+ k_inf_gw is  0.21467246372242760     
+ gw_inf is  0.21467246372242760     
+ sm recalcd    8.5986389361687685     
+ gws calcd   58.913294278464491     
+ gws recalcd   58.913294278464491     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.5807796265843876     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        58.913294278464491     
+ outer loop entered. ts           49
+ inner loop entered. elem           1
+ UZ entered
+ L is   39.086705721535509     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   11.726011716460652     
+ sm/epv  0.73329612353177476     
+ got k  0.22750768100465793     
+ inf is  0.22750768100465793     
+ excess_p   3.0724923189953417     
+ inf_deficit   0.0000000000000000     
+ sws is   9.1035354796373262     
+ sw_inf   0.0000000000000000     
+ sws calcd   12.176027798632667     
+ sm calcd   8.8261466171734266     
+ gws is    58.913294278464491     
+ vanGI called. sm_eq is    5.5807796265843876     
+ k_inf_gw is  0.22750768100465793     
+ gw_inf is  0.22750768100465793     
+ sm recalcd    8.5986389361687685     
+ gws calcd   59.671653215146684     
+ gws recalcd   59.671653215146684     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.5012115507951256     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        59.671653215146684     
+ outer loop entered. ts           50
+ inner loop entered. elem           1
+ UZ entered
+ L is   38.328346784853316     
+ P is   3.2999999999999998     
+ sm is   8.5986389361687685     
+ epv is   11.498504035455994     
+ sm/epv  0.74780501095225937     
+ got k  0.24225828526044443     
+ inf is  0.24225828526044443     
+ excess_p   3.0577417147395556     
+ inf_deficit   0.0000000000000000     
+ sws is   9.1760277986326670     
+ sw_inf   0.0000000000000000     
+ sws calcd   12.233769513372224     
+ sm calcd   8.8408972214292127     
+ gws is    59.671653215146684     
+ vanGI called. sm_eq is    5.5012115507951256     
+ k_inf_gw is  0.24225828526044443     
+ gw_inf is  0.24225828526044443     
+ sm recalcd    8.5986389361687685     
+ gws calcd   60.479180832681500     
+ gws recalcd   60.479180832681500     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.4163610193430438     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        60.479180832681500     
+ outer loop entered. ts           51
+ inner loop entered. elem           1
+ UZ entered
+ L is   37.520819167318500     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   11.256245750195550     
+ sm/epv  0.76389936102979872     
+ got k  0.25940968173222068     
+ inf is  0.25940968173222068     
+ excess_p   2.4405903182677791     
+ inf_deficit   0.0000000000000000     
+ sws is   9.2337695133722235     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.674359831640002     
+ sm calcd   8.8580486179009892     
+ gws is    60.479180832681500     
+ vanGI called. sm_eq is    5.4163610193430438     
+ k_inf_gw is  0.25940968173222068     
+ gw_inf is  0.25940968173222068     
+ sm recalcd    8.5986389361687685     
+ gws calcd   61.343879771788906     
+ gws recalcd   61.343879771788906     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.3253541399467910     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        61.343879771788906     
+ outer loop entered. ts           52
+ inner loop entered. elem           1
+ UZ entered
+ L is   36.656120228211094     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   10.996836068463328     
+ sm/epv  0.78191935231515386     
+ got k  0.27963027140389585     
+ inf is  0.27963027140389585     
+ excess_p   2.4203697285961039     
+ inf_deficit   0.0000000000000000     
+ sws is   8.6743598316400021     
+ sw_inf   0.0000000000000000     
+ sws calcd   11.094729560236106     
+ sm calcd   8.8782692075726644     
+ gws is    61.343879771788906     
+ vanGI called. sm_eq is    5.3253541399467910     
+ k_inf_gw is  0.27963027140389585     
+ gw_inf is  0.27963027140389585     
+ sm recalcd    8.5986389361687685     
+ gws calcd   62.275980676468556     
+ gws recalcd   62.275980676468556     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.2270703081689094     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        62.275980676468556     
+ outer loop entered. ts           53
+ inner loop entered. elem           1
+ UZ entered
+ L is   35.724019323531444     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   10.717205797059433     
+ sm/epv  0.80232096863606428     
+ got k  0.30386775449489684     
+ inf is  0.30386775449489684     
+ excess_p   2.3961322455051031     
+ inf_deficit   0.0000000000000000     
+ sws is   8.0947295602361056     
+ sw_inf   0.0000000000000000     
+ sws calcd   10.490861805741208     
+ sm calcd   8.9025066906636656     
+ gws is    62.275980676468556     
+ vanGI called. sm_eq is    5.2270703081689094     
+ k_inf_gw is  0.30386775449489684     
+ gw_inf is  0.30386775449489684     
+ sm recalcd    8.5986389361687685     
+ gws calcd   63.288873191451543     
+ gws recalcd   63.288873191451543     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.1200377525199094     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        63.288873191451543     
+ outer loop entered. ts           54
+ inner loop entered. elem           1
+ UZ entered
+ L is   34.711126808548457     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   10.413338042564536     
+ sm/epv  0.82573319919336319     
+ got k  0.33351384831975406     
+ inf is  0.33351384831975406     
+ excess_p   2.3664861516802458     
+ inf_deficit   0.0000000000000000     
+ sws is   7.4908618057412077     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.8573479574214531     
+ sm calcd   8.9321527844885225     
+ gws is    63.288873191451543     
+ vanGI called. sm_eq is    5.1200377525199094     
+ k_inf_gw is  0.33351384831975406     
+ gw_inf is  0.33351384831975406     
+ sm recalcd    8.5986389361687685     
+ gws calcd   64.400586019184061     
+ gws recalcd   64.400586019184061     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   5.0022666587107691     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        64.400586019184061     
+ outer loop entered. ts           55
+ inner loop entered. elem           1
+ UZ entered
+ L is   33.599413980815939     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   10.079824194244781     
+ sm/epv  0.85305445516383949     
+ got k  0.37070196454243270     
+ inf is  0.37070196454243270     
+ excess_p   2.3292980354575672     
+ inf_deficit   0.0000000000000000     
+ sws is   6.8573479574214531     
+ sw_inf   0.0000000000000000     
+ sws calcd   9.1866459928790203     
+ sm calcd   8.9693409007112006     
+ gws is    64.400586019184061     
+ vanGI called. sm_eq is    5.0022666587107691     
+ k_inf_gw is  0.37070196454243270     
+ gw_inf is  0.37070196454243270     
+ sm recalcd    8.5986389361687685     
+ gws calcd   65.636259234325507     
+ gws recalcd   65.636259234325507     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   4.8709687805007684     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        65.636259234325507     
+ outer loop entered. ts           56
+ inner loop entered. elem           1
+ UZ entered
+ L is   32.363740765674493     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   9.7091222297023467     
+ sm/epv  0.88562474884327191     
+ got k  0.41888294032736023     
+ inf is  0.41888294032736023     
+ excess_p   2.2811170596726393     
+ inf_deficit   0.0000000000000000     
+ sws is   6.1866459928790203     
+ sw_inf   0.0000000000000000     
+ sws calcd   8.4677630525516605     
+ sm calcd   9.0175218764961294     
+ gws is    65.636259234325507     
+ vanGI called. sm_eq is    4.8709687805007684     
+ k_inf_gw is  0.41888294032736023     
+ gw_inf is  0.41888294032736023     
+ sm recalcd    8.5986389361687685     
+ gws calcd   67.032535702083379     
+ gws recalcd   67.032535702083379     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   4.7220558227817619     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        67.032535702083379     
+ outer loop entered. ts           57
+ inner loop entered. elem           1
+ UZ entered
+ L is   30.967464297916621     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   9.2902392893749859     
+ sm/epv  0.92555623900913042     
+ got k  0.48403840862320324     
+ inf is  0.48403840862320324     
+ excess_p   2.2159615913767965     
+ inf_deficit   0.0000000000000000     
+ sws is   5.4677630525516605     
+ sw_inf   0.0000000000000000     
+ sws calcd   7.6837246439284570     
+ sm calcd   9.0826773447919713     
+ gws is    67.032535702083379     
+ vanGI called. sm_eq is    4.7220558227817619     
+ k_inf_gw is  0.48403840862320324     
+ gw_inf is  0.48403840862320324     
+ sm recalcd    8.5986389361687685     
+ gws calcd   68.645997064160724     
+ gws recalcd   68.645997064160724     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   4.5491670421790005     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        68.645997064160724     
+ outer loop entered. ts           58
+ inner loop entered. elem           1
+ UZ entered
+ L is   29.354002935839276     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   8.8062008807517831     
+ sm/epv  0.97643002386685329     
+ got k  0.57754270708590627     
+ inf is  0.57754270708590627     
+ excess_p   2.1224572929140937     
+ inf_deficit   0.0000000000000000     
+ sws is   4.6837246439284570     
+ sw_inf   0.0000000000000000     
+ sws calcd   6.8061819368425507     
+ sm calcd   9.1761816432546741     
+ gws is    68.645997064160724     
+ vanGI called. sm_eq is    4.5491670421790005     
+ k_inf_gw is  0.57754270708590627     
+ gw_inf is  0.57754270708590627     
+ sm recalcd    8.5986389361687685     
+ gws calcd   70.571139421113742     
+ gws recalcd   70.571139421113742     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   4.3415719976929594     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        70.571139421113742     
+ outer loop entered. ts           59
+ inner loop entered. elem           1
+ UZ entered
+ L is   27.428860578886258     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   8.2286581736658775     
+ sm/epv   1.0449624658959511     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   3.8061819368425507     
+ sw_inf   0.0000000000000000     
+ sws calcd   5.8810381480896972     
+ sm calcd   9.2237827249216213     
+ gws is    70.571139421113742     
+ vanGI called. sm_eq is    4.3415719976929594     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    8.5986389361687685     
+ gws calcd   72.654952050289921     
+ gws recalcd   72.654952050289921     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   4.1149724477716623     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        72.654952050289921     
+ outer loop entered. ts           60
+ inner loop entered. elem           1
+ UZ entered
+ L is   25.345047949710079     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   7.6035143849130229     
+ sm/epv   1.1308769209709504     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   2.8810381480896972     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.9558943593368436     
+ sm calcd   9.2237827249216213     
+ gws is    72.654952050289921     
+ vanGI called. sm_eq is    4.1149724477716623     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    8.5986389361687685     
+ gws calcd   74.738764679466101     
+ gws recalcd   74.738764679466101     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   3.8859844886907946     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        74.738764679466101     
+ outer loop entered. ts           61
+ inner loop entered. elem           1
+ UZ entered
+ L is   23.261235320533899     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   6.9783705961601692     
+ sm/epv   1.2321843355381767     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   1.9558943593368436     
+ sw_inf   0.0000000000000000     
+ sws calcd   4.0307505705839901     
+ sm calcd   9.2237827249216213     
+ gws is    74.738764679466101     
+ vanGI called. sm_eq is    3.8859844886907946     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    8.5986389361687685     
+ gws calcd   76.822577308642281     
+ gws recalcd   76.822577308642281     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   3.6540375311175604     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        76.822577308642281     
+ outer loop entered. ts           62
+ inner loop entered. elem           1
+ UZ entered
+ L is   21.177422691357719     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   6.3532268074073155     
+ sm/epv   1.3534286114488303     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   1.0307505705839901     
+ sw_inf   0.0000000000000000     
+ sws calcd   3.1056067818311366     
+ sm calcd   9.2237827249216213     
+ gws is    76.822577308642281     
+ vanGI called. sm_eq is    3.6540375311175604     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    8.5986389361687685     
+ gws calcd   78.906389937818460     
+ gws recalcd   78.906389937818460     
+ ET is   3.0000000000000000     
+ sw et removed   3.0000000000000000     
+ sm et removed   0.0000000000000000     
+ sm is   8.5986389361687685     
+ new sm_eq   3.4183506709665390     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   8.5986389361687685        78.906389937818460     
+ outer loop entered. ts           63
+ inner loop entered. elem           1
+ UZ entered
+ L is   19.093610062181540     
+ P is   2.6999999999999997     
+ sm is   8.5986389361687685     
+ epv is   5.7280830186544618     
+ sm/epv   1.5011372754490220     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is  0.10560678183113659     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.1804629930782831     
+ sm calcd   9.2237827249216213     
+ gws is    78.906389937818460     
+ vanGI called. sm_eq is    3.4183506709665390     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    8.5986389361687685     
+ gws calcd   80.990202566994640     
+ gws recalcd   80.990202566994640     
+ ET is   3.0000000000000000     
+ sw et removed   2.1804629930782831     
+ sm et removed  0.81953700692171694     
+ sm is   7.7791019292470516     
+ new sm_eq   3.1778218246618959     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   7.7791019292470516        80.990202566994640     
+ outer loop entered. ts           64
+ inner loop entered. elem           1
+ UZ entered
+ L is   17.009797433005360     
+ P is   2.6999999999999997     
+ sm is   7.7791019292470516     
+ epv is   5.1029392299016081     
+ sm/epv   1.5244355417097617     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   8.4042457179999044     
+ gws is    80.990202566994640     
+ vanGI called. sm_eq is    3.1778218246618959     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    7.7791019292470507     
+ gws calcd   83.074015196170819     
+ gws recalcd   83.074015196170819     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   6.8539581404941972     
+ new sm_eq   2.9308365448014313     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   6.8539581404941972        83.074015196170819     
+ outer loop entered. ts           65
+ inner loop entered. elem           1
+ UZ entered
+ L is   14.925984803829181     
+ P is   2.6999999999999997     
+ sm is   6.8539581404941972     
+ epv is   4.4777954411487544     
+ sm/epv   1.5306545889769032     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   7.4791019292470509     
+ gws is    83.074015196170819     
+ vanGI called. sm_eq is    2.9308365448014313     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    6.8539581404941972     
+ gws calcd   85.157827825346999     
+ gws recalcd   85.157827825346999     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   5.9288143517413436     
+ new sm_eq   2.6749182108543779     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   5.9288143517413436        85.157827825346999     
+ outer loop entered. ts           66
+ inner loop entered. elem           1
+ UZ entered
+ L is   12.842172174653001     
+ P is   2.6999999999999997     
+ sm is   5.9288143517413436     
+ epv is   3.8526516523959002     
+ sm/epv   1.5388918819209394     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   6.5539581404941973     
+ gws is    85.157827825346999     
+ vanGI called. sm_eq is    2.6749182108543779     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    5.9288143517413436     
+ gws calcd   87.241640454523179     
+ gws recalcd   87.241640454523179     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   5.0036705629884901     
+ new sm_eq   2.4060396146072867     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   5.0036705629884901        87.241640454523179     
+ outer loop entered. ts           67
+ inner loop entered. elem           1
+ UZ entered
+ L is   10.758359545476821     
+ P is   2.6999999999999997     
+ sm is   5.0036705629884901     
+ epv is   3.2275078636430465     
+ sm/epv   1.5503201771724273     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   5.6288143517413438     
+ gws is    87.241640454523179     
+ vanGI called. sm_eq is    2.4060396146072867     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    5.0036705629884901     
+ gws calcd   89.325453083699358     
+ gws recalcd   89.325453083699358     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   4.0785267742356366     
+ new sm_eq   2.1171396649417242     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   4.0785267742356366        89.325453083699358     
+ outer loop entered. ts           68
+ inner loop entered. elem           1
+ UZ entered
+ L is   8.6745469163006419     
+ P is   2.6999999999999997     
+ sm is   4.0785267742356366     
+ epv is   2.6023640748901924     
+ sm/epv   1.5672391167664468     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   4.7036705629884903     
+ gws is    89.325453083699358     
+ vanGI called. sm_eq is    2.1171396649417242     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    4.0785267742356366     
+ gws calcd   91.409265712875538     
+ gws recalcd   91.409265712875538     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   3.1533829854827831     
+ new sm_eq   1.7945500664407958     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   3.1533829854827831        91.409265712875538     
+ outer loop entered. ts           69
+ inner loop entered. elem           1
+ UZ entered
+ L is   6.5907342871244623     
+ P is   2.6999999999999997     
+ sm is   3.1533829854827831     
+ epv is   1.9772202861373387     
+ sm/epv   1.5948566821773684     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   3.7785267742356368     
+ gws is    91.409265712875538     
+ vanGI called. sm_eq is    1.7945500664407958     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    3.1533829854827831     
+ gws calcd   93.493078342051717     
+ gws recalcd   93.493078342051717     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   2.2282391967299295     
+ new sm_eq   1.4082869124014294     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   2.2282391967299295        93.493078342051717     
+ outer loop entered. ts           70
+ inner loop entered. elem           1
+ UZ entered
+ L is   4.5069216579482827     
+ P is   2.6999999999999997     
+ sm is   2.2282391967299295     
+ epv is   1.3520764973844848     
+ sm/epv   1.6480126686916989     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   2.8533829854827832     
+ gws is    93.493078342051717     
+ vanGI called. sm_eq is    1.4082869124014294     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    2.2282391967299295     
+ gws calcd   95.576890971227897     
+ gws recalcd   95.576890971227897     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is   1.3030954079770760     
+ new sm_eq  0.88637885165238017     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced   1.3030954079770760        95.576890971227897     
+ outer loop entered. ts           71
+ inner loop entered. elem           1
+ UZ entered
+ L is   2.4231090287721031     
+ P is   2.6999999999999997     
+ sm is   1.3030954079770760     
+ epv is  0.72693270863163095     
+ sm/epv   1.7925942697364747     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   1.9282391967299295     
+ gws is    95.576890971227897     
+ vanGI called. sm_eq is   0.88637885165238017     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd    1.3030954079770760     
+ gws calcd   97.660703600404076     
+ gws recalcd   97.660703600404076     
+ ET is   3.0000000000000000     
+ sw et removed   2.0748562112471465     
+ sm et removed  0.92514378875285352     
+ sm is  0.37795161922422249     
+ new sm_eq  0.13560052503996989     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf   0.0000000000000000     
+ sm-gw balanced  0.37795161922422249        97.660703600404076     
+ outer loop entered. ts           72
+ inner loop entered. elem           1
+ UZ entered
+ L is  0.33929639959592350     
+ P is   2.6999999999999997     
+ sm is  0.37795161922422249     
+ epv is  0.10178891987877704     
+ sm/epv   3.7130919521921881     
+ got k  0.62514378875285348     
+ inf is  0.62514378875285348     
+ excess_p   2.0748562112471465     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.0748562112471465     
+ sm calcd   1.0030954079770760     
+ gws is    97.660703600404076     
+ vanGI called. sm_eq is   0.13560052503996989     
+ k_inf_gw is  0.62514378875285348     
+ gw_inf is  0.62514378875285348     
+ sm recalcd   0.37795161922422249     
+ gws calcd   99.744516229580256     
+ gws recalcd   98.000000000000000     
+ ET is   3.0000000000000000     
+ sw et removed   2.9761626993454460     
+ sm et removed   2.3837300654554028E-002
+ sm is  -2.3837300654554028E-002
+ new sm_eq   0.0000000000000000     
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf  -2.3837300654554028E-002
+ sm-gw balanced   0.0000000000000000        97.920542331151481     
+ outer loop entered. ts           73
+ inner loop entered. elem           1
+ UZ entered
+ L is   7.9457668848519347E-002
+ P is   2.6999999999999997     
+ sm is   0.0000000000000000     
+ epv is   2.3837300654555804E-002
+ sm/epv   0.0000000000000000     
+ got k   0.0000000000000000     
+ inf is   0.0000000000000000     
+ excess_p   2.6999999999999997     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6999999999999997     
+ sm calcd   0.0000000000000000     
+ gws is    97.920542331151481     
+ vanGI called. sm_eq is    3.1782331682602423E-002
+ k_inf_gw is   0.0000000000000000     
+ gw_inf is  -3.1782331682602423E-002
+ sm recalcd    3.1782331682602423E-002
+ gws calcd   97.814601225542802     
+ gws recalcd   97.814601225542802     
+ ET is   3.0000000000000000     
+ sw et removed   2.6999999999999997     
+ sm et removed  0.30000000000000027     
+ sm is -0.26821766831739785     
+ new sm_eq   7.4145239746416389E-002
+ k_inf_gw remaining   0.0000000000000000     
+ addnl gw_inf -0.34236290806381425     
+ sm-gw balanced   7.4145239746416403E-002   96.673391531996756     
+ outer loop entered. ts           74
+ inner loop entered. elem           1
+ UZ entered
+ L is   1.3266084680032435     
+ P is   2.6999999999999997     
+ sm is   7.4145239746416403E-002
+ epv is  0.39798254040097303     
+ sm/epv  0.18630274501920116     
+ got k   3.2663195680443921E-003
+ inf is   3.2663195680443921E-003
+ excess_p   2.6967336804319553     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6967336804319553     
+ sm calcd   7.7411559314460796E-002
+ gws is    96.673391531996756     
+ vanGI called. sm_eq is   0.51784127581469475     
+ k_inf_gw is   3.2663195680443921E-003
+ gw_inf is -0.44042971650023394     
+ sm recalcd   0.51784127581469475     
+ gws calcd   95.205292476995979     
+ gws recalcd   95.205292476995979     
+ ET is   3.0000000000000000     
+ sw et removed   2.6967336804319553     
+ sm et removed  0.30326631956804473     
+ sm is  0.21457495624665002     
+ new sm_eq  0.99474087459768190     
+ k_inf_gw remaining   3.2663195680443921E-003
+ addnl gw_inf -0.78016591835103188     
+ sm-gw balanced  0.99474087459768190        92.604739415825875     
+ outer loop entered. ts           75
+ inner loop entered. elem           1
+ UZ entered
+ L is   5.3952605841741246     
+ P is   2.6999999999999997     
+ sm is  0.99474087459768190     
+ epv is   1.6185781752522372     
+ sm/epv  0.61457697243610909     
+ got k  0.12972592644579117     
+ inf is  0.12972592644579117     
+ excess_p   2.5702740735542084     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5702740735542084     
+ sm calcd   1.1244668010434731     
+ gws is    92.604739415825875     
+ vanGI called. sm_eq is    1.5839299900450359     
+ k_inf_gw is  0.12972592644579117     
+ gw_inf is -0.45946318900156280     
+ sm recalcd    1.5839299900450359     
+ gws calcd   91.073195452487326     
+ gws recalcd   91.073195452487326     
+ ET is   3.0000000000000000     
+ sw et removed   2.5702740735542084     
+ sm et removed  0.42972592644579155     
+ sm is   1.1542040635992443     
+ new sm_eq   1.8497826806252107     
+ k_inf_gw remaining  0.12972592644579117     
+ addnl gw_inf -0.69557861702596635     
+ sm-gw balanced   1.8497826806252107        88.754600062400769     
+ outer loop entered. ts           76
+ inner loop entered. elem           1
+ UZ entered
+ L is   9.2453999375992311     
+ P is   2.6999999999999997     
+ sm is   1.8497826806252107     
+ epv is   2.7736199812797691     
+ sm/epv  0.66692001539868739     
+ got k  0.16808254215376789     
+ inf is  0.16808254215376789     
+ excess_p   2.5319174578462320     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5319174578462320     
+ sm calcd   2.0178652227789784     
+ gws is    88.754600062400769     
+ vanGI called. sm_eq is    2.1988764038508646     
+ k_inf_gw is  0.16808254215376789     
+ gw_inf is -0.18101118107188618     
+ sm recalcd    2.1988764038508646     
+ gws calcd   88.151229458827814     
+ gws recalcd   88.151229458827814     
+ ET is   3.0000000000000000     
+ sw et removed   2.5319174578462320     
+ sm et removed  0.46808254215376799     
+ sm is   1.7307938616970966     
+ new sm_eq   2.2829857145547665     
+ k_inf_gw remaining  0.16808254215376789     
+ addnl gw_inf -0.55219185285766992     
+ sm-gw balanced   2.2829857145547665        86.310589949302241     
+ outer loop entered. ts           77
+ inner loop entered. elem           1
+ UZ entered
+ L is   11.689410050697759     
+ P is   2.6999999999999997     
+ sm is   2.2829857145547665     
+ epv is   3.5068230152093278     
+ sm/epv  0.65101252747951732     
+ got k  0.15567811681107763     
+ inf is  0.15567811681107763     
+ excess_p   2.5443218831889221     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5443218831889221     
+ sm calcd   2.4386638313658442     
+ gws is    86.310589949302241     
+ vanGI called. sm_eq is    2.5281313486947115     
+ k_inf_gw is  0.15567811681107763     
+ gw_inf is  -8.9467517328867263E-002
+ sm recalcd    2.5281313486947115     
+ gws calcd   86.012364891539349     
+ gws recalcd   86.012364891539349     
+ ET is   3.0000000000000000     
+ sw et removed   2.5443218831889221     
+ sm et removed  0.45567811681107795     
+ sm is   2.0724532318836335     
+ new sm_eq   2.5665318132846124     
+ k_inf_gw remaining  0.15567811681107763     
+ addnl gw_inf -0.49407858140097893     
+ sm-gw balanced   2.5665318132846124        84.365436286869425     
+ outer loop entered. ts           78
+ inner loop entered. elem           1
+ UZ entered
+ L is   13.634563713130575     
+ P is   2.6999999999999997     
+ sm is   2.5665318132846124     
+ epv is   4.0903691139391727     
+ sm/epv  0.62745726407388935     
+ got k  0.13852004237764759     
+ inf is  0.13852004237764759     
+ excess_p   2.5614799576223524     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5614799576223524     
+ sm calcd   2.7050518556622603     
+ gws is    84.365436286869425     
+ vanGI called. sm_eq is    2.7734968868671332     
+ k_inf_gw is  0.13852004237764759     
+ gw_inf is  -6.8445031204872997E-002
+ sm recalcd    2.7734968868671332     
+ gws calcd   84.137286182853188     
+ gws recalcd   84.137286182853188     
+ ET is   3.0000000000000000     
+ sw et removed   2.5614799576223524     
+ sm et removed  0.43852004237764763     
+ sm is   2.3349768444894856     
+ new sm_eq   2.8015748817267960     
+ k_inf_gw remaining  0.13852004237764759     
+ addnl gw_inf -0.46659803723731041     
+ sm-gw balanced   2.8015748817267960        82.581959392062160     
+ outer loop entered. ts           79
+ inner loop entered. elem           1
+ UZ entered
+ L is   15.418040607937840     
+ P is   2.6999999999999997     
+ sm is   2.8015748817267960     
+ epv is   4.6254121823813517     
+ sm/epv  0.60569194079573474     
+ got k  0.12389398955092978     
+ inf is  0.12389398955092978     
+ excess_p   2.5761060104490698     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5761060104490698     
+ sm calcd   2.9254688712777259     
+ gws is    82.581959392062160     
+ vanGI called. sm_eq is    2.9898526888769910     
+ k_inf_gw is  0.12389398955092978     
+ gw_inf is  -6.4383817599265036E-002
+ sm recalcd    2.9898526888769910     
+ gws calcd   82.367346666731279     
+ gws recalcd   82.367346666731279     
+ ET is   3.0000000000000000     
+ sw et removed   2.5761060104490698     
+ sm et removed  0.42389398955093016     
+ sm is   2.5659586993260608     
+ new sm_eq   3.0154486239229166     
+ k_inf_gw remaining  0.12389398955092978     
+ addnl gw_inf -0.44948992459685577     
+ sm-gw balanced   3.0154486239229166        80.869046918075099     
+ outer loop entered. ts           80
+ inner loop entered. elem           1
+ UZ entered
+ L is   17.130953081924901     
+ P is   2.6999999999999997     
+ sm is   3.0154486239229166     
+ epv is   5.1392859245774698     
+ sm/epv  0.58674467001382768     
+ got k  0.11207745814620755     
+ inf is  0.11207745814620755     
+ excess_p   2.5879225418537923     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5879225418537923     
+ sm calcd   3.1275260820691240     
+ gws is    80.869046918075099     
+ vanGI called. sm_eq is    3.1919645287534597     
+ k_inf_gw is  0.11207745814620755     
+ gw_inf is  -6.4438446684335737E-002
+ sm recalcd    3.1919645287534597     
+ gws calcd   80.654252095793979     
+ gws recalcd   80.654252095793979     
+ ET is   3.0000000000000000     
+ sw et removed   2.5879225418537923     
+ sm et removed  0.41207745814620766     
+ sm is   2.7798870706072520     
+ new sm_eq   3.2169859659463009     
+ k_inf_gw remaining  0.11207745814620755     
+ addnl gw_inf -0.43709889533904889     
+ sm-gw balanced   3.2169859659463009        79.197255777997142     
+ outer loop entered. ts           81
+ inner loop entered. elem           1
+ UZ entered
+ L is   18.802744222002858     
+ P is   2.6999999999999997     
+ sm is   3.2169859659463009     
+ epv is   5.6408232666008571     
+ sm/epv  0.57030433571531602     
+ got k  0.10248589943744667     
+ inf is  0.10248589943744667     
+ excess_p   2.5975141005625533     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.5975141005625533     
+ sm calcd   3.3194718653837474     
+ gws is    79.197255777997142     
+ vanGI called. sm_eq is    3.3850978295932217     
+ k_inf_gw is  0.10248589943744667     
+ gw_inf is  -6.5625964209474308E-002
+ sm recalcd    3.3850978295932217     
+ gws calcd   78.978502563965563     
+ gws recalcd   78.978502563965563     
+ ET is   3.0000000000000000     
+ sw et removed   2.5975141005625533     
+ sm et removed  0.40248589943744673     
+ sm is   2.9826119301557750     
+ new sm_eq   3.4101153523022378     
+ k_inf_gw remaining  0.10248589943744667     
+ addnl gw_inf -0.42750342214646286     
+ sm-gw balanced   3.4101153523022378        77.553491156810693     
+ outer loop entered. ts           82
+ inner loop entered. elem           1
+ UZ entered
+ L is   20.446508843189307     
+ P is   2.6999999999999997     
+ sm is   3.4101153523022378     
+ epv is   6.1339526529567916     
+ sm/epv  0.55594093160442581     
+ got k   9.4590225508910830E-002
+ inf is   9.4590225508910830E-002
+ excess_p   2.6054097744910889     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6054097744910889     
+ sm calcd   3.5047055778111487     
+ gws is    77.553491156810693     
+ vanGI called. sm_eq is    3.5718426020930174     
+ k_inf_gw is   9.4590225508910830E-002
+ gw_inf is  -6.7137024281868740E-002
+ sm recalcd    3.5718426020930174     
+ gws calcd   77.329701075871128     
+ gws recalcd   77.329701075871128     
+ ET is   3.0000000000000000     
+ sw et removed   2.6054097744910889     
+ sm et removed  0.39459022550891110     
+ sm is   3.1772523765841063     
+ new sm_eq   3.5970598929978608     
+ k_inf_gw remaining   9.4590225508910830E-002
+ addnl gw_inf -0.41980751641375447     
+ sm-gw balanced   3.5970598929978608        75.930342687825274     
+ outer loop entered. ts           83
+ inner loop entered. elem           1
+ UZ entered
+ L is   22.069657312174726     
+ P is   2.6999999999999997     
+ sm is   3.5970598929978608     
+ epv is   6.6208971936524179     
+ sm/epv  0.54328889088421906     
+ got k   8.7996812385542203E-002
+ inf is   8.7996812385542203E-002
+ excess_p   2.6120031876144574     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6120031876144574     
+ sm calcd   3.6850567053834031     
+ gws is    75.930342687825274     
+ vanGI called. sm_eq is    3.7537576914554696     
+ k_inf_gw is   8.7996812385542203E-002
+ gw_inf is  -6.8700986072066428E-002
+ sm recalcd    3.7537576914554696     
+ gws calcd   75.701339400918386     
+ gws recalcd   75.701339400918386     
+ ET is   3.0000000000000000     
+ sw et removed   2.6120031876144574     
+ sm et removed  0.38799681238554262     
+ sm is   3.3657608790699269     
+ new sm_eq   3.7792504507262090     
+ k_inf_gw remaining   8.7996812385542203E-002
+ addnl gw_inf -0.41348957165628208     
+ sm-gw balanced   3.7792504507262090        74.323040828730782     
+ outer loop entered. ts           84
+ inner loop entered. elem           1
+ UZ entered
+ L is   23.676959171269218     
+ P is   2.6999999999999997     
+ sm is   3.7792504507262090     
+ epv is   7.1030877513807651     
+ sm/epv  0.53205740700465975     
+ got k   8.2418907748042919E-002
+ inf is   8.2418907748042919E-002
+ excess_p   2.6175810922519567     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6175810922519567     
+ sm calcd   3.8616693584742521     
+ gws is    74.323040828730782     
+ vanGI called. sm_eq is    3.9318835008601947     
+ k_inf_gw is   8.2418907748042919E-002
+ gw_inf is  -7.0214142385942591E-002
+ sm recalcd    3.9318835008601947     
+ gws calcd   74.088993687444301     
+ gws recalcd   74.088993687444301     
+ ET is   3.0000000000000000     
+ sw et removed   2.6175810922519567     
+ sm et removed  0.38241890774804332     
+ sm is   3.5494645931121513     
+ new sm_eq   3.9576744303185740     
+ k_inf_gw remaining   8.2418907748042919E-002
+ addnl gw_inf -0.40820983720642268     
+ sm-gw balanced   3.9576744303185740        72.728294230089560     
+ outer loop entered. ts           85
+ inner loop entered. elem           1
+ UZ entered
+ L is   25.271705769910440     
+ P is   2.6999999999999997     
+ sm is   3.9576744303185740     
+ epv is   7.5815117309731317     
+ sm/epv  0.52201652793730935     
+ got k   7.7645505313539309E-002
+ inf is   7.7645505313539309E-002
+ excess_p   2.6223544946864603     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6223544946864603     
+ sm calcd   4.0353199356321134     
+ gws is    72.728294230089560     
+ vanGI called. sm_eq is    4.1069563759579015     
+ k_inf_gw is   7.7645505313539309E-002
+ gw_inf is  -7.1636440325788087E-002
+ sm recalcd    4.1069563759579015     
+ gws calcd   72.489506095670265     
+ gws recalcd   72.489506095670265     
+ ET is   3.0000000000000000     
+ sw et removed   2.6223544946864603     
+ sm et removed  0.37764550531353969     
+ sm is   3.7293108706443618     
+ new sm_eq   4.1330443955705878     
+ k_inf_gw remaining   7.7645505313539309E-002
+ addnl gw_inf -0.40373352492622594     
+ sm-gw balanced   4.1330443955705878        71.143727679249508     
+ outer loop entered. ts           86
+ inner loop entered. elem           1
+ UZ entered
+ L is   26.856272320750492     
+ P is   2.6999999999999997     
+ sm is   4.1330443955705878     
+ epv is   8.0568816962251475     
+ sm/epv  0.51298313062074918     
+ got k   7.3518837429119965E-002
+ inf is   7.3518837429119965E-002
+ excess_p   2.6264811625708799     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6264811625708799     
+ sm calcd   4.2065632329997076     
+ gws is    71.143727679249508     
+ vanGI called. sm_eq is    4.2795185175589436     
+ k_inf_gw is   7.3518837429119965E-002
+ gw_inf is  -7.2955284559236055E-002
+ sm recalcd    4.2795185175589436     
+ gws calcd   70.900543397385391     
+ gws recalcd   70.900543397385391     
+ ET is   3.0000000000000000     
+ sw et removed   2.6264811625708799     
+ sm et removed  0.37351883742912007     
+ sm is   3.9059996801298236     
+ new sm_eq   4.3058917979666527     
+ k_inf_gw remaining   7.3518837429119965E-002
+ addnl gw_inf -0.39989211783682910     
+ sm-gw balanced   4.3058917979666527        69.567569671262632     
+ outer loop entered. ts           87
+ inner loop entered. elem           1
+ UZ entered
+ L is   28.432430328737368     
+ P is   2.6999999999999997     
+ sm is   4.3058917979666527     
+ epv is   8.5297290986212104     
+ sm/epv  0.50480991227056426     
+ got k   6.9919000440136353E-002
+ inf is   6.9919000440136353E-002
+ excess_p   2.6300809995598633     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6300809995598633     
+ sm calcd   4.3758107984067891     
+ gws is    69.567569671262632     
+ vanGI called. sm_eq is    4.4499812852038350     
+ k_inf_gw is   6.9919000440136353E-002
+ gw_inf is  -7.4170486797045854E-002
+ sm recalcd    4.4499812852038350     
+ gws calcd   69.320334715272480     
+ gws recalcd   69.320334715272480     
+ ET is   3.0000000000000000     
+ sw et removed   2.6300809995598633     
+ sm et removed  0.36991900044013670     
+ sm is   4.0800622847636987     
+ new sm_eq   4.4766234883417217     
+ k_inf_gw remaining   6.9919000440136353E-002
+ addnl gw_inf -0.39656120357802305     
+ sm-gw balanced   4.4766234883417217        67.998464036679067     
+ outer loop entered. ts           88
+ inner loop entered. elem           1
+ UZ entered
+ L is   30.001535963320933     
+ P is   2.6999999999999997     
+ sm is   4.4766234883417217     
+ epv is   9.0004607889962802     
+ sm/epv  0.49737714471404848     
+ got k   6.6753456710859416E-002
+ inf is   6.6753456710859416E-002
+ excess_p   2.6332465432891405     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6332465432891405     
+ sm calcd   4.5433769450525814     
+ gws is    67.998464036679067     
+ vanGI called. sm_eq is    4.6186643191785812     
+ k_inf_gw is   6.6753456710859416E-002
+ gw_inf is  -7.5287374125999840E-002
+ sm recalcd    4.6186643191785812     
+ gws calcd   67.747506122925728     
+ gws recalcd   67.747506122925728     
+ ET is   3.0000000000000000     
+ sw et removed   2.6332465432891405     
+ sm et removed  0.36675345671085946     
+ sm is   4.2519108624677218     
+ new sm_eq   4.6455576826555456     
+ k_inf_gw remaining   6.6753456710859416E-002
+ addnl gw_inf -0.39364682018782382     
+ sm-gw balanced   4.6455576826555456        66.435350055632981     
+ outer loop entered. ts           89
+ inner loop entered. elem           1
+ UZ entered
+ L is   31.564649944367019     
+ P is   2.6999999999999997     
+ sm is   4.6455576826555456     
+ epv is   9.4693949833101048     
+ sm/epv  0.49058653597652052     
+ got k   6.3949774145115879E-002
+ inf is   6.3949774145115879E-002
+ excess_p   2.6360502258548837     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6360502258548837     
+ sm calcd   4.7095074568006616     
+ gws is    66.435350055632981     
+ vanGI called. sm_eq is    4.7858209376088698     
+ k_inf_gw is   6.3949774145115879E-002
+ gw_inf is  -7.6313480808208212E-002
+ sm recalcd    4.7858209376088698     
+ gws calcd   66.180971786272281     
+ gws recalcd   66.180971786272281     
+ ET is   3.0000000000000000     
+ sw et removed   2.6360502258548837     
+ sm et removed  0.36394977414511631     
+ sm is   4.4218711634637540     
+ new sm_eq   4.8129478026119337     
+ k_inf_gw remaining   6.3949774145115879E-002
+ addnl gw_inf -0.39107663914817969     
+ sm-gw balanced   4.8129478026119337        64.877382989111680     
+ outer loop entered. ts           90
+ inner loop entered. elem           1
+ UZ entered
+ L is   33.122617010888320     
+ P is   2.6999999999999997     
+ sm is   4.8129478026119337     
+ epv is   9.9367851032664962     
+ sm/epv  0.48435663573219317     
+ got k   6.1450524155180847E-002
+ inf is   6.1450524155180847E-002
+ excess_p   2.6385494758448189     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6385494758448189     
+ sm calcd   4.8743983267671149     
+ gws is    64.877382989111680     
+ vanGI called. sm_eq is    4.9516552629039943     
+ k_inf_gw is   6.1450524155180847E-002
+ gw_inf is  -7.7256936136879339E-002
+ sm recalcd    4.9516552629039943     
+ gws calcd   64.619859868655411     
+ gws recalcd   64.619859868655411     
+ ET is   3.0000000000000000     
+ sw et removed   2.6385494758448189     
+ sm et removed  0.36145052415518109     
+ sm is   4.5902047387488132     
+ new sm_eq   4.9789988069033946     
+ k_inf_gw remaining   6.1450524155180847E-002
+ addnl gw_inf -0.38879406815458140     
+ sm-gw balanced   4.9789988069033946        63.323879641473475     
+ outer loop entered. ts           91
+ inner loop entered. elem           1
+ UZ entered
+ L is   34.676120358526525     
+ P is   2.6999999999999997     
+ sm is   4.9789988069033946     
+ epv is   10.402836107557958     
+ sm/epv  0.47861936451022330     
+ got k   5.9209637850944831E-002
+ inf is   5.9209637850944831E-002
+ excess_p   2.6407903621490547     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6407903621490547     
+ sm calcd   5.0382084447543392     
+ gws is    63.323879641473475     
+ vanGI called. sm_eq is    5.1163341327958740     
+ k_inf_gw is   5.9209637850944831E-002
+ gw_inf is  -7.8125688041534858E-002
+ sm recalcd    5.1163341327958740     
+ gws calcd   63.063460681335023     
+ gws recalcd   63.063460681335023     
+ ET is   3.0000000000000000     
+ sw et removed   2.6407903621490547     
+ sm et removed  0.35920963785094528     
+ sm is   4.7571244949449287     
+ new sm_eq   5.1438786872508331     
+ k_inf_gw remaining   5.9209637850944831E-002
+ addnl gw_inf -0.38675419230590435     
+ sm-gw balanced   5.1438786872508331        61.774280040315340     
+ outer loop entered. ts           92
+ inner loop entered. elem           1
+ UZ entered
+ L is   36.225719959684660     
+ P is   2.6999999999999997     
+ sm is   5.1438786872508331     
+ epv is   10.867715987905397     
+ sm/epv  0.47331736429029048     
+ got k   5.7189762837118498E-002
+ inf is   5.7189762837118498E-002
+ excess_p   2.6428102371628812     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6428102371628812     
+ sm calcd   5.2010684500879512     
+ gws is    61.774280040315340     
+ vanGI called. sm_eq is    5.2799956071831780     
+ k_inf_gw is   5.7189762837118498E-002
+ gw_inf is  -7.8927157095226796E-002
+ sm recalcd    5.2799956071831780     
+ gws calcd   61.511189516664587     
+ gws recalcd   61.511189516664587     
+ ET is   3.0000000000000000     
+ sw et removed   2.6428102371628812     
+ sm et removed  0.35718976283711878     
+ sm is   4.9228058443460592     
+ new sm_eq   5.3077267601651128     
+ k_inf_gw remaining   5.7189762837118498E-002
+ addnl gw_inf -0.38492091581905363     
+ sm-gw balanced   5.3077267601651128        60.228119797267738     
+ outer loop entered. ts           93
+ inner loop entered. elem           1
+ UZ entered
+ L is   37.771880202732262     
+ P is   2.6999999999999997     
+ sm is   5.3077267601651128     
+ epv is   11.331564060819678     
+ sm/epv  0.46840195507672699     
+ got k   5.5360317790002389E-002
+ inf is   5.5360317790002389E-002
+ excess_p   2.6446396822099976     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6446396822099976     
+ sm calcd   5.3630870779551154     
+ gws is    60.228119797267738     
+ vanGI called. sm_eq is    5.4427551746751481     
+ k_inf_gw is   5.5360317790002389E-002
+ gw_inf is  -7.9668096720032722E-002
+ sm recalcd    5.4427551746751481     
+ gws calcd   59.962559474867632     
+ gws recalcd   59.962559474867632     
+ ET is   3.0000000000000000     
+ sw et removed   2.6446396822099976     
+ sm et removed  0.35536031779000243     
+ sm is   5.0873948568851457     
+ new sm_eq   5.4706597595956987     
+ k_inf_gw remaining   5.5360317790002389E-002
+ addnl gw_inf -0.38326490271055302     
+ sm-gw balanced   5.4706597595956987        58.685009799165790     
+ outer loop entered. ts           94
+ inner loop entered. elem           1
+ UZ entered
+ L is   39.314990200834210     
+ P is   2.6999999999999997     
+ sm is   5.4706597595956987     
+ epv is   11.794497060250263     
+ sm/epv  0.46383154208693478     
+ got k   5.3696040816067936E-002
+ inf is   5.3696040816067936E-002
+ excess_p   2.6463039591839319     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6463039591839319     
+ sm calcd   5.5243558004117670     
+ gws is    58.685009799165790     
+ vanGI called. sm_eq is    5.6047103731160224     
+ k_inf_gw is   5.3696040816067936E-002
+ gw_inf is  -8.0354572704255389E-002
+ sm recalcd    5.6047103731160224     
+ gws calcd   58.417161223484939     
+ gws recalcd   58.417161223484939     
+ ET is   3.0000000000000000     
+ sw et removed   2.6463039591839319     
+ sm et removed  0.35369604081606809     
+ sm is   5.2510143322999543     
+ new sm_eq   5.6327764038297374     
+ k_inf_gw remaining   5.3696040816067936E-002
+ addnl gw_inf -0.38176207152978314     
+ sm-gw balanced   5.6327764038297374        57.144620985052327     
+ outer loop entered. ts           95
+ inner loop entered. elem           1
+ UZ entered
+ L is   40.855379014947673     
+ P is   2.6999999999999997     
+ sm is   5.6327764038297374     
+ epv is   12.256613704484302     
+ sm/epv  0.45957036255200612     
+ got k   5.2175892731778764E-002
+ inf is   5.2175892731778764E-002
+ excess_p   2.6478241072682209     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6478241072682209     
+ sm calcd   5.6849522965615158     
+ gws is    57.144620985052327     
+ vanGI called. sm_eq is    5.7659442871458282     
+ k_inf_gw is   5.2175892731778764E-002
+ gw_inf is  -8.0991990584312390E-002
+ sm recalcd    5.7659442871458282     
+ gws calcd   56.874647683104619     
+ gws recalcd   56.874647683104619     
+ ET is   3.0000000000000000     
+ sw et removed   2.6478241072682209     
+ sm et removed  0.35217589273177907     
+ sm is   5.4137683944140491     
+ new sm_eq   5.7941608681929768     
+ k_inf_gw remaining   5.2175892731778764E-002
+ addnl gw_inf -0.38039247377892771     
+ sm-gw balanced   5.7941608681929768        55.606672770508197     
+ outer loop entered. ts           96
+ inner loop entered. elem           1
+ UZ entered
+ L is   42.393327229491803     
+ P is   2.6999999999999997     
+ sm is   5.7941608681929768     
+ epv is   12.717998168847540     
+ sm/epv  0.45558749036351082     
+ got k   5.0782218678389321E-002
+ inf is   5.0782218678389321E-002
+ excess_p   2.6492177813216102     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6492177813216102     
+ sm calcd   5.8449430868713659     
+ gws is    55.606672770508197     
+ vanGI called. sm_eq is    5.9265282352135094     
+ k_inf_gw is   5.0782218678389321E-002
+ gw_inf is  -8.1585148342143476E-002
+ sm recalcd    5.9265282352135094     
+ gws calcd   55.334722276034384     
+ gws recalcd   55.334722276034384     
+ ET is   3.0000000000000000     
+ sw et removed   2.6492177813216102     
+ sm et removed  0.35078221867838977     
+ sm is   5.5757460165351196     
+ new sm_eq   5.9548854643604834     
+ k_inf_gw remaining   5.0782218678389321E-002
+ addnl gw_inf -0.37913944782536380     
+ sm-gw balanced   5.9548854643604834        54.070924116616503     
+ outer loop entered. ts           97
+ inner loop entered. elem           1
+ UZ entered
+ L is   43.929075883383497     
+ P is   2.6999999999999997     
+ sm is   5.9548854643604834     
+ epv is   13.178722765015049     
+ sm/epv  0.45185603874820440     
+ got k   4.9500100290330765E-002
+ inf is   4.9500100290330765E-002
+ excess_p   2.6504998997096689     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6504998997096689     
+ sm calcd   6.0043855646508142     
+ gws is    54.070924116616503     
+ vanGI called. sm_eq is    6.0865238631676171     
+ k_inf_gw is   4.9500100290330765E-002
+ gw_inf is  -8.2138298516802877E-002
+ sm recalcd    6.0865238631676171     
+ gws calcd   53.797129788227160     
+ gws recalcd   53.797129788227160     
+ ET is   3.0000000000000000     
+ sw et removed   2.6504998997096689     
+ sm et removed  0.34950010029033107     
+ sm is   5.7370237628772855     
+ new sm_eq   6.1150127345133871     
+ k_inf_gw remaining   4.9500100290330765E-002
+ addnl gw_inf -0.37798897163610157     
+ sm-gw balanced   6.1150127345133871        52.537166549440158     
+ outer loop entered. ts           98
+ inner loop entered. elem           1
+ UZ entered
+ L is   45.462833450559842     
+ P is   2.6999999999999997     
+ sm is   6.1150127345133871     
+ epv is   13.638850035167952     
+ sm/epv  0.44835251643252527     
+ got k   4.8316850080106305E-002
+ inf is   4.8316850080106305E-002
+ excess_p   2.6516831499198936     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6516831499198936     
+ sm calcd   6.1633295845934937     
+ gws is    52.537166549440158     
+ vanGI called. sm_eq is    6.2459847886345701     
+ k_inf_gw is   4.8316850080106305E-002
+ gw_inf is  -8.2655204041076402E-002
+ sm recalcd    6.2459847886345701     
+ gws calcd   52.261649202636569     
+ gws recalcd   52.261649202636569     
+ ET is   3.0000000000000000     
+ sw et removed   2.6516831499198936     
+ sm et removed  0.34831685008010638     
+ sm is   5.8976679385544637     
+ new sm_eq   6.2745971038358572     
+ k_inf_gw remaining   4.8316850080106305E-002
+ addnl gw_inf -0.37692916528139353     
+ sm-gw balanced   6.2745971038358572        51.005218651698591     
+ outer loop entered. ts           99
+ inner loop entered. elem           1
+ UZ entered
+ L is   46.994781348301409     
+ P is   2.6999999999999997     
+ sm is   6.2745971038358572     
+ epv is   14.098434404490423     
+ sm/epv  0.44505630368698007     
+ got k   4.7221613090153665E-002
+ inf is   4.7221613090153665E-002
+ excess_p   2.6527783869098460     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6527783869098460     
+ sm calcd   6.3218187169260105     
+ gws is    51.005218651698591     
+ vanGI called. sm_eq is    6.4049579234209144     
+ k_inf_gw is   4.7221613090153665E-002
+ gw_inf is  -8.3139206494903917E-002
+ sm recalcd    6.4049579234209144     
+ gws calcd   50.728087963382244     
+ gws recalcd   50.728087963382244     
+ ET is   3.0000000000000000     
+ sw et removed   2.6527783869098460     
+ sm et removed  0.34722161309015398     
+ sm is   6.0577363103307604     
+ new sm_eq   6.4336862049296908     
+ k_inf_gw remaining   4.7221613090153665E-002
+ addnl gw_inf -0.37594989459893036     
+ sm-gw balanced   6.4336862049296908        49.474921648052472     
+ outer loop entered. ts          100
+ inner loop entered. elem           1
+ UZ entered
+ L is   48.525078351947528     
+ P is   2.6999999999999997     
+ sm is   6.4336862049296908     
+ epv is   14.557523505584257     
+ sm/epv  0.44194922319457242     
+ got k   4.6205050421262633E-002
+ inf is   4.6205050421262633E-002
+ excess_p   2.6537949495787370     
+ inf_deficit   0.0000000000000000     
+ sws is   0.0000000000000000     
+ sw_inf   0.0000000000000000     
+ sws calcd   2.6537949495787370     
+ sm calcd   6.4798912553509531     
+ gws is    49.474921648052472     
+ vanGI called. sm_eq is    6.5634845225162275     
+ k_inf_gw is   4.6205050421262633E-002
+ gw_inf is  -8.3593267165274376E-002
+ sm recalcd    6.5634845225162275     
+ gws calcd   49.196277424168223     
+ gws recalcd   49.196277424168223     
+ ET is   3.0000000000000000     
+ sw et removed   2.6537949495787370     
+ sm et removed  0.34620505042126304     
+ sm is   6.2172794720949645     
+ new sm_eq   6.5923219399897564     
+ k_inf_gw remaining   4.6205050421262633E-002
+ addnl gw_inf -0.37504246789479190     
+ sm-gw balanced   6.5923219399897564        47.946135864518915     
