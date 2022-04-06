@@ -13,12 +13,14 @@ end python module run__user__routines
 python module fortrapper ! in 
     interface  ! in :fortrapper
         module helpers ! in :fortrapper:GWSWEX.f90
-            function ksm(s) ! in :fortrapper:GWSWEX.f90:helpers
+            function ksm(s,ks) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(in) :: s
+                real*8 intent(in) :: ks
                 real*8 :: ksm
             end function ksm
-            function kgw(s) ! in :fortrapper:GWSWEX.f90:helpers
+            function kgw(s,ks) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(in) :: s
+                real*8 intent(in) :: ks
                 real*8 :: kgw
             end function kgw
         end module helpers
@@ -28,17 +30,20 @@ python module fortrapper ! in
             integer :: nts
             integer :: dt
             logical, allocatable,dimension(:) :: chd
-            real*8 :: n
             real*8, allocatable,dimension(:) :: gok
+            real*8, allocatable,dimension(:) :: bot
+            real*8, allocatable,dimension(:) :: n
             real*8, allocatable,dimension(:) :: k
             real*8, allocatable,dimension(:,:) :: p
             real*8, allocatable,dimension(:,:) :: et
-            subroutine build(el,ts,ts_size,gok_l,n_l) ! in :fortrapper:GWSWEX.f90:gwswex
+            subroutine build(el,ts,ts_size,gok_l,bot_l,n_l,k_l) ! in :fortrapper:GWSWEX.f90:gwswex
                 integer intent(in) :: el
                 integer intent(in) :: ts
                 integer intent(in) :: ts_size
-                integer dimension(:),intent(in) :: gok_l
+                real*8 dimension(:),intent(in) :: gok_l
+                real*8 dimension(:),intent(in) :: bot_l
                 real*8 intent(in) :: n_l
+                real*8 dimension(:),intent(in) :: k_l
             end subroutine build
             subroutine init(chd_l,p_l,et_l) ! in :fortrapper:GWSWEX.f90:gwswex
                 logical dimension(:),intent(in) :: chd_l

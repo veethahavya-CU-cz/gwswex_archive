@@ -26,8 +26,10 @@ elems = int(1)
 nts = int(100+1)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 100
-n = 0.3
-gwswex.build(elems, nts, dt, gok, n)
+bot = gok - 20
+n = np.full(elems, 0.3)
+k = np.full(elems, 3e-2)
+gwswex.build(elems, nts, dt, gok, bot, n, k)
 
 chd = np.full(elems, False, dtype=bool)
 p = np.full((elems,nts), 55e-4)
@@ -47,7 +49,7 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.mkdir(fig_path)
 elem = 0
-plotWlev = False
+plotWlev = True
 plotPrec = False
 plotDis = False
 plotBal = False

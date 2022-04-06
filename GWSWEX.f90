@@ -1,20 +1,16 @@
 module helpers
     implicit none
 contains
-    function kSM(s)
-        real*8, intent(in) :: s
-        real*8 :: kSM
-        real*8 :: ks, n
-        ks = 3e-2
+    function kSM(s, ks)
+        real*8, intent(in) :: s, ks
+        real*8 :: kSM, n
         n = 2.5
         kSM = ks*s*(1-(1-(s)**1/(1-(1/n)))**(1-(1/n)))**2
     end function kSM
 
-    function kGW(s)
-        real*8, intent(in) :: s
-        real*8 :: kGW
-        real*8 :: ks, n
-        ks = 3e-2
+    function kGW(s, ks)
+        real*8, intent(in) :: s, ks
+        real*8 :: kGW, n
         n = 2.5
         kGW = ks*s*(1-(1-(s)**1/(1-(1/n)))**(1-(1/n)))**2
     end function kGW
@@ -25,19 +21,20 @@ module gwswex
     implicit none
     integer  :: elems, nts, dt
     logical, allocatable  :: chd(:)
-    real*8 :: n
-    real*8, allocatable :: gok(:), k(:), p(:,:), et(:,:)
+    real*8, allocatable :: gok(:), bot(:), n(:), k(:), p(:,:), et(:,:)
 contains
 
-    subroutine build(el, ts, ts_size, gok_l, n_l)
-        integer, intent(in) :: el, ts, ts_size, gok_l(:)
-        real*8, intent(in) :: n_l
+    subroutine build(el, ts, ts_size, gok_l, bot_l, n_l, k_l)
+        integer, intent(in) :: el, ts, ts_size
+        real*8, intent(in) :: n_l, bot_l(:), gok_l(:), k_l(:)
         elems = el
         nts = ts
         dt = ts_size
-        allocate(gok(elems), chd(elems), p(elems,nts), et(elems,nts))
+        allocate(gok(elems), bot(elems), n(elems), chd(elems), p(elems,nts), et(elems,nts))
         gok = gok_l
+        bot = bot_l
         n = n_l
+        k = k_l
         open(unit=42, file="fort.log", status="replace")
         write(42,*) "built"
     end subroutine
@@ -48,7 +45,7 @@ contains
         p = p_l
         et = et_l
         chd = chd_l
-        open(unit=42, file="fort.log", status="append")
+        open(unit=42, file="fort.log", status="old")
         write(42,*) "initialised"
     end subroutine
 
@@ -63,119 +60,121 @@ contains
             Qin(:,:), Qout(:,:), Qdiff(:,:)
         real*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
             k_inf_gw, gw_inf, et_deficit, sw_et
-        integer :: i, j
+        integer :: e, t
         open(unit=42, file="fort.log", status="old")
         write(42,*) "run entered"
 
-        do j = 2, nts
-            write(42,*) "outer loop entered. ts ", j-1
-            do i = 1, elems
-                write(42,*) "inner loop entered. elem", i
-                if(.NOT. chd(i)) then
-                    L = gok(i) - gws(i,j-1) !prev. GW depth
+        do t = 2, nts
+            write(42,*) "outer loop entered. ts ", t-1
+            do e = 1, elems
+                write(42,*) "inner loop entered. elem", e
+                write(42,*) "bot", gok(e)
+                write(42,*) "bot", bot(e)
+                if(.NOT. chd(e)) then
+                    L = gok(e) - gws(e,t-1) !prev. GW depth
                     if(L<0 .OR. L==0) then !NO UZ case
                         write(42,*) "noUZ entered"
                         !excess GW correction
-                        excess_gw_vol = -L*n + sm(i,j-1)
-                        gws(i,j) = gok(i)
-                        sm(i,j) = 0
-                        epv(i,j) = 0
-                        sws(i,j) = sws(i,j-1) + excess_gw_vol + p(i,j)*dt
+                        excess_gw_vol = -L*n(e) + sm(e,t-1)
+                        gws(e,t) = gok(e)
+                        sm(e,t) = 0
+                        epv(e,t) = 0
+                        sws(e,t) = sws(e,t-1) + excess_gw_vol + p(e,t)*dt
                         !ET extraction
-                        if (sws(i,j)>et(i,j)*dt) then
-                            sws(i,j) = sws(i,j) - et(i,j)*dt
+                        if (sws(e,t)>et(e,t)*dt) then
+                            sws(e,t) = sws(e,t) - et(e,t)*dt
                         else
-                            sw_et_deficit = et(i,j)*dt - sws(i,j)
-                            sws(i,j) = 0
-                            gws(i,j) = gws(i,j) - (sw_et_deficit/n)
-                            epv(i,j) = (gok(i) - gws(i,j))*n
+                            sw_et_deficit = et(e,t)*dt - sws(e,t)
+                            sws(e,t) = 0
+                            gws(e,t) = gws(e,t) - (sw_et_deficit/n(e))
+                            epv(e,t) = (gok(e) - gws(e,t))*n(e)
                         end if
                         !calc storage discharges
-                        gw_dis(i,j) = (gws(i,j) - gws(i,j-1))*n
-                        sm_dis(i,j) = (sm(i,j)) - sm(i,j-1)
-                        sw_dis(i,j) = sws(i,j) - sws(i,j-1)
-                        Qin(i,j) = p(i,j)*dt - et(i,j)*dt
-                        Qout(i,j) = gw_dis(i,j) + sw_dis(i,j) + sm_dis(i,j)
+                        gw_dis(e,t) = (gws(e,t) - gws(e,t-1))*n(e)
+                        sm_dis(e,t) = (sm(e,t)) - sm(e,t-1)
+                        sw_dis(e,t) = sws(e,t) - sws(e,t-1)
+                        Qin(e,t) = p(e,t)*dt - et(e,t)*dt
+                        Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
                         sw_et_deficit = 0
                     else
                         write(42,*) "UZ entered"
                         !P dist and SW push
                         write(42,*) "L is", L
-                        write(42,*) "P is", p(i,j)*dt
-                        write(42,*) "sm is", sm(i,j-1)
-                        write(42,*) "epv is", epv(i,j-1)
-                        write(42,*) "sm/epv", sm(i,j-1)/epv(i,j-1)
-                        k_inf = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from wetness at the begining of this dt i.e. end of last dt
+                        write(42,*) "P is", p(e,t)*dt
+                        write(42,*) "sm is", sm(e,t-1)
+                        write(42,*) "epv is", epv(e,t-1)
+                        write(42,*) "sm/epv", sm(e,t-1)/epv(e,t-1)
+                        k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt e.e. end of last dt
                         write(42,*) "got k", k_inf*dt
-                        inf = min(k_inf*dt, p(i,j)*dt)
+                        inf = min(k_inf*dt, p(e,t)*dt)
                         write(42,*) "inf is", inf
-                        excess_p = p(i,j)*dt - inf
+                        excess_p = p(e,t)*dt - inf
                         write(42,*) "excess_p", excess_p
                         inf_deficit = k_inf*dt - inf
                         write(42,*) "inf_deficit", inf_deficit
-                        write(42,*) "sws is", sws(i,j-1)
-                        sw_inf = min(inf_deficit, sws(i,j-1))
-                        sws(i,j) = sws(i,j-1) - sw_inf + excess_p
+                        write(42,*) "sws is", sws(e,t-1)
+                        sw_inf = min(inf_deficit, sws(e,t-1))
+                        sws(e,t) = sws(e,t-1) - sw_inf + excess_p
                         write(42,*) "sw_inf", sw_inf
-                        write(42,*) "sws calcd", sws(i,j)
-                        sm(i,j) = sm(i,j-1) + inf + sw_inf
-                        write(42,*) "sm calcd", sm(i,j)
+                        write(42,*) "sws calcd", sws(e,t)
+                        sm(e,t) = sm(e,t-1) + inf + sw_inf
+                        write(42,*) "sm calcd", sm(e,t)
                         sm_eq = vanGI(-L) !!!consider doing GW push and gw-sm bal after ET extraction
-                        write(42,*) "gws is ", gws(i,j-1)
+                        write(42,*) "gws is ", gws(e,t-1)
                         write(42,*) "vanGI called. sm_eq is ", sm_eq
-                        k_inf_gw = kGW(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from current wetness (after P and SW inf)
-                        gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, gw_inf is -ve ...
+                        k_inf_gw = kGW(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
+                        gw_inf = min(sm(e,t)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, gw_inf is -ve ...
                         write(42,*) "k_inf_gw is", k_inf_gw*dt
                         write(42,*) "gw_inf is", gw_inf
-                        sm(i,j) = sm(i,j) - gw_inf !... deficit sm gets added to sm from gw
-                        write(42,*) "sm recalcd ", sm(i,j)
-                        gws(i,j) = gws(i,j-1) + gw_inf/n !... and subtracted from gw
-                        write(42,*) "gws calcd", gws(i,j)
-                        if(gws(i,j)>gok(i)) then
-                            excess_gw_vol = (gws(i,j)-gok(i))*n + sm(i,j)
-                            gws(i,j) = gok(i)
-                            sm(i,j) = 0
-                            sws(i,j) = sws(i,j) + excess_gw_vol
+                        sm(e,t) = sm(e,t) - gw_inf !... deficit sm gets added to sm from gw
+                        write(42,*) "sm recalcd ", sm(e,t)
+                        gws(e,t) = gws(e,t-1) + gw_inf/n(e) !... and subtracted from gw
+                        write(42,*) "gws calcd", gws(e,t)
+                        if(gws(e,t)>gok(e)) then
+                            excess_gw_vol = (gws(e,t)-gok(e))*n(e) + sm(e,t)
+                            gws(e,t) = gok(e)
+                            sm(e,t) = 0
+                            sws(e,t) = sws(e,t) + excess_gw_vol
                         end if
-                        write(42,*) "gws recalcd", gws(i,j)
+                        write(42,*) "gws recalcd", gws(e,t)
 
                         !ET removal and SM-GW rebalance
-                        write(42,*) "ET is", et(i,j)*dt
-                        sw_et = min(sws(i,j), et(i,j)*dt)
-                        sws(i,j) = sws(i,j) - sw_et
-                        et_deficit = et(i,j)*dt - sw_et
+                        write(42,*) "ET is", et(e,t)*dt
+                        sw_et = min(sws(e,t), et(e,t)*dt)
+                        sws(e,t) = sws(e,t) - sw_et
+                        et_deficit = et(e,t)*dt - sw_et
                         write(42,*) "sw et removed", sw_et
-                        sm(i,j) = sm(i,j) - et_deficit
+                        sm(e,t) = sm(e,t) - et_deficit
                         write(42,*) "sm et removed", et_deficit
-                        write(42,*) "sm is", sm(i,j)
-                        sm_eq = vanGI(-(gok(i) - gws(i,j))) !!!gw-sm balancing: consider adding a convergence criteria here
+                        write(42,*) "sm is", sm(e,t)
+                        sm_eq = vanGI(-(gok(e) - gws(e,t))) !!!gw-sm balancing: consider adding a convergence criteria here
                         write(42,*) "new sm_eq", sm_eq
-                        k_inf_gw = kGW(min(sm(i,j-1)/epv(i,j-1), 1.0)*n)*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
+                        k_inf_gw = kGW(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e))*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                         write(42,*) "k_inf_gw remaining", k_inf_gw
-                        gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt)
+                        gw_inf = min(sm(e,t)-sm_eq, k_inf_gw*dt)
                         write(42,*) "addnl gw_inf", gw_inf
-                        sm(i,j) = sm(i,j) - gw_inf
-                        gws(i,j) = gws(i,j) + gw_inf/n
-                        write(42,*) "sm-gw balanced", sm(i,j), gws(i,j)
+                        sm(e,t) = sm(e,t) - gw_inf
+                        gws(e,t) = gws(e,t) + gw_inf/n(e)
+                        write(42,*) "sm-gw balanced", sm(e,t), gws(e,t)
 
-                        epv(i,j) = (gok(i) - gws(i,j))*n
-                        gw_dis(i,j) = (gws(i,j) - gws(i,j-1))*n
-                        sw_dis(i,j) = sws(i,j) - (sws(i,j-1))
-                        sm_dis(i,j) = sm(i,j) - sm(i,j-1)
-                        Qin(i,j) = p(i,j)*dt - et(i,j)*dt
-                        Qout(i,j) = gw_dis(i,j) + sw_dis(i,j) + sm_dis(i,j)
+                        epv(e,t) = (gok(e) - gws(e,t))*n(e)
+                        gw_dis(e,t) = (gws(e,t) - gws(e,t-1))*n(e)
+                        sw_dis(e,t) = sws(e,t) - (sws(e,t-1))
+                        sm_dis(e,t) = sm(e,t) - sm(e,t-1)
+                        Qin(e,t) = p(e,t)*dt - et(e,t)*dt
+                        Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
                     end if
                 else
-                    excess_gw_vol = sm(i,j-1)
-                    gws(i,j) = gws(i,j-1)
-                    sm(i,j) = 0
-                    epv(i,j) = 0
-                    sws(i,j) = sws(i,j-1) + p(i,j)*dt - et(i,j)*dt + excess_gw_vol		
-                    gw_dis(i,j) = 0
-                    sw_dis(i,j) = sws(i,j) - sws(i,j-1)
-                    sm_dis(i,j) = 0
-                    Qin(i,j) = p(i,j)*dt - et(i,j)*dt
-                    Qout(i,j) = gw_dis(i,j) + sw_dis(i,j) + sm_dis(i,j)
+                    excess_gw_vol = sm(e,t-1)
+                    gws(e,t) = gws(e,t-1)
+                    sm(e,t) = 0
+                    epv(e,t) = 0
+                    sws(e,t) = sws(e,t-1) + p(e,t)*dt - et(e,t)*dt + excess_gw_vol		
+                    gw_dis(e,t) = 0
+                    sw_dis(e,t) = sws(e,t) - sws(e,t-1)
+                    sm_dis(e,t) = 0
+                    Qin(e,t) = p(e,t)*dt - et(e,t)*dt
+                    Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
                 end if
             end do
         end do
