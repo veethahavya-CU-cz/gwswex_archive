@@ -8,15 +8,20 @@ python module run__user__routines
             real*8 intent(in) :: d
             real*8 intent(out) :: eq
         end function vangi
-        function ksm(sm) result (k) ! in :fortrapper:GWSWEX.f90:gwswex:run:unknown_interface
-            intent(out) ksm
-            real*8 intent(in) :: sm
-            real*8 intent(out) :: k
-        end function ksm
     end interface run_user_interface
 end python module run__user__routines
 python module fortrapper ! in 
     interface  ! in :fortrapper
+        module helpers ! in :fortrapper:GWSWEX.f90
+            function ksm(s) ! in :fortrapper:GWSWEX.f90:helpers
+                real*8 intent(in) :: s
+                real*8 :: ksm
+            end function ksm
+            function kgw(s) ! in :fortrapper:GWSWEX.f90:helpers
+                real*8 intent(in) :: s
+                real*8 :: kgw
+            end function kgw
+        end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
             integer :: elems
@@ -24,12 +29,6 @@ python module fortrapper ! in
             integer :: dt
             logical, allocatable,dimension(:) :: chd
             real*8 :: n
-            real*8 :: sy
-            real*8 :: theta_s
-            real*8 :: theta_r
-            real*8 :: alpha
-            real*8 :: beta
-            real*8 :: sw_th
             real*8, allocatable,dimension(:) :: gok
             real*8, allocatable,dimension(:) :: k
             real*8, allocatable,dimension(:,:) :: p
@@ -46,13 +45,13 @@ python module fortrapper ! in
                 real*8 dimension(:,:),intent(in) :: p_l
                 real*8 dimension(:,:),intent(in) :: et_l
             end subroutine init
-            subroutine run(vangi,ksm,gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
+            subroutine run(vangi,gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
+                use helpers
                 use run__user__routines
                 external vangi
-                external ksm
                 real*8 dimension(:,:),intent(inout) :: gws
                 real*8 dimension(:,:),intent(inout) :: sws
-                real*8 dimension(:,:),intent(in) :: sm
+                real*8 dimension(:,:),intent(inout) :: sm
                 real*8 dimension(:,:),intent(inout) :: epv
                 real*8 dimension(:,:),intent(inout) :: gw_dis
                 real*8 dimension(:,:),intent(inout) :: sw_dis

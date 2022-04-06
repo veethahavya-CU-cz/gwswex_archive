@@ -1,9 +1,31 @@
+module helpers
+    implicit none
+contains
+    function kSM(s)
+        real*8, intent(in) :: s
+        real*8 :: kSM
+        real*8 :: ks, n
+        ks = 3e-2
+        n = 2.5
+        kSM = ks*s*(1-(1-(s)**1/(1-(1/n)))**(1-(1/n)))**2
+    end function kSM
+
+    function kGW(s)
+        real*8, intent(in) :: s
+        real*8 :: kGW
+        real*8 :: ks, n
+        ks = 3e-2
+        n = 2.5
+        kGW = ks*s*(1-(1-(s)**1/(1-(1/n)))**(1-(1/n)))**2
+    end function kGW
+end module helpers
+
 module gwswex
     USE OMP_LIB
     implicit none
     integer  :: elems, nts, dt
     logical, allocatable  :: chd(:)
-    real*8 :: n, sy, theta_s, theta_r, alpha, beta, sw_th
+    real*8 :: n
     real*8, allocatable :: gok(:), k(:), p(:,:), et(:,:)
 contains
 
@@ -28,17 +50,13 @@ contains
         !write(*,*) "initialised"
     end subroutine
 
-    subroutine run(vanGI, kSM, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+    subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+        USE helpers
         external :: vanGI
         real*8 :: vanGI
         !f2py real*8, intent(in):: d
         !f2py real*8, intent(out) :: eq
         !f2py eq = vanGI(d)
-        external :: kSM
-        real*8 :: kSM
-        !f2py real*8, intent(in) :: sm
-        !f2py real*8, intent(out):: k
-        !f2py k = kSM(sm)
         real*8, intent(inout) :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
             Qin(:,:), Qout(:,:), Qdiff(:,:)
         real*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
@@ -102,7 +120,7 @@ contains
                         sm_eq = vanGI(-L) !!!consider doing GW push and gw-sm bal after ET extraction
                         !write(*,*) "gws is ", gws(i,j-1)
                         !write(*,*) "vanGI called. sm_eq is ", sm_eq
-                        k_inf_gw = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from current wetness (after P and SW inf)
+                        k_inf_gw = kGW(min(sm(i,j-1)/epv(i,j-1), 1.0)*n) !calc K from current wetness (after P and SW inf)
                         gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, gw_inf is -ve ...
                         !write(*,*) "k_inf_gw is", k_inf_gw*dt
                         !write(*,*) "gw_inf is", gw_inf
@@ -129,7 +147,7 @@ contains
                         !write(*,*) "sm is", sm(i,j)
                         sm_eq = vanGI(-(gok(i) - gws(i,j))) !!!gw-sm balancing: consider adding a convergence criteria here
                         !write(*,*) "new sm_eq", sm_eq
-                        k_inf_gw = kSM(min(sm(i,j-1)/epv(i,j-1), 1.0)*n)*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
+                        k_inf_gw = kGW(min(sm(i,j-1)/epv(i,j-1), 1.0)*n)*dt - max(gw_inf, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                         !write(*,*) "k_inf_gw remaining", k_inf_gw
                         gw_inf = min(sm(i,j)-sm_eq, k_inf_gw*dt)
                         !write(*,*) "addnl gw_inf", gw_inf

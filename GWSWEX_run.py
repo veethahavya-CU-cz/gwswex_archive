@@ -40,7 +40,7 @@ gws[:,0] = np.random.default_rng().uniform(-1, 1, elems) + 40
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
 sm[:,0] = epv[:,0]*0.5
-gwswex.run(vanGI, kSM, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 
 #%%
 fig_path = "output/figs/"
