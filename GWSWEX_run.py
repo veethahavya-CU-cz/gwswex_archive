@@ -1,5 +1,6 @@
 #%%
 from fortrapper import gwswex
+from fortrapper import helpers as hp
 import numpy as np
 from scipy.integrate import quad
 import os
@@ -15,13 +16,6 @@ def vanGI(d):
         return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
     return np.float64(quad(theta,d,0)[0])
 
-def kSM(s):
-    ks = 3e-2
-    n = 2.5
-    m = (1-(1/n))
-    k = ks*s*(1-(1-(s)**1/m)**m)**2
-    return np.float64(k)
-
 elems = int(1)
 nts = int(100+1)
 dt = int(600)
@@ -30,6 +24,12 @@ bot = gok - 20
 n = np.full(elems, 0.3)
 k = np.full(elems, 3e-2)
 gwswex.build(elems, nts, dt, gok, bot, n, k)
+
+sm_eqs = []
+for d in np.arange(0,max(gok)-min(bot),0.001)*-1:
+    sm_eqs.append(vanGI(d))
+sm_eqs = np.array(sm_eqs, dtype=np.float64, order='F')
+hp.get_sm_eqs(sm_eqs, int(sm_eqs.size), 0.001)
 
 chd = np.full(elems, False, dtype=bool)
 p = np.full((elems,nts), 55e-4)
@@ -42,7 +42,7 @@ gws[:,0] = np.random.default_rng().uniform(-1, 1, elems) + 40
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
 sm[:,0] = epv[:,0]*0.5
-gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+gwswex.run(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 
 #%%
 fig_path = "output/figs/"

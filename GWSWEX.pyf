@@ -1,18 +1,12 @@
 !    -*- f90 -*-
 ! Note: the context of this file is case sensitive.
 
-python module run__user__routines 
-    interface run_user_interface 
-        function vangi(d) result (eq) ! in :fortrapper:GWSWEX.f90:gwswex:run:unknown_interface
-            intent(out) vangi
-            real*8 intent(in) :: d
-            real*8 intent(out) :: eq
-        end function vangi
-    end interface run_user_interface
-end python module run__user__routines
 python module fortrapper ! in 
     interface  ! in :fortrapper
         module helpers ! in :fortrapper:GWSWEX.f90
+            integer :: n_sm_eqs
+            real*8 :: sm_eqs_scale
+            real*8, allocatable,dimension(:) :: sm_eqs
             function ksm(s,ks) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(in) :: s
                 real*8 intent(in) :: ks
@@ -23,6 +17,15 @@ python module fortrapper ! in
                 real*8 intent(in) :: ks
                 real*8 :: kgw
             end function kgw
+            subroutine get_sm_eqs(sm_eqs_l,n_sm_eqs_l,sm_eqs_scale_l) ! in :fortrapper:GWSWEX.f90:helpers
+                real*8 dimension(:) :: sm_eqs_l
+                integer :: n_sm_eqs_l
+                real*4 :: sm_eqs_scale_l
+            end subroutine get_sm_eqs
+            function vangi(d) ! in :fortrapper:GWSWEX.f90:helpers
+                real*8 intent(in) :: d
+                real*8 :: vangi
+            end function vangi
         end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
@@ -50,10 +53,8 @@ python module fortrapper ! in
                 real*8 dimension(:,:),intent(in) :: p_l
                 real*8 dimension(:,:),intent(in) :: et_l
             end subroutine init
-            subroutine run(vangi,gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
+            subroutine run(gws,sws,sm,epv,gw_dis,sw_dis,sm_dis,qin,qout,qdiff) ! in :fortrapper:GWSWEX.f90:gwswex
                 use helpers
-                use run__user__routines
-                external vangi
                 real*8 dimension(:,:),intent(inout) :: gws
                 real*8 dimension(:,:),intent(inout) :: sws
                 real*8 dimension(:,:),intent(inout) :: sm

@@ -1,6 +1,10 @@
 module helpers
     implicit none
+    integer :: n_sm_eqs
+    real*8 :: sm_eqs_scale
+    real*8, allocatable :: sm_eqs(:)
 contains
+
     function kSM(s, ks)
         real*8, intent(in) :: s, ks
         real*8 :: kSM, n
@@ -14,6 +18,33 @@ contains
         n = 2.5
         kGW = ks*s*(1-(1-(s)**1/(1-(1/n)))**(1-(1/n)))**2
     end function kGW
+
+    subroutine get_sm_eqs(sm_eqs_l, n_sm_eqs_l, sm_eqs_scale_l)
+        integer :: n_sm_eqs_l
+        real*4 :: sm_eqs_scale_l
+        real*8 :: sm_eqs_l(:)
+        open(unit=42, file="fort.log", status="old")
+        n_sm_eqs = n_sm_eqs_l
+        write(42,*) n_sm_eqs
+        allocate(sm_eqs(n_sm_eqs))
+        sm_eqs = sm_eqs_l
+        write(42,*) sm_eqs(100)
+        sm_eqs_scale = sm_eqs_scale_l*10
+        write(42,*) sm_eqs(sm_eqs_scale)
+    end subroutine get_sm_eqs
+
+    function vanGI(d)
+        real*8, intent(in) :: d
+        real*8 :: vanGI
+        integer :: index
+        open(unit=42, file="fort.log", status="old")
+        write(42,*) "vgi entered"
+        index = int(-d/sm_eqs_scale)
+        write(42,*) index
+        vanGI = sm_eqs(index)
+        write(42,*) sm_eqs(index)
+    end function vanGI
+
 end module helpers
 
 module gwswex
@@ -49,13 +80,8 @@ contains
         write(42,*) "initialised"
     end subroutine
 
-    subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+    subroutine run(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
         USE helpers
-        external :: vanGI
-        real*8 :: vanGI
-        !f2py real*8, intent(in):: d
-        !f2py real*8, intent(out) :: eq
-        !f2py eq = vanGI(d)
         real*8, intent(inout) :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
             Qin(:,:), Qout(:,:), Qdiff(:,:)
         real*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
