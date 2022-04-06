@@ -47,7 +47,7 @@ gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 #%%
 fig_path = "output/figs/"
 if not os.path.exists(fig_path):
-    os.mkdir(fig_path)
+    os.makedirs(fig_path)
 elem = 0
 plotWlev = True
 plotPrec = False
