@@ -125,4 +125,3 @@ if plotBal:
     balPlot()
     if savefig:
         plt.savefig(fig_path+"mBal."+format, format=format, dpi=pDPI)
-# %%
