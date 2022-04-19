@@ -114,16 +114,16 @@ contains
                         write(42,*) "sm is", sm(e,t-1)
                         write(42,*) "epv is", epv(e,t-1)
                         write(42,*) "sm/epv", sm(e,t-1)/epv(e,t-1)
-                        k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt e.e. end of last dt
-                        write(42,*) "got k", k_inf*dt
-                        inf = min(k_inf*dt, p(e,t)*dt)
+                        k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt i.e. end of last dt
+                        write(42,*) "got k", k_inf
+                        inf = max(min(k_inf*dt, p(e,t)*dt, epv(e,t-1)-sm(e,t-1)), 0.0)
                         write(42,*) "inf is", inf
                         excess_p = p(e,t)*dt - inf
                         write(42,*) "excess_p", excess_p
                         inf_deficit = k_inf*dt - inf
                         write(42,*) "inf_deficit", inf_deficit
                         write(42,*) "sws is", sws(e,t-1)
-                        sw_inf = min(inf_deficit, sws(e,t-1))
+                        sw_inf = max(min(inf_deficit, sws(e,t-1), epv(e,t-1)-sm(e,t-1)), 0.0)
                         sws(e,t) = sws(e,t-1) - sw_inf + excess_p
                         write(42,*) "sw_inf", sw_inf
                         write(42,*) "sws calcd", sws(e,t)
@@ -134,7 +134,7 @@ contains
                         write(42,*) "vanGI called. sm_eq is ", sm_eq
                         k_inf_gw = kGW(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
                         gw_inf = min(sm(e,t)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, gw_inf is -ve ...
-                        write(42,*) "k_inf_gw is", k_inf_gw*dt
+                        write(42,*) "k_inf_gw is", k_inf_gw
                         write(42,*) "gw_inf is", gw_inf
                         sm(e,t) = sm(e,t) - gw_inf !... deficit sm gets added to sm from gw
                         write(42,*) "sm recalcd ", sm(e,t)
