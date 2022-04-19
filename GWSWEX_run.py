@@ -32,7 +32,7 @@ k = np.full(elems, 3e-2)
 gwswex.build(elems, nts, dt, gok, bot, n, k)
 
 chd = np.full(elems, False, dtype=bool)
-p = np.full((elems,nts), 55e-4)
+p = np.full((elems,nts), 60e-4)
 p[:,-50:] = 45e-4
 et = np.full((elems,nts), 50e-4)
 gwswex.init(chd, p, et)

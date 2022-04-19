@@ -68,18 +68,25 @@ contains
             write(42,*) "outer loop entered. ts ", t-1
             do e = 1, elems
                 write(42,*) "inner loop entered. elem", e
-                write(42,*) "bot", gok(e)
+                write(42,*) "gok", gok(e)
                 write(42,*) "bot", bot(e)
                 if(.NOT. chd(e)) then
                     L = gok(e) - gws(e,t-1) !prev. GW depth
                     if(L<0 .OR. L==0) then !NO UZ case
                         write(42,*) "noUZ entered"
                         !excess GW correction
+                        write(42,*) "gws is ", gws(e,t-1)
+                        write(42,*) "sws is ", sws(e,t-1)
+                        write(42,*) "sm is ", sm(e,t-1)
                         excess_gw_vol = -L*n(e) + sm(e,t-1)
                         gws(e,t) = gok(e)
                         sm(e,t) = 0
                         epv(e,t) = 0
                         sws(e,t) = sws(e,t-1) + excess_gw_vol + p(e,t)*dt
+                        write(42,*) "excess_gw_vol ", excess_gw_vol
+                        write(42,*) "gws after +p ", gws(e,t)
+                        write(42,*) "sws after +p", sws(e,t)
+                        write(42,*) "sm after +p", sm(e,t)
                         !ET extraction
                         if (sws(e,t)>et(e,t)*dt) then
                             sws(e,t) = sws(e,t) - et(e,t)*dt
@@ -89,6 +96,9 @@ contains
                             gws(e,t) = gws(e,t) - (sw_et_deficit/n(e))
                             epv(e,t) = (gok(e) - gws(e,t))*n(e)
                         end if
+                        write(42,*) "gws after -et ", gws(e,t)
+                        write(42,*) "sws after -et", sws(e,t)
+                        write(42,*) "sm after -et", sm(e,t)
                         !calc storage discharges
                         gw_dis(e,t) = (gws(e,t) - gws(e,t-1))*n(e)
                         sm_dis(e,t) = (sm(e,t)) - sm(e,t-1)
