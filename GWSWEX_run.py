@@ -29,10 +29,10 @@ sm_eqs = []
 for d in np.arange(0,max(gok)-min(bot),0.001)*-1:
     sm_eqs.append(vanGI(d))
 sm_eqs = np.array(sm_eqs, dtype=np.float64, order='F')
-hp.get_sm_eqs(sm_eqs, int(sm_eqs.size), 0.001)
+hp.get_sm_eqs(sm_eqs*10, int(sm_eqs.size), 0.001)
 
 chd = np.full(elems, False, dtype=bool)
-p = np.full((elems,nts), 55e-4)
+p = np.full((elems,nts), 60e-4)
 p[:,-50:] = 45e-4
 et = np.full((elems,nts), 50e-4)
 gwswex.init(chd, p, et)
