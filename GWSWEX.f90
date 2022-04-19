@@ -147,6 +147,9 @@ contains
                         write(42,*) "sw_inf", sw_inf
                         sws(e,t) = sws(e,t-1) - sw_inf + excess_p - sw_et
                         et_deficit = et(e,t)*dt - sw_et
+                        if(gws(e,t-1) <= bot(e)) then
+                            et_deficit = 0
+                        end if
                         write(42,*) "sw et removed", sw_et
                         write(42,*) "sws calcd", sws(e,t)
                         sm(e,t) = sm(e,t-1) + inf + sw_inf - et_deficit
@@ -157,6 +160,9 @@ contains
                         write(42,*) "vanGI called. sm_eq is ", sm_eq
                         k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e), vanG_pars) !calc K from current wetness (after P and SW inf)
                         inf_gw = min(sm(e,t)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, inf_gw is -ve ...
+                        if(gws(e,t-1)-abs(inf_gw) < bot(e)) then
+                            inf_gw = max(inf_gw, 0.0)
+                        end if
                         write(42,*) "k_inf_gw is", k_inf_gw
                         write(42,*) "inf_gw is", inf_gw
                         sm(e,t) = sm(e,t) - inf_gw !... deficit sm gets added to sm from gw
@@ -180,6 +186,12 @@ contains
                         k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e), vanG_pars)*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                         write(42,*) "k_inf_gw remaining", k_inf_gw
                         inf_gw = min(sm(e,t)-sm_eq, max(k_inf_gw*dt,0.0))
+                        if(gws(e,t)-abs(inf_gw) < bot(e)) then
+                            inf_gw = max(inf_gw, 0.0)
+                            if(sm(e,t)<0) then
+                                sm(e,t) = 0
+                            end if
+                        end if
                         write(42,*) "addnl inf_gw", inf_gw
                         sm(e,t) = sm(e,t) - inf_gw
                         gws(e,t) = gws(e,t) + inf_gw/n(e)

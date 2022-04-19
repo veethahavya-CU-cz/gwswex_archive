@@ -30,22 +30,22 @@ def kSM(s):
 
 #%%
 elems = int(1)
-nts = int(100+1)
+nts = int(100)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 100
-bot = gok - 20
+bot = gok - 40
 n = np.full(elems, 0.4)
-k = np.full(elems, 60e-3)
-gwswex.build(elems, nts, dt, gok, bot, n, k, vanG_pars)
+k = np.full(elems, 25e-3)
+gwswex.build(elems, nts+1, dt, gok, bot, n, k, vanG_pars)
 
 chd = np.full(elems, False, dtype=bool)
-p = np.full((elems,nts), 550e-5)
+p = np.full((elems,nts+1), 550e-5)
 p[:,-50:] = 45e-4
-et = np.full((elems,nts), 500e-5)
+et = np.full((elems,nts+1), 500e-5)
 gwswex.init(chd, p, et)
 
-gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F'), np.zeros((elems,nts),dtype=np.float64,order='F')
-gws[:,0] = np.random.default_rng().uniform(-1, 1, elems) + 40
+gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F')
+gws[:,0] = gok - (np.random.default_rng().uniform(-1, 1, elems) + 33)
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
 sm[:,0] = epv[:,0]*0.5
@@ -57,12 +57,12 @@ if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
 plotWlev = True
-plotPrec = True
-plotDis = True
-plotBal = True
+plotPrec = False
+plotDis = False
+plotBal = False
 savefig = True
 dDPI = 90
-pDPI = 1600
+pDPI = 900
 alpha_scatter = 0.7
 scatter_size = 3
 format = "jpg" #svg, png, jpg
@@ -85,18 +85,19 @@ def wlevPlot(elem,gws,sws,sm):
     plt.xlabel("Time Steps")
     plt.ylabel("Water Levels")
     gws = gws[elem,1:]
-    plt.ylim([gws.min()-50, sws[elem,:].max()+50+gok[elem]])
-    plt.stackplot(range(0,nts-1), gws, sm[elem,1:],\
-    epv[elem,1:]-sm[elem,1:], (np.full(nts-1,gok[elem])-gws)*(1-n),\
+    plt.ylim([bot[elem]-10, sws[elem,:].max()+25+gok[elem]])
+    plt.stackplot(range(0,nts), gws, sm[elem,1:],\
+    epv[elem,1:]-sm[elem,1:], (np.full(nts,gok[elem])-gws)*(1-n),\
     sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
-    plt.plot(range(0,nts), np.full(nts,gok[elem]), "k", linewidth=0.5, label="Ground Level")
+    plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
+    plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.75, label="Bottom")
     plt.legend(loc="best", fontsize="small")
 
 def precPlot():
     plt.figure(dpi=dDPI)
     plt.xlabel("Time Steps")
     plt.ylabel("Precipitation")
-    plt.scatter(range(0,nts), p, s=0.1, color=pal[6])
+    plt.scatter(range(0,nts+1), p, s=0.1, color=pal[6])
 
 def balPlot():
     plt.figure(dpi=dDPI)
@@ -124,3 +125,4 @@ if plotBal:
     balPlot()
     if savefig:
         plt.savefig(fig_path+"mBal."+format, format=format, dpi=pDPI)
+# %%
