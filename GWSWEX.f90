@@ -77,7 +77,7 @@ contains
         real*8, intent(inout) :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
             Qin(:,:), Qout(:,:), Qdiff(:,:)
         real*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
-            k_inf_gw, inf_gw, et_deficit, sw_et
+            k_inf_gw, inf_gw, et_deficit, sw_et, start, finish
         integer :: e, t
         open(unit=42, file="fort.log", status="old")
         write(42,*) "run entered"
@@ -155,13 +155,16 @@ contains
                         sm(e,t) = sm(e,t-1) + inf + sw_inf - et_deficit
                         write(42,*) "sm et removed", et_deficit
                         write(42,*) "sm calcd", sm(e,t)
+                        call cpu_time(start)
                         sm_eq = vanGI(-L)
+                        call cpu_time(finish)
+                        write(42,*) "vanGI time ", finish-start
                         write(42,*) "gws is ", gws(e,t-1)
                         write(42,*) "vanGI called. sm_eq is ", sm_eq
                         k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e), vanG_pars) !calc K from current wetness (after P and SW inf)
                         inf_gw = min(sm(e,t)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, inf_gw is -ve ...
-                        if(gws(e,t-1)-abs(inf_gw) < bot(e)) then
-                            inf_gw = max(inf_gw, 0.0)
+                        if(gws(e,t-1) + inf_gw/n(e) < bot(e)) then
+                            inf_gw = - min(abs((gws(e,t-1) - bot(e)))*n(e), abs(k_inf_gw*dt))
                         end if
                         write(42,*) "k_inf_gw is", k_inf_gw
                         write(42,*) "inf_gw is", inf_gw
@@ -186,8 +189,8 @@ contains
                         k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e), vanG_pars)*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                         write(42,*) "k_inf_gw remaining", k_inf_gw
                         inf_gw = min(sm(e,t)-sm_eq, max(k_inf_gw*dt,0.0))
-                        if(gws(e,t)-abs(inf_gw) < bot(e)) then
-                            inf_gw = max(inf_gw, 0.0)
+                        if(gws(e,t) + inf_gw/n(e) < bot(e)) then
+                            inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), abs(k_inf_gw*dt))
                             if(sm(e,t)<0) then
                                 sm(e,t) = 0
                             end if

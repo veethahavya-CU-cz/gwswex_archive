@@ -5,9 +5,10 @@ from scipy.integrate import quad
 import os
 import matplotlib.pyplot as plt
 #%%
-vanG_pars = np.array([0.1, 0.4, 0.42, 2.5], dtype=np.float64,order='F')
+vanG_pars = np.array([0.1, 0.4, 0.7, 1.5], dtype=np.float64,order='F')
 
 def vanGI(d):
+    d = d/100
     def theta(h_c):
         theta_r = vanG_pars[0]
         theta_s = vanG_pars[1]
@@ -15,7 +16,7 @@ def vanGI(d):
         n = vanG_pars[3]
         m = (1-(1/n))
         return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
-    return np.float64(quad(theta,d,0)[0])
+    return np.float64(quad(theta,d,0)[0])*100
 
 def kSM(s):
     #vanG-Mualem (YT)
@@ -28,24 +29,24 @@ def kSM(s):
     k = ks*sat*((1-(1-(sat)**(1/m))**m)**2)
     return np.float64(k)
 
-#%%
-elems = int(1)
-nts = int(100)
+#%% in mm and s
+elems = int(3)
+nts = int(1000)
 dt = int(600)
-gok = np.random.default_rng().uniform(-3, 3, elems) + 100
-bot = gok - 40
+gok = np.random.default_rng().uniform(-3, 3, elems) + 1000
+bot = gok - 800
 n = np.full(elems, 0.4)
-k = np.full(elems, 25e-3)
+k = np.full(elems, 33e-3)
 gwswex.build(elems, nts+1, dt, gok, bot, n, k, vanG_pars)
 
 chd = np.full(elems, False, dtype=bool)
 p = np.full((elems,nts+1), 550e-5)
-p[:,-50:] = 45e-4
+p[:,-500:] = 45e-4
 et = np.full((elems,nts+1), 500e-5)
 gwswex.init(chd, p, et)
 
 gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F')
-gws[:,0] = gok - (np.random.default_rng().uniform(-1, 1, elems) + 33)
+gws[:,0] = bot + 400
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
 sm[:,0] = epv[:,0]*0.5
@@ -87,11 +88,11 @@ def wlevPlot(elem,gws,sws,sm):
     gws = gws[elem,1:]
     plt.ylim([bot[elem]-10, sws[elem,:].max()+25+gok[elem]])
     plt.stackplot(range(0,nts), gws, sm[elem,1:],\
-    epv[elem,1:]-sm[elem,1:], (np.full(nts,gok[elem])-gws)*(1-n),\
+    epv[elem,1:]-sm[elem,1:], (np.full(nts,gok[elem])-gws)*(1-n[elem]),\
     sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
     plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
     plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.75, label="Bottom")
-    plt.legend(loc="best", fontsize="small")
+    plt.legend(loc=2, fontsize=3)
 
 def precPlot():
     plt.figure(dpi=dDPI)
