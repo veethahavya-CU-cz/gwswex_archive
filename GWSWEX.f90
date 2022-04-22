@@ -2,6 +2,7 @@ module helpers
     implicit none
 contains
     function kSM(s, ks, vanG_pars)
+    ! add Horton_inf regime effects. only capilary/vG-M considered here
         real*8, intent(in) :: s, ks, vanG_pars(4)
         real*8 :: kSM, theta_r, theta_s, n, m, sat
         theta_r = vanG_pars(1)
@@ -17,6 +18,7 @@ contains
     end function kSM
 
     function kGW(s, ks, vanG_pars)
+    ! add preferential flow and implement kGW(s,d)
         real*8, intent(in) :: s, ks, vanG_pars(4)
         real*8 :: kGW, theta_r, theta_s, n, m, sat
         theta_r = vanG_pars(1)
