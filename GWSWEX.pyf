@@ -45,7 +45,7 @@ python module fortrapper ! in
                 integer intent(in) :: ts_size
                 real*8 dimension(:),intent(in) :: gok_l
                 real*8 dimension(:),intent(in) :: bot_l
-                real*8 intent(in) :: n_l
+                real*8 dimension(:),intent(in) :: n_l
                 real*8 dimension(:),intent(in) :: k_l
                 real*8 dimension(4),intent(in) :: vang_pars_l
             end subroutine build

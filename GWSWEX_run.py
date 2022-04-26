@@ -36,12 +36,12 @@ dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 1000
 bot = gok - 800
 n = np.full(elems, 0.4)
-k = np.full(elems, 33e-3)
+k = np.full(elems, 333e-5)
 gwswex.build(elems, nts+1, dt, gok, bot, n, k, vanG_pars)
 
 chd = np.full(elems, False, dtype=bool)
-p = np.full((elems,nts+1), 550e-5)
-p[:,-500:] = 45e-4
+p = np.full((elems,nts+1), 515e-5)
+p[:,-500:] = 490e-5
 et = np.full((elems,nts+1), 500e-5)
 gwswex.init(chd, p, et)
 
@@ -49,7 +49,7 @@ gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nt
 gws[:,0] = bot + 400
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
-sm[:,0] = epv[:,0]*0.5
+sm[:,0] = vanGI(bot-gws[:,0])
 gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 
 #%%
@@ -57,7 +57,7 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
-plotWlev = False
+plotWlev = True
 plotPrec = False
 plotDis = False
 plotBal = False
@@ -92,7 +92,7 @@ def wlevPlot(elem,gws,sws,sm):
     sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
     plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
     plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.75, label="Bottom")
-    plt.legend(loc=2, fontsize=3)
+    plt.legend(loc=1, fontsize=3)
 
 def precPlot():
     plt.figure(dpi=dDPI)
