@@ -1,1 +1,4 @@
 # GWSWEX
+
+# Dependencies
+* numpy
