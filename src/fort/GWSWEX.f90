@@ -1,10 +1,15 @@
 module helpers
 
+    USE OMP_LIB
     implicit none
+
+    real*8 :: parms_vanGI(4)
 
     contains
         include "kSM.f90"
         include "kGW.f90"
+        include "integrators.f90"
+        include "vanGI.f90"
 
 end module helpers
 
@@ -13,6 +18,7 @@ end module helpers
 module gwswex
 
     USE OMP_LIB
+    USE stdlib_logger
 
     implicit none
 
@@ -25,5 +31,6 @@ module gwswex
         include "build.f90"
         include "init.f90"
         include "run.f90"
+        include "run_f.f90"
 
 end module gwswex

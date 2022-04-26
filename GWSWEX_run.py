@@ -1,5 +1,6 @@
 #%%
 from fortrapper import gwswex
+from fortrapper import helpers as hp
 import numpy as np
 from scipy.integrate import quad
 import os
@@ -18,16 +19,6 @@ def vanGI(d):
         return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
     return np.float64(quad(theta,d,0)[0])*100
 
-def kSM(s):
-    #vanG-Mualem (YT)
-    ks = 3e-2
-    theta_r = vanG_pars[0]
-    theta_s = vanG_pars[1]
-    n = vanG_pars[3]
-    m = (1-(1/n))
-    sat = ((s-theta_r)/(theta_s-theta_r))
-    k = ks*sat*((1-(1-(sat)**(1/m))**m)**2)
-    return np.float64(k)
 
 #%% in mm and s
 elems = int(1)
@@ -49,8 +40,10 @@ gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nt
 gws[:,0] = bot + 400
 sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
 epv[:,0] = (gok-gws[:,0])*n
-sm[:,0] = vanGI(bot-gws[:,0])
-gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+for x in range(elems):
+    sm[x,0] = vanGI(bot[x]-gws[x,0])
+#gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+gwswex.run_f(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 
 #%%
 fig_path = "output/figs/"
