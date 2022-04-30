@@ -87,7 +87,6 @@ python module fortrapper ! in
         end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
-            use stdlib_logger
             integer :: elems
             integer :: nts
             integer :: dt
