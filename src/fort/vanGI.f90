@@ -18,12 +18,19 @@ function vanGI_simps(d, simpsons_n)
 end function vanGI_simps
 
 
-function vanGI_rect(d, rect_n)
-    real*8 :: vanGI_rect
+function vanGI_rect(d)
+    USE integral_core
+    real*8 :: vanGI_rect, ul, ll
     real*8, intent(inout) :: d
-    integer, intent(in) :: rect_n
+    procedure(integrand), pointer :: intgrl_fcn
+    type(adaptive_integrator) :: integrator
+
     d = -d/100
-    vanGI_rect = simpsons(theta, d, dble(0), rect_n)*100
+    ll = d
+    ul = dble(0)
+    intgrl_fcn => theta
+    vanGI_rect = integrator%integrate(intgrl_fcn, ll, ul)*100
+
     contains
         function theta(h_c)
             real*8, intent(in) :: h_c

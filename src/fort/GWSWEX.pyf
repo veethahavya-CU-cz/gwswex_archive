@@ -74,9 +74,9 @@ python module fortrapper ! in
                 integer intent(in) :: simpsons_n
                 real*8 :: vangi_simps
             end function vangi_simps
-            function vangi_rect(d,rect_n) ! in :fortrapper:GWSWEX.f90:helpers
+            function vangi_rect(d) ! in :fortrapper:GWSWEX.f90:helpers
+                use integral_core
                 real*8 intent(inout) :: d
-                integer intent(in) :: rect_n
                 real*8 :: vangi_rect
             end function vangi_rect
             function vangi_trap(d,trap_n) ! in :fortrapper:GWSWEX.f90:helpers
@@ -87,7 +87,6 @@ python module fortrapper ! in
         end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
-            use stdlib_logger
             integer :: elems
             integer :: nts
             integer :: dt
