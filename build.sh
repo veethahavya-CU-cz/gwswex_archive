@@ -28,8 +28,8 @@ while getopts ":qvpol" opt; do
             ;;
         l)
             cd src/fort/
-            f2py GWSWEX.f90 -I/usr/local/integral/include/ -m fortrapper -h GWSWEX.pyf --overwrite-signature
-            f2py -c -I/usr/local/integral/include/ GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp #-L/usr/local/integral/lib/ -lintegral
+            f2py -m fortrapper -h GWSWEX.pyf GWSWEX.f90 --overwrite-signature
+            f2py -c -I/usr/local/integral/include/ GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp --link-blas_opt --quiet #-L/usr/local/integral/lib/ -lintegral
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
