@@ -84,10 +84,19 @@ python module fortrapper ! in
                 integer intent(in) :: trap_n
                 real*8 :: vangi_trap
             end function vangi_trap
+            function theta(h_c,ptr) ! in :fortrapper:GWSWEX.f90:helpers
+                real(kind=c_double) :: h_c
+                type(c_ptr), value :: ptr
+                real(kind=c_double) :: theta
+            end function theta
+            function vangi_fgsl(d) ! in :fortrapper:GWSWEX.f90:helpers
+                use fgsl
+                real*8 intent(inout) :: d
+                real*8 :: vangi_fgsl
+            end function vangi_fgsl
         end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
-            use stdlib_logger
             integer :: elems
             integer :: nts
             integer :: dt

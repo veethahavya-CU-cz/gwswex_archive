@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts ":qvpo" opt; do
+while getopts ":qvpol" opt; do
     case $opt in
         q)
             cd src/fort/
@@ -27,6 +27,13 @@ while getopts ":qvpo" opt; do
             cd src/fort/
             f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
             f2py -c GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp
+            mv *.so ~/GWSWEX/
+            cd ~/GWSWEX
+            ;;
+        l)
+            cd src/fort/
+            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+            f2py -c -L/usr/local/lib/ GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp -lfgsl #--quiet -I/usr/local/include/fgsl/
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
