@@ -27,34 +27,6 @@ python module fortrapper ! in
                 real*8 dimension(4),intent(in) :: vang_pars
                 real*8 :: kgw
             end function kgw
-            function rectangular(f,a,b,n) ! in :fortrapper:GWSWEX.f90:helpers
-                threadsafe 
-                external f
-                real*8 intent(in) :: a
-                real*8 intent(in) :: b
-                integer intent(in) :: n
-                real*8 :: rectangular
-                interface  ! in :fortrapper:GWSWEX.f90:helpers:rectangular
-                    function f(x) ! in :fortrapper:GWSWEX.f90:helpers:rectangular:unknown_interface
-                        real*8 intent(in) :: x
-                        real*8 :: f
-                    end function f
-                end interface 
-            end function rectangular
-            function trapezoidal(f,a,b,n) ! in :fortrapper:GWSWEX.f90:helpers
-                threadsafe 
-                external f
-                real*8 intent(in) :: a
-                real*8 intent(in) :: b
-                integer intent(in) :: n
-                real*8 :: trapezoidal
-                interface  ! in :fortrapper:GWSWEX.f90:helpers:trapezoidal
-                    function f(x) ! in :fortrapper:GWSWEX.f90:helpers:trapezoidal:unknown_interface
-                        real*8 intent(in) :: x
-                        real*8 :: f
-                    end function f
-                end interface 
-            end function trapezoidal
             function simpsons(f,a,b,n) ! in :fortrapper:GWSWEX.f90:helpers
                 threadsafe 
                 external f
@@ -74,20 +46,14 @@ python module fortrapper ! in
                 integer intent(in) :: simpsons_n
                 real*8 :: vangi_simps
             end function vangi_simps
-            function vangi_rect(d,rect_n) ! in :fortrapper:GWSWEX.f90:helpers
+            function vangi_quad(d) ! in :fortrapper:GWSWEX.f90:helpers
+                use quadpack
                 real*8 intent(inout) :: d
-                integer intent(in) :: rect_n
-                real*8 :: vangi_rect
-            end function vangi_rect
-            function vangi_trap(d,trap_n) ! in :fortrapper:GWSWEX.f90:helpers
-                real*8 intent(inout) :: d
-                integer intent(in) :: trap_n
-                real*8 :: vangi_trap
-            end function vangi_trap
+                real*8 :: vangi_quad
+            end function vangi_quad
         end module helpers
         module gwswex ! in :fortrapper:GWSWEX.f90
             use omp_lib
-            use stdlib_logger
             integer :: elems
             integer :: nts
             integer :: dt

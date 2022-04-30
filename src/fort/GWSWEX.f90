@@ -18,7 +18,6 @@ end module helpers
 module gwswex
 
     USE OMP_LIB
-    USE stdlib_logger
 
     implicit none
 
