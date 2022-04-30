@@ -23,7 +23,7 @@ function vanGI_rect(d, rect_n)
     real*8, intent(inout) :: d
     integer, intent(in) :: rect_n
     d = -d/100
-    vanGI_rect = simpsons(theta, d, dble(0), rect_n)*100
+    vanGI_rect = rectangular(theta, d, dble(0), rect_n)*100
     contains
         function theta(h_c)
             real*8, intent(in) :: h_c
@@ -43,7 +43,7 @@ function vanGI_trap(d, trap_n)
     real*8, intent(inout) :: d
     integer, intent(in) :: trap_n
     d = -d/100
-    vanGI_trap = simpsons(theta, d, dble(0), trap_n)*100
+    vanGI_trap = trapezoidal(theta, d, dble(0), trap_n)*100
     contains
         function theta(h_c)
             real*8, intent(in) :: h_c
