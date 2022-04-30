@@ -4,25 +4,29 @@ while getopts ":qvpo" opt; do
     case $opt in
         q)
             cd src/fort/
-            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature && f2py -c GWSWEX.pyf GWSWEX.f90 --quiet
+            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+            f2py -c GWSWEX.pyf GWSWEX.f90 --quiet
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
         v)
             cd src/fort/
-            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature && f2py -c GWSWEX.pyf GWSWEX.f90
+            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+            f2py -c GWSWEX.pyf GWSWEX.f90
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
         p)
             cd src/fort/
-            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature && f2py -c GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp --quiet
+            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+            f2py -c GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp --quiet
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
         o)
             cd src/fort/
-            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature && f2py -c GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp
+            f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+            f2py -c GWSWEX.pyf GWSWEX.f90 --f90flags="-fopenmp" -lgomp
             mv *.so ~/GWSWEX/
             cd ~/GWSWEX
             ;;
@@ -39,7 +43,7 @@ done
 
 if (( $OPTIND == 1 )); then
     cd src/fort/
-    f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature && f2py -c GWSWEX.pyf GWSWEX.f90 --quiet
-    
+    f2py GWSWEX.f90 -m fortrapper -h GWSWEX.pyf --overwrite-signature
+    f2py -c GWSWEX.pyf GWSWEX.f90 --quiet
     cd ~/GWSWEX
 fi
