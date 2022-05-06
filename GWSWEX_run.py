@@ -1,9 +1,10 @@
 #%%
+from ctypes import *
+lib1 = cdll.LoadLibrary("/usr/local/integral/lib/libintegral.a")
 from fortrapper import gwswex
 from fortrapper import helpers as hp
 import numpy as np
 from scipy.integrate import quad
-import os
 import matplotlib.pyplot as plt
 #%%
 vanG_pars = np.array([0.1, 0.4, 0.7, 1.5], dtype=np.float64,order='F')
