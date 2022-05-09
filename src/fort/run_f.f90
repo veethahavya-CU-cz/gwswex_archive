@@ -11,7 +11,9 @@ subroutine run_f(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
 
     do t = 2, nts
         write(42,*) "outer loop entered. ts ", t-1
-        !$OMP PARALLEL DO
+        !$OMP PARALLEL DO SHARED(gws, sws, sm, epv) &
+        !$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
+        !$OMP PRIVATE(et_deficit, sw_et)
         do e = 1, elems
             write(42,*) "inner loop entered. elem", e
             write(42,*) "gok", gok(e)

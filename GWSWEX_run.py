@@ -21,7 +21,7 @@ def vanGI(d):
 
 
 #%% in mm and s
-elems = int(1)
+elems = int(100)
 nts = int(1000)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 1000
@@ -50,11 +50,11 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
-plotWlev = True
+plotWlev = False
 plotPrec = False
 plotDis = False
 plotBal = False
-savefig = True
+savefig = False
 dDPI = 90
 pDPI = 900
 alpha_scatter = 0.7
