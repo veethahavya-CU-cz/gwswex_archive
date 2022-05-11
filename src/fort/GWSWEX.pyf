@@ -15,6 +15,7 @@ python module fortrapper ! in
         module helpers ! in :fortrapper:GWSWEX.f90
             use omp_lib
             real*8 dimension(4) :: parms_vangi
+            integer*2 :: intgrt_n
             function ksm(s,ks,vang_pars) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(in) :: s
                 real*8 intent(in) :: ks
@@ -32,7 +33,7 @@ python module fortrapper ! in
                 external f
                 real*8 intent(in) :: a
                 real*8 intent(in) :: b
-                integer intent(in) :: n
+                integer*2 intent(in) :: n
                 real*8 :: rectangular
                 interface  ! in :fortrapper:GWSWEX.f90:helpers:rectangular
                     function f(x) ! in :fortrapper:GWSWEX.f90:helpers:rectangular:unknown_interface
@@ -46,7 +47,7 @@ python module fortrapper ! in
                 external f
                 real*8 intent(in) :: a
                 real*8 intent(in) :: b
-                integer intent(in) :: n
+                integer*2 intent(in) :: n
                 real*8 :: trapezoidal
                 interface  ! in :fortrapper:GWSWEX.f90:helpers:trapezoidal
                     function f(x) ! in :fortrapper:GWSWEX.f90:helpers:trapezoidal:unknown_interface
@@ -60,7 +61,7 @@ python module fortrapper ! in
                 external f
                 real*8 intent(in) :: a
                 real*8 intent(in) :: b
-                integer intent(in) :: n
+                integer*2 intent(in) :: n
                 real*8 :: simpsons
                 interface  ! in :fortrapper:GWSWEX.f90:helpers:simpsons
                     function f(x) ! in :fortrapper:GWSWEX.f90:helpers:simpsons:unknown_interface
@@ -71,17 +72,17 @@ python module fortrapper ! in
             end function simpsons
             function vangi_simps(d,simpsons_n) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(inout) :: d
-                integer intent(in) :: simpsons_n
+                integer*2 intent(in) :: simpsons_n
                 real*8 :: vangi_simps
             end function vangi_simps
             function vangi_rect(d,rect_n) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(inout) :: d
-                integer intent(in) :: rect_n
+                integer*2 intent(in) :: rect_n
                 real*8 :: vangi_rect
             end function vangi_rect
             function vangi_trap(d,trap_n) ! in :fortrapper:GWSWEX.f90:helpers
                 real*8 intent(inout) :: d
-                integer intent(in) :: trap_n
+                integer*2 intent(in) :: trap_n
                 real*8 :: vangi_trap
             end function vangi_trap
         end module helpers
@@ -98,8 +99,8 @@ python module fortrapper ! in
             real*8, allocatable,dimension(:,:) :: p
             real*8, allocatable,dimension(:,:) :: et
             real*8 dimension(4) :: vang_pars
-            subroutine build(el,ts,ts_size,gok_l,bot_l,n_l,k_l,vang_pars_l) ! in :fortrapper:GWSWEX.f90:gwswex
-                use helpers
+            subroutine build(el,ts,ts_size,gok_l,bot_l,n_l,k_l,vang_pars_l,intgrt) ! in :fortrapper:GWSWEX.f90:gwswex
+                use helpers, only: parms_vangi,intgrt_n
                 integer intent(in) :: el
                 integer intent(in) :: ts
                 integer intent(in) :: ts_size
@@ -108,6 +109,7 @@ python module fortrapper ! in
                 real*8 dimension(:),intent(in) :: n_l
                 real*8 dimension(:),intent(in) :: k_l
                 real*8 dimension(4),intent(in) :: vang_pars_l
+                integer, optional :: intgrt
             end subroutine build
             subroutine init(chd_l,p_l,et_l) ! in :fortrapper:GWSWEX.f90:gwswex
                 logical dimension(:),intent(in) :: chd_l

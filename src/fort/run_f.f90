@@ -86,7 +86,7 @@ subroutine run_f(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
                     write(42,*) "sm et removed", et_deficit
                     write(42,*) "sm calcd", sm(e,t)
                     call cpu_time(start)
-                    sm_eq = vanGI_simps(L, 750)
+                    sm_eq = vanGI_simps(L, intgrt_n)
                     call cpu_time(finish)
                     write(42,*) "vanGI_simps time ", finish-start
                     write(42,*) "gws is ", gws(e,t-1)
@@ -115,7 +115,7 @@ subroutine run_f(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
                         sm(e,t) = epv(e,t)
                     end if
                     L = gok(e) - gws(e,t)
-                    sm_eq = vanGI_simps(L, 750) !!!gw-sm balancing: consider adding a convergence criteria here
+                    sm_eq = vanGI_simps(L, intgrt_n) !!!gw-sm balancing: consider adding a convergence criteria here
                     write(42,*) "new sm_eq", sm_eq
                     k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e), vanG_pars)*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                     write(42,*) "k_inf_gw remaining", k_inf_gw

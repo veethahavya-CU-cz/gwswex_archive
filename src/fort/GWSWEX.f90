@@ -4,6 +4,7 @@ module helpers
     implicit none
 
     real*8 :: parms_vanGI(4)
+    integer*2 :: intgrt_n
 
     contains
         include "kSM.f90"

@@ -1,7 +1,7 @@
 function vanGI_simps(d, simpsons_n)
     real*8 :: vanGI_simps
     real*8, intent(inout) :: d
-    integer, intent(in) :: simpsons_n
+    integer*2, intent(in) :: simpsons_n
     d = -d/100
     vanGI_simps = simpsons(theta, d, dble(0), simpsons_n)*100
     contains
@@ -21,7 +21,7 @@ end function vanGI_simps
 function vanGI_rect(d, rect_n)
     real*8 :: vanGI_rect
     real*8, intent(inout) :: d
-    integer, intent(in) :: rect_n
+    integer*2, intent(in) :: rect_n
     d = -d/100
     vanGI_rect = rectangular(theta, d, dble(0), rect_n)*100
     contains
@@ -41,7 +41,7 @@ end function vanGI_rect
 function vanGI_trap(d, trap_n)
     real*8 :: vanGI_trap
     real*8, intent(inout) :: d
-    integer, intent(in) :: trap_n
+    integer*2, intent(in) :: trap_n
     d = -d/100
     vanGI_trap = trapezoidal(theta, d, dble(0), trap_n)*100
     contains

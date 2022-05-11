@@ -1,4 +1,5 @@
 subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+!not f2py threadsafe
     USE helpers
     external :: vanGI
     real*8 :: vanGI
@@ -15,6 +16,9 @@ subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdif
 
     do t = 2, nts
         write(42,*) "outer loop entered. ts ", t-1
+        !PMO$ PARALLEL DO SHARED(gws, sws, sm, epv) &
+        !PMO$ PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
+        !PMO$ PRIVATE(et_deficit, sw_et)
         do e = 1, elems
             write(42,*) "inner loop entered. elem", e
             write(42,*) "gok", gok(e)
@@ -87,7 +91,9 @@ subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdif
                     write(42,*) "sm et removed", et_deficit
                     write(42,*) "sm calcd", sm(e,t)
                     call cpu_time(start)
+                    !PMO$ CRITICAL(vanGI1)
                     sm_eq = vanGI(-L)
+                    !PMO$ END CRITICAL(vanGI1)
                     call cpu_time(finish)
                     write(42,*) "vanGI time ", finish-start
                     write(42,*) "gws is ", gws(e,t-1)
@@ -115,7 +121,9 @@ subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdif
                         sws(e,t) = sws(e,t) + (sm(e,t)-epv(e,t))
                         sm(e,t) = epv(e,t)
                     end if
+                    !PMO$ CRITICAL(vanGI2)
                     sm_eq = vanGI(-(gok(e) - gws(e,t))) !!!gw-sm balancing: consider adding a convergence criteria here
+                    !PMO$ END CRITICAL(vanGI2)
                     write(42,*) "new sm_eq", sm_eq
                     k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e), vanG_pars)*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                     write(42,*) "k_inf_gw remaining", k_inf_gw
@@ -151,6 +159,7 @@ subroutine run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdif
                 Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
             end if
         end do
+        !PMO$ END PARALLEL DO
     end do
     Qdiff = Qin - Qout
 end subroutine

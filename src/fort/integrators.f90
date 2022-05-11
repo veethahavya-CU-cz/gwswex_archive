@@ -8,7 +8,7 @@ function rectangular(f, a, b, n)
         end function
     end interface
     real*8, intent(in) :: a, b
-    integer, intent(in) :: n
+    integer*2, intent(in) :: n
     integer :: i
     real*8 :: x, step
 
@@ -33,7 +33,7 @@ function trapezoidal(f, a, b, n)
         end function
     end interface
     real*8, intent(in) :: a, b
-    integer, intent(in) :: n
+    integer*2, intent(in) :: n
     integer :: i
     real*8 :: x1, x2, step
 
@@ -60,7 +60,7 @@ function simpsons(f, a, b, n)
         end function
     end interface
     real*8, intent(in) :: a, b
-    integer, intent(in) :: n
+    integer*2, intent(in) :: n
     integer :: i
     real*8 :: x1, x2, step
 
