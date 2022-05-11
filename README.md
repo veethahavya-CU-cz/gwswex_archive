@@ -1,5 +1,5 @@
-# GWSWEX
+# GWSWEX f2py variant
 
 # Dependencies
 * python 3: numpy, scipy
-* fortran: gfortran, fortran-lang/stdlib (fpm wget build), OMP
+* fortran: gfortran, OMP
