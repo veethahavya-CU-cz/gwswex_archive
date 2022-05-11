@@ -1,5 +1,15 @@
 import numpy as np
+import os
 from scipy.integrate import quad
+
+with open("cyGWSWEX.log", "w"):
+    pass
+
+log = open("cyGWSWEX.log", "a")
+cdef logit(str msg):
+    log.write(msg + "\n")
+
+logit("logger set-up")
 
 cdef float kSM(float s, float ks, vanG_pars):
     # add Horton_inf regime effects. only capilary/vG-M considered here
@@ -41,6 +51,7 @@ cdef double vanGI(d, vanG_pars):
     return np.float64(quad(theta,d,0)[0])*100
 
 cdef tuple crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars):
+    logit("i'm in")
     cdef int e, t
     cdef double L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw, et_deficit, sw_et
     
@@ -151,3 +162,5 @@ cdef tuple crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, ch
 
 def run(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars):
     return crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars)
+
+    log.close()
