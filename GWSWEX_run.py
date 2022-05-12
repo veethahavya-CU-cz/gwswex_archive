@@ -40,7 +40,7 @@ if os.path.exists('exe/fort/input/'):
     shutil.rmtree('exe/fort/input/')
 os.mkdir('exe/fort/input/')
 
-elems = int(1)
+elems = int(1000)
 nts = int(1000)
 dt = int(600)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
@@ -76,6 +76,7 @@ fwrite('sm_ini.ip', np.array(sm_ini, dtype=np.float64, order='F'))
 wd = os.getcwd()
 os.chdir('exe/fort/')
 fort_run = sp.Popen('./GWSWEX', shell=True, stdout = sp.PIPE)
+fort_run.communicate()
 os.chdir(wd)
 
 gws = fread('gws.op')
