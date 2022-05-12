@@ -60,7 +60,7 @@ subroutine run()
                     write(lu,*) "sm is", sm(e,t-1)
                     write(lu,*) "epv is", epv(e,t-1)
                     write(lu,*) "sm/epv", sm(e,t-1)/epv(e,t-1)
-                    k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e), vanG_pars) !calc K from wetness at the begining of this dt i.e. end of last dt
+                    k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt i.e. end of last dt
                     write(lu,*) "got k", k_inf
                     inf = min(k_inf*dt, p(e,t)*dt)
                     write(lu,*) "inf aka p_sm is ", inf
@@ -89,7 +89,7 @@ subroutine run()
                     write(lu,*) "vanGI_fgsl time ", finish-start
                     write(lu,*) "gws is ", gws(e,t-1)
                     write(lu,*) "vanGI_fgsl called. sm_eq is ", sm_eq
-                    k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e), vanG_pars) !calc K from current wetness (after P and SW inf)
+                    k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
                     inf_gw = min(sm(e,t)-sm_eq, k_inf_gw*dt) !if sm<sm_eq, inf_gw is -ve ...
                     if(gws(e,t-1) + inf_gw/n(e) < bot(e)) then
                         inf_gw = - min(abs((gws(e,t-1) - bot(e)))*n(e), abs(k_inf_gw*dt))
@@ -115,7 +115,7 @@ subroutine run()
                     L = gok(e) - gws(e,t)
                     sm_eq = vanGI_fgsl(L) !!!gw-sm balancing: consider adding a convergence criteria here
                     write(lu,*) "new sm_eq", sm_eq
-                    k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e), vanG_pars)*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
+                    k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw already utilized and allow freely capilary rise beyond k_inf_gw
                     write(lu,*) "k_inf_gw remaining", k_inf_gw
                     inf_gw = min(sm(e,t)-sm_eq, max(k_inf_gw*dt,0.0))
                     if(gws(e,t) + inf_gw/n(e) < bot(e)) then

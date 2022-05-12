@@ -1,60 +1,22 @@
 function theta_c(h_c, ptr_c) bind(c)
-    use, intrinsic :: iso_c_binding
+    USE, intrinsic :: iso_c_binding
+    USE fgsl
     
-    real(c_double) :: h_c
+    real(c_double), value :: h_c
     type(c_ptr), value :: ptr_c
-    real(c_double) :: ptr_f
-    real(c_double) :: theta_c, theta_r, theta_s, alpha, n, m
+    real(c_double), pointer :: ptr_f
+    real(c_double) :: theta_c
+    real*8 :: theta_r, theta_s, alpha, n, m
 
     call c_f_pointer(ptr_c, ptr_f)
 
-    theta_r = vanGI_pars(1)
-    theta_s = vanGI_pars(2)
-    alpha = vanGI_pars(3)
-    n = vanGI_pars(4)
+    theta_r = vanG_pars(1)
+    theta_s = vanG_pars(2)
+    alpha = vanG_pars(3)
+    n = vanG_pars(4)
     m = (1-(1/n))
     theta_c = theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
 end function theta_c
-
-function theta(h_c)
-    real*8 :: h_c
-    real*8 :: theta, theta_r, theta_s, alpha, n, m
-
-    theta_r = vanGI_pars(1)
-    theta_s = vanGI_pars(2)
-    alpha = vanGI_pars(3)
-    n = vanGI_pars(4)
-    m = (1-(1/n))
-    theta = theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
-end function theta
-
-
-function vanGI_simps(d, simpsons_n)
-    real*8 :: vanGI_simps
-    real*8, intent(inout) :: d
-    integer*2, intent(in) :: simpsons_n
-    d = -d/100
-    vanGI_simps = simpsons(theta, d, dble(0), simpsons_n)*100
-end function vanGI_simps
-
-
-function vanGI_rect(d, rect_n)
-    real*8 :: vanGI_rect
-    real*8, intent(inout) :: d
-    integer*2, intent(in) :: rect_n
-    d = -d/100
-    vanGI_rect = rectangular(theta, d, dble(0), rect_n)*100
-end function vanGI_rect
-
-
-function vanGI_trap(d, trap_n)
-    real*8 :: vanGI_trap
-    real*8, intent(inout) :: d
-    integer*2, intent(in) :: trap_n
-    d = -d/100
-    vanGI_trap = trapezoidal(theta, d, dble(0), trap_n)*100
-    contains
-end function vanGI_trap
 
 function vanGI_fgsl(d)
     USE fgsl

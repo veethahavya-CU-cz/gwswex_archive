@@ -25,7 +25,7 @@ module core
     real*8, allocatable :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:)&
         , Qin(:,:), Qout(:,:), Qdiff(:,:)
     
-    character(*) :: input_path, output_path, log_file
+    character(255) :: input_path, output_path, log_file
     integer, parameter  :: lu=42, tu=99
 
     contains

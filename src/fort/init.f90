@@ -1,5 +1,5 @@
 subroutine init()
-    character(*) :: chd_file, p_file, et_file
+    character(255) :: chd_file, p_file, et_file
 
     chd_file = trim(input_path)//"chd.ip"
     p_file = trim(input_path)//"p.ip"

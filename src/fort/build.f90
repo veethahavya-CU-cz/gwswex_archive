@@ -1,8 +1,8 @@
 subroutine build()
-    USE helpers, only : parms_vanGI, intgrt_n
+    USE helpers, only : intgrt_n
 
     integer*4 :: attribs
-    character(*) :: wd, build_file, gok_file, bot_file, n_file, k_file, vanG_pars_file
+    character(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, vanG_pars_file
 
     CALL getcwd(wd)
     input_path = trim(wd)//'/input/'
@@ -20,10 +20,10 @@ subroutine build()
 
     open(tu, file=build_file)
 	read(tu, *) attribs
-    close(tu, status='keep')
 	elems = attribs(1)
 	ts = attribs(2)
 	ts_size = attribs(3)
+    close(tu, status='keep')
 
     allocate(gok(elems), bot(elems), n(elems), k(elems), chd(elems), p(elems,nts), et(elems,nts))
     allocate(gws(elems,nts), sws(elems,nts), sm(elems,nts), epv(elems,nts), gw_dis(elems,nts), sw_dis(elems,nts), sm_dis(elems,nts)&
