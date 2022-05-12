@@ -33,6 +33,7 @@ subroutine run()
         !$OMP PARALLEL DO SHARED(gws, sws, sm, epv) &
         !$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
         !$OMP PRIVATE(et_deficit, sw_et)
+        !!! PUT ALL CODE THAT NEEDS TO BE SEQUENTIAL WITHIN FUNCTIONS AND CALL THEM ACCORDINGLY
         do e = 1, elems
             write(lu,*) "inner loop entered. elem", e
             write(lu,*) "gok", gok(e)
