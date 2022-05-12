@@ -5,7 +5,28 @@ subroutine run()
         k_inf_gw, inf_gw, et_deficit, sw_et, start, finish
     integer :: e, t
 
+    character(255) :: gws_file, gws_ini_file, sws_file, sws_ini_file, sm_file, sm_ini_file, epv_file, epv_ini_file, &
+        gw_dis_file, sw_dis_file, sm_dis_file, Qin_file, Qout_file, Qdiff_file
+
+    gws_ini_file = trim(input_path)//"gws_ini.ip"
+    sws_ini_file = trim(input_path)//"sws_ini.ip"
+    sm_ini_file = trim(input_path)//"sm_ini.ip"
+    epv_ini_file = trim(input_path)//"epv_ini.ip"
+
     write(lu,*) "run entered"
+
+    open(tu, file=gws_ini_file, form='unformatted')
+	read(tu) gws(:,1)
+    close(tu, status='keep')
+    open(tu, file=sws_ini_file, form='unformatted')
+	read(tu) sws(:,1)
+    close(tu, status='keep')
+    open(tu, file=sm_ini_file, form='unformatted')
+	read(tu) sm(:,1)
+    close(tu, status='keep')
+    open(tu, file=epv_ini_file, form='unformatted')
+	read(tu) epv(:,1)
+    close(tu, status='keep')
 
     do t = 2, nts
         write(lu,*) "outer loop entered. ts ", t-1
@@ -152,4 +173,47 @@ subroutine run()
         !$OMP END PARALLEL DO
     end do
     Qdiff = Qin - Qout
+
+    gws_file = trim(output_path)//"gws.op"
+    gw_dis_file = trim(output_path)//"gw_dis.op"
+    sws_file = trim(output_path)//"sws.op"
+    sw_dis_file = trim(output_path)//"sw_dis.op"
+    sm_file = trim(output_path)//"sm.op"
+    sm_dis_file = trim(output_path)//"sm_dis.op"
+    epv_file = trim(output_path)//"epv.op"
+    Qin_file = trim(output_path)//"Qin.op"
+    Qout_file = trim(output_path)//"Qout.op"
+    Qdiff_file = trim(output_path)//"Qdiff.op"
+
+    open(tu, file=gws_file, form='unformatted')
+	write(tu) gws
+    close(tu)
+    open(tu, file=gw_dis_file, form='unformatted')
+	write(tu) gw_dis
+    close(tu)
+    open(tu, file=sws_file, form='unformatted')
+	write(tu) sws
+    close(tu)
+    open(tu, file=sw_dis_file, form='unformatted')
+	write(tu) sw_dis
+    close(tu)
+    open(tu, file=sm_file, form='unformatted')
+	write(tu) sm
+    close(tu)
+    open(tu, file=sm_dis_file, form='unformatted')
+	write(tu) sm_dis
+    close(tu)
+    open(tu, file=epv_file, form='unformatted')
+	write(tu) epv
+    close(tu)
+    open(tu, file=Qin_file, form='unformatted')
+	write(tu) Qin
+    close(tu)
+    open(tu, file=Qout_file, form='unformatted')
+	write(tu) Qout
+    close(tu)
+    open(tu, file=Qdiff_file, form='unformatted')
+	write(tu) Qdiff
+    close(tu)
+
 end subroutine

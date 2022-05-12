@@ -37,4 +37,8 @@ end module core
 
 program GWSWEX
     USE core, only: build, init, run
+
+    CALL build()
+    CALL init()
+    CALL run()
 end program GWSWEX

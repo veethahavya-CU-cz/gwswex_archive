@@ -1,12 +1,13 @@
 subroutine build()
     USE helpers, only : intgrt_n
 
-    integer*4 :: attribs
+    integer*4 :: attribs(3)
     character(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, vanG_pars_file
 
     CALL getcwd(wd)
     input_path = trim(wd)//'/input/'
     output_path = trim(wd)//'/output/'
+    log_file = trim(output_path)//'fort.log'
 
     build_file = trim(input_path)//"build.dat"
     gok_file = trim(input_path)//"gok.ip"
@@ -21,8 +22,8 @@ subroutine build()
     open(tu, file=build_file)
 	read(tu, *) attribs
 	elems = attribs(1)
-	ts = attribs(2)
-	ts_size = attribs(3)
+	nts = attribs(2)
+	dt = attribs(3)
     close(tu, status='keep')
 
     allocate(gok(elems), bot(elems), n(elems), k(elems), chd(elems), p(elems,nts), et(elems,nts))

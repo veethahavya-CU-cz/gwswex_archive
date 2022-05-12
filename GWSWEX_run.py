@@ -45,9 +45,8 @@ nts = int(1000)
 dt = int(600)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
-gok = np.array(np.random.default_rng().uniform(-3, 3, elems)+1000, dtype=np.float64, order='F')
-gok.tofile('exe/fort/input/gok.ip')
-
+gok = np.random.default_rng().uniform(-3, 3, elems)+1000
+fwrite('gok.ip', np.array(gok, dtype=np.float64, order='F'))
 bot = gok - 800
 fwrite('bot.ip', np.array(bot, dtype=np.float64, order='F'))
 n = np.full(elems, 0.4)
