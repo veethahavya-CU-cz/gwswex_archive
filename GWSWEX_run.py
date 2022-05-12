@@ -1,12 +1,12 @@
 #%%
-from fortrapper import gwswex
-from fortrapper import helpers as hp
 import numpy as np
+from scipy.io import FortranFile
 from scipy.integrate import quad
-import os
+import os, shutil
+import subprocess as sp
 import matplotlib.pyplot as plt
-#%%
-vanG_pars = np.array([0.1, 0.4, 0.7, 1.5], dtype=np.float64,order='F')
+
+vanG_pars = np.array([0.1, 0.4, 0.7, 1.5], dtype=np.float64, order='F')
 
 def vanGI(d):
     d = d/100
@@ -19,32 +19,77 @@ def vanGI(d):
         return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
     return np.float64(quad(theta,d,0)[0])*100
 
+def fwrite(fname, val):
+    ip_path = 'exe/fort/input/'
+    Ffile = FortranFile(os.path.join(ip_path,fname), 'w')
+    Ffile.write_record(val)
+    Ffile.close()
+
+def fread(fname):
+    shape = (elems, nts)
+    op_path = 'exe/fort/output/'
+    Ffile = FortranFile(os.path.join(op_path,fname), 'r')
+    val = Ffile.read_reals().reshape(shape, order='F')
+    Ffile.close()
+    return val
 
 #%% in mm and s
+if not os.path.exists('exe/fort/output/'):
+    os.mkdir('exe/fort/output')
+if os.path.exists('exe/fort/input/'):
+    shutil.rmtree('exe/fort/input/')
+os.mkdir('exe/fort/input/')
+
 elems = int(1)
 nts = int(1000)
 dt = int(600)
-gok = np.random.default_rng().uniform(-3, 3, elems) + 1000
-bot = gok - 800
-n = np.full(elems, 0.4)
-k = np.full(elems, 333e-5)
-simps_intgrt_n = np.int16(50)
-gwswex.build(elems, nts+1, dt, gok, bot, n, k, vanG_pars, simps_intgrt_n)
+np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
+gok = np.array(np.random.default_rng().uniform(-3, 3, elems)+1000, dtype=np.float64, order='F')
+gok.tofile('exe/fort/input/gok.ip')
+
+bot = gok - 800
+fwrite('bot.ip', np.array(bot, dtype=np.float64, order='F'))
+n = np.full(elems, 0.4)
+fwrite('n.ip', np.array(n, dtype=np.float64, order='F'))
+k = np.full(elems, 333e-5)
+fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
+fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 515e-5)
 p[:,-500:] = 490e-5
+fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 500e-5)
-gwswex.init(chd, p, et)
+fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
+fwrite('vanG_pars.ip', np.array(vanG_pars, dtype=np.float64, order='F'))
 
-gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff = np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F'), np.zeros((elems,nts+1),dtype=np.float64,order='F')
-gws[:,0] = bot + 400
-sws[:,0] = np.random.default_rng().uniform(0, 1e-1, elems)
-epv[:,0] = (gok-gws[:,0])*n
+sm_ini = []
+gws_ini = bot + 400
+sws_ini = np.random.default_rng().uniform(0, 1e-1, elems)
+epv_ini = (gok-gws_ini)*n
 for x in range(elems):
-    sm[x,0] = vanGI(bot[x]-gws[x,0])
-#gwswex.run(vanGI, gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
-gwswex.run_f(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
+    sm_ini.append(vanGI(bot[x]-gws_ini[x]))
+fwrite('gws_ini.ip', np.array(gws_ini, dtype=np.float64, order='F'))
+fwrite('sws_ini.ip', np.array(sws_ini, dtype=np.float64, order='F'))
+fwrite('epv_ini.ip', np.array(epv_ini, dtype=np.float64, order='F'))
+fwrite('sm_ini.ip', np.array(sm_ini, dtype=np.float64, order='F'))
+
+wd = os.getcwd()
+os.chdir('exe/fort/')
+fort_run = sp.Popen('./GWSWEX', shell=True, stdout = sp.PIPE)
+os.chdir(wd)
+
+gws = fread('gws.op')
+sws = fread('sws.op')
+sm = fread('sm.op')
+epv = fread('epv.op')
+gw_dis = fread('gw_dis.op')
+sw_dis = fread('sw_dis.op')
+sm_dis = fread('sm_dis.op')
+Qin = fread('Qin.op')
+Qout = fread('Qout.op')
+Qdiff = fread('Qdiff.op')
+
 
 #%%
 fig_path = "output/figs/"
@@ -79,10 +124,9 @@ def wlevPlot(elem,gws,sws,sm):
     plt.figure(dpi=dDPI)
     plt.xlabel("Time Steps")
     plt.ylabel("Water Levels")
-    gws = gws[elem,1:]
     plt.ylim([bot[elem]-10, sws[elem,:].max()+25+gok[elem]])
-    plt.stackplot(range(0,nts), gws, sm[elem,1:],\
-    epv[elem,1:]-sm[elem,1:], (np.full(nts,gok[elem])-gws)*(1-n[elem]),\
+    plt.stackplot(range(0,nts-1), gws[elem,1:], sm[elem,1:],\
+    epv[elem,1:]-sm[elem,1:], (np.full(nts-1,gok[elem])-gws[elem,1:])*(1-n[elem]),\
     sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
     plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
     plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.5, label="Bottom")

@@ -1,9 +1,19 @@
-subroutine init(chd_l, p_l, et_l)
-    real*8, intent(in) :: p_l(:,:), et_l(:,:)
-    logical, intent(in) :: chd_l(:)
-    chd = chd_l
-    p = p_l
-    et = et_l
-    open(unit=42, file="fort.log", status="old")
-    write(42,*) "initialised"
+subroutine init()
+    character(*) :: chd_file, p_file, et_file
+
+    chd_file = trim(input_path)//"chd.ip"
+    p_file = trim(input_path)//"p.ip"
+    et_file = trim(input_path)//"et.ip"
+
+    open(tu, file=chd_file, form='unformatted')
+    read(tu) chd
+    close(tu, status='keep')
+    open(tu, file=p_file, form='unformatted')
+	read(tu) p
+    close(tu, status='keep')
+    open(tu, file=et_file, form='unformatted')
+	read(tu) et
+    close(tu, status='keep')
+
+    write(lu,*) "initialised"
 end subroutine

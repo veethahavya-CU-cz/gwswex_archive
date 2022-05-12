@@ -1,6 +1,6 @@
-function kGW(s, ks, vanG_pars)
+function kGW(s, ks)
     ! add preferential flow and implement kGW(s,d)
-        real*8, intent(in) :: s, ks, vanG_pars(4)
+        real*8, intent(in) :: s, ks
         real*8 :: kGW, theta_r, theta_s, n, m, sat
         theta_r = vanG_pars(1)
         theta_s = vanG_pars(2)

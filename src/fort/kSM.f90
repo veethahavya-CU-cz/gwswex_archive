@@ -1,6 +1,6 @@
-function kSM(s, ks, vanG_pars)
+function kSM(s, ks)
     ! add Horton_inf regime effects. only capilary/vG-M considered here
-        real*8, intent(in) :: s, ks, vanG_pars(4)
+        real*8, intent(in) :: s, ks
         real*8 :: kSM, theta_r, theta_s, n, m, sat
         theta_r = vanG_pars(1)
         theta_s = vanG_pars(2)

@@ -1,9 +1,8 @@
 module helpers
-
     USE OMP_LIB
     implicit none
 
-    real*8 :: parms_vanGI(4)
+    real*8 :: vanG_pars(4)
     integer*2 :: intgrt_n
 
     contains
@@ -11,26 +10,31 @@ module helpers
         include "kGW.f90"
         include "integrators.f90"
         include "vanGI.f90"
-
 end module helpers
 
 
-
-module gwswex
-
+module core
     USE OMP_LIB
+    USE helpers, only: vanG_pars
 
     implicit none
 
-    integer  :: elems, nts, dt
+    integer*4  :: elems, nts, dt
     logical, allocatable  :: chd(:)
     real*8, allocatable :: gok(:), bot(:), n(:), k(:), p(:,:), et(:,:)
-    real*8 :: vanG_pars(4)
+    real*8, allocatable :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:)&
+        , Qin(:,:), Qout(:,:), Qdiff(:,:)
+    
+    character(*) :: input_path, output_path, log_file
+    integer, parameter  :: lu=42, tu=99
 
     contains
         include "build.f90"
         include "init.f90"
         include "run.f90"
-        include "run_f.f90"
+end module core
 
-end module gwswex
+
+program GWSWEX
+    USE core, only: build, init, run
+end program GWSWEX
