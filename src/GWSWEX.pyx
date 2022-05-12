@@ -52,7 +52,7 @@ cdef double vanGI(d, vanG_pars):
         return np.float64(theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m))
     return np.float64(quad(theta,d,0)[0])*100
 
-cdef tuple crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars):
+cpdef tuple run(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars):
     cdef int e, t
     cdef double L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw, et_deficit, sw_et
     
@@ -205,9 +205,5 @@ cdef tuple crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, ch
                 Qin[e][t] = p[e][t]*dt - et[e][t]*dt
                 Qout[e][t] = gw_dis[e][t] + sw_dis[e][t] + sm_dis[e][t]
     Qdiff = np.array(Qin) - np.array(Qout)
-    return (gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)
-
-def run(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars):
-    return crun(gws_ini, sws_ini, sm_ini, epv_ini, nts, elems, n, dt, k, bot, chd, p, et, gok, vanG_pars)
-
     log.close()
+    return (gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout, Qdiff)

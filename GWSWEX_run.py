@@ -17,7 +17,7 @@ def vanGI(d):
     return np.float64(quad(theta,d,0)[0])*100
 
 #%% in mm and s
-elems = int(100)
+elems = int(1)
 nts = int(1000)
 dt = int(600)
 gok = np.random.default_rng().uniform(-3, 3, elems) + 1000
