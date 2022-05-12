@@ -40,7 +40,7 @@ if os.path.exists('exe/fort/input/'):
     shutil.rmtree('exe/fort/input/')
 os.mkdir('exe/fort/input/')
 
-elems = int(1000)
+elems = int(1)
 nts = int(1000)
 dt = int(600)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
@@ -96,7 +96,7 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
-plotWlev = False
+plotWlev = True
 plotPrec = False
 plotDis = False
 plotBal = False
