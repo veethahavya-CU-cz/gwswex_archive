@@ -19,7 +19,7 @@ subroutine build()
     open(unit=lu, file=log_file, status="replace")
     write(lu,*) "build initialized"
 
-    open(tu, file=build_file)
+    open(tu, file=build_file, action='read')
 	read(tu, *) attribs
 	elems = attribs(1)
 	nts = attribs(2)
@@ -30,19 +30,19 @@ subroutine build()
     allocate(gws(elems,nts), sws(elems,nts), sm(elems,nts), epv(elems,nts), gw_dis(elems,nts), sw_dis(elems,nts), sm_dis(elems,nts)&
         , Qin(elems,nts), Qout(elems,nts), Qdiff(elems,nts))
 
-    open(tu, file=gok_file, form='unformatted')
+    open(tu, file=gok_file, form='unformatted', action='read')
 	read(tu) gok
     close(tu, status='keep')
-    open(tu, file=bot_file, form='unformatted')
+    open(tu, file=bot_file, form='unformatted', action='read')
 	read(tu) bot
     close(tu, status='keep')
-    open(tu, file=n_file, form='unformatted')
+    open(tu, file=n_file, form='unformatted', action='read')
 	read(tu) n
     close(tu, status='keep')
-    open(tu, file=k_file, form='unformatted')
+    open(tu, file=k_file, form='unformatted', action='read')
 	read(tu) k
     close(tu, status='keep')
-    open(tu, file=vanG_pars_file, form='unformatted')
+    open(tu, file=vanG_pars_file, form='unformatted', action='read')
 	read(tu) vanG_pars
     close(tu, status='keep')
     intgrt_n = 750

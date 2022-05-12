@@ -95,7 +95,7 @@ fig_path = "output/figs/"
 if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
-plotWlev = True
+plotWlev = False
 plotPrec = False
 plotDis = False
 plotBal = False

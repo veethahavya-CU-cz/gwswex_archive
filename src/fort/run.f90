@@ -15,16 +15,16 @@ subroutine run()
 
     write(lu,*) "run entered"
 
-    open(tu, file=gws_ini_file, form='unformatted')
+    open(tu, file=gws_ini_file, form='unformatted', action='read')
 	read(tu) gws(:,1)
     close(tu, status='keep')
-    open(tu, file=sws_ini_file, form='unformatted')
+    open(tu, file=sws_ini_file, form='unformatted', action='read')
 	read(tu) sws(:,1)
     close(tu, status='keep')
-    open(tu, file=sm_ini_file, form='unformatted')
+    open(tu, file=sm_ini_file, form='unformatted', action='read')
 	read(tu) sm(:,1)
     close(tu, status='keep')
-    open(tu, file=epv_ini_file, form='unformatted')
+    open(tu, file=epv_ini_file, form='unformatted', action='read')
 	read(tu) epv(:,1)
     close(tu, status='keep')
 
@@ -185,34 +185,34 @@ subroutine run()
     Qout_file = trim(output_path)//"Qout.op"
     Qdiff_file = trim(output_path)//"Qdiff.op"
 
-    open(tu, file=gws_file, form='unformatted')
+    open(tu, file=gws_file, form='unformatted', action='write')
 	write(tu) gws
     close(tu)
-    open(tu, file=gw_dis_file, form='unformatted')
+    open(tu, file=gw_dis_file, form='unformatted', action='write')
 	write(tu) gw_dis
     close(tu)
-    open(tu, file=sws_file, form='unformatted')
+    open(tu, file=sws_file, form='unformatted', action='write')
 	write(tu) sws
     close(tu)
-    open(tu, file=sw_dis_file, form='unformatted')
+    open(tu, file=sw_dis_file, form='unformatted', action='write')
 	write(tu) sw_dis
     close(tu)
-    open(tu, file=sm_file, form='unformatted')
+    open(tu, file=sm_file, form='unformatted', action='write')
 	write(tu) sm
     close(tu)
-    open(tu, file=sm_dis_file, form='unformatted')
+    open(tu, file=sm_dis_file, form='unformatted', action='write')
 	write(tu) sm_dis
     close(tu)
-    open(tu, file=epv_file, form='unformatted')
+    open(tu, file=epv_file, form='unformatted', action='write')
 	write(tu) epv
     close(tu)
-    open(tu, file=Qin_file, form='unformatted')
+    open(tu, file=Qin_file, form='unformatted', action='write')
 	write(tu) Qin
     close(tu)
-    open(tu, file=Qout_file, form='unformatted')
+    open(tu, file=Qout_file, form='unformatted', action='write')
 	write(tu) Qout
     close(tu)
-    open(tu, file=Qdiff_file, form='unformatted')
+    open(tu, file=Qdiff_file, form='unformatted', action='write')
 	write(tu) Qdiff
     close(tu)
 

@@ -5,13 +5,13 @@ subroutine init()
     p_file = trim(input_path)//"p.ip"
     et_file = trim(input_path)//"et.ip"
 
-    open(tu, file=chd_file, form='unformatted')
+    open(tu, file=chd_file, form='unformatted', action='read')
     read(tu) chd
     close(tu, status='keep')
-    open(tu, file=p_file, form='unformatted')
+    open(tu, file=p_file, form='unformatted', action='read')
 	read(tu) p
     close(tu, status='keep')
-    open(tu, file=et_file, form='unformatted')
+    open(tu, file=et_file, form='unformatted', action='read')
 	read(tu) et
     close(tu, status='keep')
 
