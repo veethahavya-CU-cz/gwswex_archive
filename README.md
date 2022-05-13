@@ -1,4 +1,4 @@
-# GWSWEX f2py variant
+# GWSWEX standalone variant
 
 # Dependencies
 * python 3: numpy, scipy
