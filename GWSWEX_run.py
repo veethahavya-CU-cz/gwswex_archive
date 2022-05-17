@@ -56,7 +56,7 @@ fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
 fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 515e-5)
-p[:,-500:] = 470e-5
+p[:,-500:] = 490e-5
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 500e-5)
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
@@ -99,7 +99,7 @@ elem = 0
 plotWlev = True
 plotPrec = True
 plotDis = False
-plotBal = False
+plotBal = True
 savefig = True
 dDPI = 90
 pDPI = 200

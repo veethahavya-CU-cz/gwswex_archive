@@ -1,6 +1,8 @@
 subroutine run()
 	USE helpers, only: kSM, kGW, vanGI_fgsl
-	
+
+	implicit none
+
 	real*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
 		k_inf_gw, inf_gw, et_deficit, sw_et, start, finish
 	integer :: e, t
