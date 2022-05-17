@@ -6,7 +6,8 @@ while getopts ":pn" opt; do
 			gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -o GWSWEX
 			if [ $? -eq 0 ]; then
 				echo "successfully compiled GWSWEX"
-				mv GWSWEX ../../exe/fort
+				mv GWSWEX ../../exe/fort || mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created"
+				echo "placed the program in exe/fort"
 				cd ../../
 			else
 				echo "GWSWEX compilation failed"
@@ -17,7 +18,8 @@ while getopts ":pn" opt; do
 			gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -lgomp -fopenmp -o GWSWEX
 			if [ $? -eq 0 ]; then
 				echo "successfully compiled GWSWEX"
-				mv GWSWEX ../../exe/fort
+				mv GWSWEX ../../exe/fort || mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created"
+				echo "placed the program in exe/fort"
 				cd ../../
 			else
 				echo "GWSWEX compilation failed"
@@ -39,7 +41,8 @@ if (( $OPTIND == 1 )); then
 	gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -o GWSWEX
 	if [ $? -eq 0 ]; then
 		echo "successfully compiled GWSWEX"
-		mv GWSWEX ../../exe/fort
+		mv GWSWEX ../../exe/fort || mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created"
+		echo "placed the program in exe/fort"
 		cd ~/GWSWEX
 	else
 		echo "GWSWEX compilation failed"
