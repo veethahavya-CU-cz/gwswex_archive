@@ -1,5 +1,5 @@
 #!/bin/bash
-while getopts ":cpn" opt; do
+while getopts ":pn" opt; do
 	case $opt in
 		n)
 			cd src/fort/
