@@ -33,7 +33,7 @@ gwswex.build(elems, nts+1, dt, gok, bot, n, k, vanG_pars, simps_intgrt_n)
 
 chd = np.full(elems, False, dtype=bool)
 p = np.full((elems,nts+1), 515e-5)
-p[:,-500:] = 490e-5
+p[:,-500:] = 485e-5
 et = np.full((elems,nts+1), 500e-5)
 gwswex.init(chd, p, et)
 
@@ -52,7 +52,7 @@ if not os.path.exists(fig_path):
     os.makedirs(fig_path)
 elem = 0
 plotWlev = True
-plotPrec = False
+plotPrec = True
 plotDis = False
 plotBal = False
 savefig = True
@@ -84,15 +84,21 @@ def wlevPlot(elem,gws,sws,sm):
     plt.stackplot(range(0,nts), gws, sm[elem,1:],\
     epv[elem,1:]-sm[elem,1:], (np.full(nts,gok[elem])-gws)*(1-n[elem]),\
     sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
+    if plotPrec:
+        p_dom, et_dom = [], []
+        ht = (sws[elem,:].max()+25+gok[elem]) + (bot[elem]-10)
+        for ts in range(nts-1):
+            if p[elem,ts] > et[elem,ts]:
+                p_dom.append(ht)
+                et_dom.append(0)
+            else:
+                et_dom.append(ht)
+                p_dom.append(0)
+        plt.stackplot(range(0,nts-1), p_dom, labels=["Precipitation Dominant", ], colors=['#A8EAED'], alpha=0.1)
+        plt.stackplot(range(0,nts-1), et_dom, labels=["Evapotranspiration Dominant", ], colors=['#E8A78B'], alpha=0.1)
     plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
     plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.5, label="Bottom")
     plt.legend(loc=1, fontsize=3)
-
-def precPlot():
-    plt.figure(dpi=dDPI)
-    plt.xlabel("Time Steps")
-    plt.ylabel("Precipitation")
-    plt.scatter(range(0,nts+1), p, s=0.1, color=pal[6])
 
 def balPlot():
     plt.figure(dpi=dDPI)
@@ -110,11 +116,6 @@ if plotWlev:
     wlevPlot(0,gws,sws,sm)
     if savefig:
         plt.savefig(fig_path+"water_levels."+format, format=format, dpi=pDPI)
-
-if plotPrec:
-    precPlot()
-    if savefig:
-        plt.savefig(fig_path+"prec."+format, format=format, dpi=pDPI)
 
 if plotBal:
     balPlot()
