@@ -56,7 +56,7 @@ fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
 fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 515e-5)
-p[:,-500:] = 490e-5
+p[:,-500:] = 470e-5
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 500e-5)
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
@@ -92,21 +92,21 @@ Qdiff = fread('Qdiff.op')
 
 
 #%%
-fig_path = "output/figs/"
+fig_path = 'output/figs/'
 if not os.path.exists(fig_path):
 	os.makedirs(fig_path)
 elem = 0
 plotWlev = True
-plotPrec = False
+plotPrec = True
 plotDis = False
 plotBal = False
 savefig = True
 dDPI = 90
-pDPI = 900
+pDPI = 200
 alpha_scatter = 0.7
 scatter_size = 3
-format = "jpg" #svg, png, jpg
-pal = ["#E74C3C", "#2ECC71", "#5EFCA1", "#E7AC3C", "#2980B9", "#1A3BFF", "#FF6600"] #[gw, sm, epv, sv, sw, p, et]
+format = 'jpg' #svg, png, jpg
+pal = ['#E74C3C', '#2ECC71', '#5EFCA1', '#E7AC3C', '#2980B9', '#1A3BFF', '#FF6600'] #[gw, sm, epv, sv, sw, p, et]
 
 def disPlot(elem):
 	plt.figure(dpi=dDPI)
@@ -118,7 +118,7 @@ def disPlot(elem):
 	alpha=alpha_scatter, s=scatter_size)
 	plt.scatter(range(0,nts), sw_dis[elem,:], label="SW_dis", color=pal[4],\
 	alpha=alpha_scatter, s=scatter_size)
-	plt.legend(loc="best", fontsize="small")
+	plt.legend(loc='best', fontsize='small')
 
 def wlevPlot(elem,gws,sws,sm):
 	plt.figure(dpi=dDPI)
@@ -128,15 +128,21 @@ def wlevPlot(elem,gws,sws,sm):
 	plt.stackplot(range(0,nts-1), gws[elem,1:], sm[elem,1:],\
 	epv[elem,1:]-sm[elem,1:], (np.full(nts-1,gok[elem])-gws[elem,1:])*(1-n[elem]),\
 	sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
-	plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color="brown", linewidth=0.5, label="Ground Level")
-	plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color="black", linewidth=0.5, label="Bottom")
+	if plotPrec:
+		p_dom, et_dom = [], []
+		ht = (sws[elem,:].max()+25+gok[elem]) + (bot[elem]-10)
+		for ts in range(nts-1):
+			if p[elem,ts] > et[elem,ts]:
+				p_dom.append(ht)
+				et_dom.append(0)
+			else:
+				et_dom.append(ht)
+				p_dom.append(0)
+		plt.stackplot(range(0,nts-1), p_dom, labels=["Precipitation Dominant", ], colors=['#A8EAED'], alpha=0.1)
+		plt.stackplot(range(0,nts-1), et_dom, labels=["Evapotranspiration Dominant", ], colors=['#E8A78B'], alpha=0.1)
+	plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color='brown', linewidth=0.5, label="Ground Level")
+	plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color='black', linewidth=0.5, label="Bottom")
 	plt.legend(loc=1, fontsize=3)
-
-def precPlot():
-	plt.figure(dpi=dDPI)
-	plt.xlabel("Time Steps")
-	plt.ylabel("Precipitation")
-	plt.scatter(range(0,nts+1), p, s=0.1, color=pal[6])
 
 def balPlot():
 	plt.figure(dpi=dDPI)
@@ -154,11 +160,6 @@ if plotWlev:
 	wlevPlot(0,gws,sws,sm)
 	if savefig:
 		plt.savefig(fig_path+"water_levels."+format, format=format, dpi=pDPI)
-
-if plotPrec:
-	precPlot()
-	if savefig:
-		plt.savefig(fig_path+"prec."+format, format=format, dpi=pDPI)
 
 if plotBal:
 	balPlot()
