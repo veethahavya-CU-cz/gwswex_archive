@@ -143,7 +143,7 @@ subroutine run()
 					write(lu,*) "k_inf_gw remaining", k_inf_gw
 					inf_gw = min(sm(e,t)-sm_eq, max(k_inf_gw*dt,0.0))
 					if(gws(e,t) + inf_gw/n(e) < bot(e)) then
-						inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), abs(k_inf_gw*dt))
+						inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), k_inf_gw*dt)
 						if(sm(e,t)<0) then
 							sm(e,t) = 0
 						end if

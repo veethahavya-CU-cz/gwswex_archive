@@ -138,9 +138,9 @@ def wlevPlot(elem,gws,sws,sm):
 			else:
 				et_dom.append(ht)
 				p_dom.append(0)
-		plt.stackplot(range(0,nts-1), p_dom, labels=["Precipitation Dominant", ], colors=['#A8EAED'], alpha=0.1)
-		plt.stackplot(range(0,nts-1), et_dom, labels=["Evapotranspiration Dominant", ], colors=['#E8A78B'], alpha=0.1)
-	plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color='brown', linewidth=0.5, label="Ground Level")
+		plt.stackplot(range(0,nts-1), p_dom, labels=["Precipitation Dominant", ], colors=['#A8EAED'], alpha=0.21)
+		plt.stackplot(range(0,nts-1), et_dom, labels=["Evapotranspiration Dominant", ], colors=['#E8A78B'], alpha=0.21)
+	plt.plot(range(0,nts+1), np.full(nts+1,gok[elem]), color='#502D16', linewidth=0.5, label="Ground Level")
 	plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color='black', linewidth=0.5, label="Bottom")
 	plt.legend(loc=1, fontsize=3)
 
