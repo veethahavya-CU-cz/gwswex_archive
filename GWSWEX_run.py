@@ -6,10 +6,9 @@ import os, shutil
 import subprocess as sp
 import matplotlib.pyplot as plt
 
-vanG_pars = np.array([0.1, 0.4, 0.7, 1.5], dtype=np.float64, order='F')
+vanG_pars = np.array([0.02, 0.42, 0.35, 1.25], dtype=np.float64, order='F')
 
 def vanGI(d):
-	d = d/100
 	def theta(h_c):
 		theta_r = vanG_pars[0]
 		theta_s = vanG_pars[1]
@@ -17,7 +16,7 @@ def vanGI(d):
 		n = vanG_pars[3]
 		m = (1-(1/n))
 		return theta_r + ((theta_s - theta_r)/((1+(alpha*(abs(h_c)))**n))**m)
-	return np.float64(quad(theta,d,0)[0])*100
+	return np.float64(quad(theta,-d,0)[0])
 
 def fwrite(fname, val):
 	ip_path = 'exe/fort/input/'
@@ -33,7 +32,7 @@ def fread(fname):
 	Ffile.close()
 	return val
 
-#%% in mm and s
+#%% all units in SI
 if not os.path.exists('exe/fort/output/'):
 	os.mkdir('exe/fort/output')
 if os.path.exists('exe/fort/input/'):
@@ -41,33 +40,33 @@ if os.path.exists('exe/fort/input/'):
 os.mkdir('exe/fort/input/')
 
 elems = int(1)
-nts = int(1000)
-dt = int(600)
+nts = int(24*30*4)
+dt = int(3600)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
-gok = np.random.default_rng().uniform(-3, 3, elems)+1000
+gok = np.random.default_rng().uniform(-3, 3, elems)+150
 fwrite('gok.ip', np.array(gok, dtype=np.float64, order='F'))
-bot = gok - 800
+bot = gok - 30
 fwrite('bot.ip', np.array(bot, dtype=np.float64, order='F'))
-n = np.full(elems, 0.4)
+n = np.full(elems, vanG_pars[1])
 fwrite('n.ip', np.array(n, dtype=np.float64, order='F'))
-k = np.full(elems, 333e-5)
+k = np.full(elems, 50e-5)
 fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
 fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
-p = np.full((elems,nts+1), 515e-5)
-p[:,-500:] = 490e-5
+p = np.full((elems,nts+1), 2.5*(1e-3/3600))
+p[:,int(-nts/2):] = 0*(1e-3/3600)
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
-et = np.full((elems,nts+1), 500e-5)
+et = np.full((elems,nts+1), 0.33*(1e-3/3600))
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
 fwrite('vanG_pars.ip', np.array(vanG_pars, dtype=np.float64, order='F'))
 
 sm_ini = []
-gws_ini = bot + 400
-sws_ini = np.random.default_rng().uniform(0, 1e-1, elems)
+gws_ini = bot + 5
+sws_ini = np.random.default_rng().uniform(0, 1e-2, elems)
 epv_ini = (gok-gws_ini)*n
 for x in range(elems):
-	sm_ini.append(vanGI(bot[x]-gws_ini[x]))
+	sm_ini.append(vanGI(gok[x]-gws_ini[x]))
 fwrite('gws_ini.ip', np.array(gws_ini, dtype=np.float64, order='F'))
 fwrite('sws_ini.ip', np.array(sws_ini, dtype=np.float64, order='F'))
 fwrite('epv_ini.ip', np.array(epv_ini, dtype=np.float64, order='F'))
@@ -124,13 +123,13 @@ def wlevPlot(elem,gws,sws,sm):
 	plt.figure(dpi=dDPI)
 	plt.xlabel("Time Steps")
 	plt.ylabel("Water Levels")
-	plt.ylim([bot[elem]-10, sws[elem,:].max()+25+gok[elem]])
+	plt.ylim([bot[elem]-0.5, sws[elem,:].max()+0.5+gok[elem]])
 	plt.stackplot(range(0,nts-1), gws[elem,1:], sm[elem,1:],\
 	epv[elem,1:]-sm[elem,1:], (np.full(nts-1,gok[elem])-gws[elem,1:])*(1-n[elem]),\
 	sws[elem,1:], labels=["Groundwater","Soil Moisture", "Effective Pore Volume", "Soil Volume", "Surface Water"], colors=pal)
 	if plotPrec:
 		p_dom, et_dom = [], []
-		ht = (sws[elem,:].max()+25+gok[elem]) + (bot[elem]-10)
+		ht = (sws[elem,:].max()+0.5+gok[elem]) + (bot[elem]-0.5)
 		for ts in range(nts-1):
 			if p[elem,ts] > et[elem,ts]:
 				p_dom.append(ht)

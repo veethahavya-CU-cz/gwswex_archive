@@ -37,9 +37,8 @@ function vanGI_fgsl(d)
 	f_obj = fgsl_function_init(theta_c, null_ptr)
 	wk = fgsl_integration_workspace_alloc(nmax)
 
-	d = -d/100
-	status = fgsl_integration_qags(f_obj, d, 0.0_fgsl_double, 0.0_fgsl_double, 1.0e-7_fgsl_double, nmax, wk, result, error)
-	vanGI_fgsl = result*100
+	status = fgsl_integration_qags(f_obj, -d, 0.0_fgsl_double, 0.0_fgsl_double, 1.0e-7_fgsl_double, nmax, wk, result, error)
+	vanGI_fgsl = result
 
 	call fgsl_function_free(f_obj)
 	call fgsl_integration_workspace_free(wk)
