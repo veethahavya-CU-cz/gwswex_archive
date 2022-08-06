@@ -106,10 +106,7 @@ subroutine run()
 					sm(e,t) = sm(e,t-1) + inf + sw_inf - et_deficit
 					write(lu,*) "sm et removed", et_deficit
 					write(lu,*) "sm calcd", sm(e,t)
-					call cpu_time(start)
 					sm_eq = vanGI_fgsl(L)
-					call cpu_time(finish)
-					write(lu,*) "vanGI_fgsl time ", finish-start
 					write(lu,*) "gws is ", gws(e,t-1)
 					write(lu,*) "vanGI_fgsl called. sm_eq is ", sm_eq
 					k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
