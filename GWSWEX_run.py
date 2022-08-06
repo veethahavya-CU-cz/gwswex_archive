@@ -21,7 +21,7 @@ def vanGI(d):
 def fwrite(fname, val):
 	ip_path = 'exe/fort/input/'
 	Ffile = FortranFile(os.path.join(ip_path,fname), 'w')
-	Ffile.write_record(val)
+	Ffile.write_record(val.T)
 	Ffile.close()
 
 def fread(fname):
@@ -41,7 +41,7 @@ os.mkdir('exe/fort/input/')
 
 elems = int(1)
 nts = int(24*30*4)
-dt = int(3600)
+dt = int(60*60)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
 gok = np.random.default_rng().uniform(-3, 3, elems)+150
@@ -89,19 +89,18 @@ Qin = fread('Qin.op')
 Qout = fread('Qout.op')
 Qdiff = fread('Qdiff.op')
 
-
 #%%
 fig_path = 'output/figs/'
 if not os.path.exists(fig_path):
 	os.makedirs(fig_path)
 elem = 0
-plotWlev = True
-plotPrec = True
+plotWlev = False
+plotPrec = False
 plotDis = False
-plotBal = True
-savefig = True
+plotBal = False
+savefig = False
 dDPI = 90
-pDPI = 200
+pDPI = 1600
 alpha_scatter = 0.7
 scatter_size = 3
 format = 'jpg' #svg, png, jpg
@@ -121,8 +120,8 @@ def disPlot(elem):
 
 def wlevPlot(elem,gws,sws,sm):
 	plt.figure(dpi=dDPI)
-	plt.xlabel("Time Steps")
-	plt.ylabel("Water Levels")
+	plt.xlabel("Time Steps (h)")
+	plt.ylabel("Water Levels (m.a.s.l.)")
 	plt.ylim([bot[elem]-0.5, sws[elem,:].max()+0.5+gok[elem]])
 	plt.stackplot(range(0,nts-1), gws[elem,1:], sm[elem,1:],\
 	epv[elem,1:]-sm[elem,1:], (np.full(nts-1,gok[elem])-gws[elem,1:])*(1-n[elem]),\
@@ -164,3 +163,9 @@ if plotBal:
 	balPlot()
 	if savefig:
 		plt.savefig(fig_path+"mBal."+format, format=format, dpi=pDPI)
+
+#%%
+influx = (p[0].sum()-p[0,0])*dt - (et[0].sum()-et[0,0])*dt
+delta_storages = sm[0,-1]-sm[0,0] + (gws[0,-1]-gws[0,0])*vanG_pars[1] + sws[0,-1]-sws[0,0]
+print("mbal err: {:.2e}".format(influx-delta_storages))
+print("mbal % err: {:.2F}".format(((influx-delta_storages)*100/influx)))

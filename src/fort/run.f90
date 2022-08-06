@@ -30,21 +30,20 @@ subroutine run()
 	read(tu) epv(:,1)
 	close(tu, status='keep')
 
-	do t = 2, nts
-		write(lu,*) "outer loop entered. ts ", t-1
-		!$OMP PARALLEL DO SHARED(gws, sws, sm, epv) &
-		!$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
-		!$OMP PRIVATE(et_deficit, sw_et)
-		!!! PUT ALL CODE THAT NEEDS TO BE SEQUENTIAL WITHIN FUNCTIONS AND CALL THEM ACCORDINGLY
-		do e = 1, elems
-			write(lu,*) "inner loop entered. elem", e
+	!$OMP PARALLEL DO SHARED(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout) &
+	!$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
+	!$OMP PRIVATE(et_deficit, sw_et)
+	do e = 1, elems
+		write(lu,*) "outer loop entered. elem ", e
+		do t = 2, nts
+			!$OMP CRITICAL
+			write(lu,*) "inner loop entered. ts", t-1
 			write(lu,*) "gok", gok(e)
 			write(lu,*) "bot", bot(e)
 			if(.NOT. chd(e)) then
 				L = gok(e) - gws(e,t-1) !prev. GW depth
 				if(L<0 .OR. L==0) then !NO UZ case
 					write(lu,*) "noUZ entered"
-					!excess GW correction
 					write(lu,*) "gws is ", gws(e,t-1)
 					write(lu,*) "sws is ", sws(e,t-1)
 					write(lu,*) "sm is ", sm(e,t-1)
@@ -172,9 +171,10 @@ subroutine run()
 				Qin(e,t) = p(e,t)*dt - et(e,t)*dt
 				Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
 			end if
+		!$OMP END CRITICAL
 		end do
-		!$OMP END PARALLEL DO
 	end do
+	!$OMP END PARALLEL DO
 	Qdiff = Qin - Qout
 
 	gws_file = trim(output_path)//"gws.op"
