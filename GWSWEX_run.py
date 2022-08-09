@@ -40,7 +40,7 @@ if os.path.exists('exe/fort/input/'):
 os.mkdir('exe/fort/input/')
 
 elems = int(1)
-nts = int(24*30*7)
+nts = int(24*30*4)
 dt = int(60*60)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
@@ -55,7 +55,7 @@ fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
 fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 2.5*(1e-3/3600))
-p[:,int(-24*30*5):] = 0*(1e-3/3600)
+p[:,int(-nts/2):] = 0*(1e-3/3600)
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 0.33*(1e-3/3600))
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
