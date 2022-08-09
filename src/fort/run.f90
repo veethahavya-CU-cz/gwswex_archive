@@ -4,8 +4,8 @@ SUBROUTINE run()
 	IMPLICIT NONE
 
 	REAL*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
-		k_inf_gw, inf_gw, et_deficit, sw_et, gw_inf_dist_ratio
-	INTEGER :: e, t, rat
+		k_inf_gw, inf_gw, et_deficit, sw_et, gw_inf_dist_ratio, rat
+	INTEGER :: e, t
 
 	CHARACTER(255) :: gws_file, gws_ini_file, sws_file, sws_ini_file, sm_file, sm_ini_file, epv_file, epv_ini_file, &
 		gw_dis_file, sw_dis_file, sm_dis_file, Qin_file, Qout_file, Qdiff_file
@@ -35,15 +35,15 @@ SUBROUTINE run()
 	!$OMP PRIVATE(et_deficit, sw_et)
 	DO e = 1, elems
 		WRITE(lu,*) "outer loop entered. elem ", e
-		gw_inf_dist_ratio = 0.8 ! read as input from prev sim and write as output from this sim
+		gw_inf_dist_ratio = 0.15 ! read as input from prev sim and write as output from this sim
 		DO t = 2, nts
 			!$OMP CRITICAL
 			WRITE(lu,*) "inner loop entered. ts", t-1
 			WRITE(lu,*) "gok", gok(e)
 			WRITE(lu,*) "bot", bot(e)
-			IF(.NOT. chd(e)) then
+			IF(.NOT. chd(e)) THEN
 				L = gok(e) - gws(e,t-1) !prev. GW depth
-				IF(L<0 .OR. L==0) then !NO UZ case
+				IF(L<0 .OR. L==0) THEN !NO UZ case
 					WRITE(lu,*) "noUZ entered"
 					WRITE(lu,*) "gws is ", gws(e,t-1)
 					WRITE(lu,*) "sws is ", sws(e,t-1)
@@ -58,7 +58,7 @@ SUBROUTINE run()
 					WRITE(lu,*) "sws after +p", sws(e,t)
 					WRITE(lu,*) "sm after +p", sm(e,t)
 					!ET extraction
-					IF (sws(e,t)>et(e,t)*dt) then
+					IF (sws(e,t)>et(e,t)*dt) THEN
 						sws(e,t) = sws(e,t) - et(e,t)*dt
 					ELSE
 						sw_et_deficit = et(e,t)*dt - sws(e,t)
@@ -99,7 +99,7 @@ SUBROUTINE run()
 					WRITE(lu,*) "sw_inf", sw_inf
 					sws(e,t) = sws(e,t-1) - sw_inf + excess_p - sw_et
 					et_deficit = et(e,t)*dt - sw_et
-					IF(gws(e,t-1) <= bot(e)) then
+					IF(gws(e,t-1) <= bot(e)) THEN
 						et_deficit = 0
 					END IF
 					WRITE(lu,*) "sw et removed", sw_et
@@ -110,14 +110,18 @@ SUBROUTINE run()
 					sm_eq = vanGI_fgsl(L)
 					WRITE(lu,*) "gws is ", gws(e,t-1)
 					WRITE(lu,*) "vanGI_fgsl called. sm_eq is ", sm_eq
+					IF(inf /= 0) THEN
+						gw_inf_dist_ratio = max((gw_inf_dist_ratio + inf/abs(L)), 0.0)
+					END IF
 					k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
-					gw_inf_dist_ratio = gw_inf_dist_ratio + (k_inf_gw*dt)/abs(L)
-					rat = floor(gw_inf_dist_ratio)
+					rat = min(1.0, max(gw_inf_dist_ratio, 0.1)) !0.1 is the macropore inf
 					inf_gw = min((sm(e,t)-sm_eq)*rat, (k_inf_gw*dt)*rat, (sm(e,t)-sm_eq)) !IF sm<sm_eq, inf_gw is -ve ...
-					IF(gws(e,t-1) + inf_gw/n(e) < bot(e)) then
+					IF(gws(e,t-1) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t-1) - bot(e)))*n(e), abs(k_inf_gw*dt))
 					END IF
-					gw_inf_dist_ratio = gw_inf_dist_ratio - rat
+					IF(inf_gw /= 0) THEN
+						gw_inf_dist_ratio = max((gw_inf_dist_ratio + inf_gw/abs(L)), 0.0)
+					END IF
 					WRITE(lu,*) "gw_inf_dist_ratio is", gw_inf_dist_ratio
 					WRITE(lu,*) "k_inf_gw is", k_inf_gw
 					WRITE(lu,*) "inf_gw is", inf_gw
@@ -125,7 +129,7 @@ SUBROUTINE run()
 					WRITE(lu,*) "sm recalcd ", sm(e,t)
 					gws(e,t) = gws(e,t-1) + inf_gw/n(e) !... and subtracted from gw
 					WRITE(lu,*) "gws calcd", gws(e,t)
-					IF(gws(e,t)>gok(e)) then
+					IF(gws(e,t)>gok(e)) THEN
 						excess_gw_vol = (gws(e,t)-gok(e))*n(e) + sm(e,t)
 						gws(e,t) = gok(e)
 						sm(e,t) = 0
@@ -133,7 +137,7 @@ SUBROUTINE run()
 						WRITE(lu,*) "gws recalcd", gws(e,t)
 					END IF
 					epv(e,t) = (gok(e) - gws(e,t))*n(e)
-					IF(sm(e,t)>epv(e,t)) then
+					IF(sm(e,t)>epv(e,t)) THEN
 						sws(e,t) = sws(e,t) + (sm(e,t)-epv(e,t))
 						sm(e,t) = epv(e,t)
 					END IF
@@ -142,12 +146,16 @@ SUBROUTINE run()
 					WRITE(lu,*) "new sm_eq", sm_eq
 					k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
 					WRITE(lu,*) "k_inf_gw remaining", k_inf_gw
+					rat = min(1.0, max(gw_inf_dist_ratio, 0.1)) !0.1 is the macropore inf
 					inf_gw = min((sm(e,t)-sm_eq)*rat, (max(k_inf_gw*dt,0.0))*rat, (sm(e,t)-sm_eq))
-					IF(gws(e,t) + inf_gw/n(e) < bot(e)) then
+					IF(gws(e,t) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), k_inf_gw*dt)
-						IF(sm(e,t)<0) then
+						IF(sm(e,t)<0) THEN
 							sm(e,t) = 0
 						END IF
+					END IF
+					IF(inf_gw /= 0) THEN
+						gw_inf_dist_ratio = max((gw_inf_dist_ratio + inf_gw/abs(L)), 0.0)
 					END IF
 					WRITE(lu,*) "addnl inf_gw", inf_gw
 					sm(e,t) = sm(e,t) - inf_gw
