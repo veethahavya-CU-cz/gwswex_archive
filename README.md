@@ -8,4 +8,4 @@
 Run build.sh (tweak the fgsl lib and include locations as applicable) to compile the standalone program.   
 Build Flags:  
 -n: with OMP  
--p: with OMP support (parallelization) [EXPERIMENTAL]  
+-p: with OMP support (parallelization)
