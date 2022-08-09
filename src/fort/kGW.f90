@@ -12,4 +12,7 @@ FUNCTION kGW(s, ks)
 			sat = ((s-theta_r)/(theta_s-theta_r))
 		END if
 		kGW = ks*sat*((1-(1-(sat)**(1/m))**m)**2)
+		IF(ISNAN(kGW)) THEN
+			kGW = ks
+		END IF
 END FUNCTION kGW

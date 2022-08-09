@@ -12,4 +12,7 @@ FUNCTION kSM(s, ks)
 			sat = ((s-theta_r)/(theta_s-theta_r))
 		END IF
 		kSM = ks*sat*((1-(1-(sat)**(1/m))**m)**2)
+		IF(ISNAN(kSM)) THEN
+			kSM = ks
+		END IF
 END FUNCTION kSM
