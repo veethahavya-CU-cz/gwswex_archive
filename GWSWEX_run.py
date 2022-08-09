@@ -39,8 +39,8 @@ if os.path.exists('exe/fort/input/'):
 	shutil.rmtree('exe/fort/input/')
 os.mkdir('exe/fort/input/')
 
-elems = int(1000)
-nts = int(24*30*4)
+elems = int(1)
+nts = int(24*30*7)
 dt = int(60*60)
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
@@ -55,7 +55,7 @@ fwrite('k.ip', np.array(k, dtype=np.float64, order='F'))
 chd = np.full(elems, False, dtype=bool)
 fwrite('chd.ip', np.array(chd, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 2.5*(1e-3/3600))
-p[:,int(-nts/2):] = 0*(1e-3/3600)
+p[:,int(-24*30*5):] = 0*(1e-3/3600)
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 0.33*(1e-3/3600))
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
@@ -95,11 +95,11 @@ if not os.path.exists(fig_path):
 	os.makedirs(fig_path)
 elem = 0
 # True False
-plotWlev = False
-plotPrec = False
-plotDis = False
-plotBal = False
-savefig = False
+plotWlev = True
+plotPrec = True
+plotDis = True
+plotBal = True
+savefig = True
 dDPI = 90
 pDPI = 1600
 alpha_scatter = 0.7
