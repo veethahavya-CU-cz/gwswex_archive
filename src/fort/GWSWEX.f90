@@ -6,8 +6,7 @@ MODULE helpers
 	INTEGER*2 :: intgrt_n
 
 	contains
-		include "kSM.f90"
-		include "kGW.f90"
+		include "kUS.f90"
 		include "vanGI.f90"
 END MODULE helpers
 

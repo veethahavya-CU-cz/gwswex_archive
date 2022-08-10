@@ -1,5 +1,5 @@
 SUBROUTINE run()
-	USE helpers, only: kSM, kGW, vanGI_fgsl, vanG_pars
+	USE helpers, only: kUS, vanGI_fgsl, vanG_pars
 
 	IMPLICIT NONE
 
@@ -87,7 +87,7 @@ SUBROUTINE run()
 					WRITE(lu,*) "sm is", sm(e,t-1)
 					WRITE(lu,*) "epv is", epv(e,t-1)
 					WRITE(lu,*) "sm/epv", sm(e,t-1)/epv(e,t-1)
-					k_inf = kSM(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt i.e. END of last dt
+					k_inf = kUS(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt i.e. END of last dt
 					WRITE(lu,*) "got k", k_inf
 					inf = min(k_inf*dt, p(e,t)*dt)
 					WRITE(lu,*) "inf aka p_sm is ", inf
@@ -116,7 +116,7 @@ SUBROUTINE run()
 					IF(inf /= 0) THEN
 						gw_sw_interconnectivity(e) = max((gw_sw_interconnectivity(e) + inf), 0.0)
 					END IF
-					k_inf_gw = kGW(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
+					k_inf_gw = kUS(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
 					interconnectivity_ratio = min(1.0, max(gw_sw_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (k_inf_gw*dt)*interconnectivity_ratio, (sm(e,t)-sm_eq)) !IF sm<sm_eq, inf_gw is -ve ...
 					IF(gws(e,t-1) + inf_gw/n(e) < bot(e)) THEN
@@ -148,7 +148,7 @@ SUBROUTINE run()
 					L = gok(e) - gws(e,t)
 					sm_eq = vanGI_fgsl(L) !!!gw-sm balancing: consider adding a convergence criteria here
 					WRITE(lu,*) "new sm_eq", sm_eq
-					k_inf_gw = kGW(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
+					k_inf_gw = kUS(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
 					WRITE(lu,*) "k_inf_gw remaining", k_inf_gw
 					interconnectivity_ratio = min(1.0, max(gw_sw_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (max(k_inf_gw*dt,0.0))*interconnectivity_ratio, (sm(e,t)-sm_eq))
