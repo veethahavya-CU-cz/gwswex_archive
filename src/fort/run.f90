@@ -8,13 +8,13 @@ SUBROUTINE run()
 	INTEGER :: e, t
 
 	CHARACTER(255) :: gws_file, gws_ini_file, sws_file, sws_ini_file, sm_file, sm_ini_file, epv_file, epv_ini_file, &
-		gw_sw_interconnectivity_file, gw_dis_file, sw_dis_file, sm_dis_file, Qin_file, Qout_file, Qdiff_file
+		gw_sm_interconnectivity_file, gw_dis_file, sw_dis_file, sm_dis_file, Qin_file, Qout_file, Qdiff_file
 
 	gws_ini_file = TRIM(input_path)//"gws_ini.ip"
 	sws_ini_file = TRIM(input_path)//"sws_ini.ip"
 	sm_ini_file = TRIM(input_path)//"sm_ini.ip"
 	epv_ini_file = TRIM(input_path)//"epv_ini.ip"
-	gw_sw_interconnectivity_file = TRIM(input_path)//"gw_sw_interconnectivity.ip"
+	gw_sm_interconnectivity_file = TRIM(input_path)//"gw_sm_interconnectivity.ip"
 
 	WRITE(lu,*) "run entered"
 
@@ -30,8 +30,8 @@ SUBROUTINE run()
 	OPEN(tu, file=epv_ini_file, form='unformatted', action='READ')
 	READ(tu) epv(:,1)
 	CLOSE(tu, status='keep')
-	OPEN(tu, file=gw_sw_interconnectivity_file, form='unformatted', action='READ')
-	READ(tu) gw_sw_interconnectivity
+	OPEN(tu, file=gw_sm_interconnectivity_file, form='unformatted', action='READ')
+	READ(tu) gw_sm_interconnectivity
 	CLOSE(tu, status='keep')
 
 	!$OMP PARALLEL DO SHARED(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout) &
@@ -114,18 +114,18 @@ SUBROUTINE run()
 					WRITE(lu,*) "gws is ", gws(e,t-1)
 					WRITE(lu,*) "vanGI_fgsl called. sm_eq is ", sm_eq
 					IF(inf /= 0) THEN
-						gw_sw_interconnectivity(e) = max((gw_sw_interconnectivity(e) + inf), 0.0)
+						gw_sm_interconnectivity(e) = max((gw_sm_interconnectivity(e) + k_inf*dt), 0.0)
 					END IF
 					k_inf_gw = kUS(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
-					interconnectivity_ratio = min(1.0, max(gw_sw_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
+					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (k_inf_gw*dt)*interconnectivity_ratio, (sm(e,t)-sm_eq)) !IF sm<sm_eq, inf_gw is -ve ...
 					IF(gws(e,t-1) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t-1) - bot(e)))*n(e), abs(k_inf_gw*dt))
 					END IF
-					IF(inf_gw /= 0) THEN
-						gw_sw_interconnectivity(e) = max((gw_sw_interconnectivity(e) + inf_gw), 0.0)
+					IF(inf_gw < 0) THEN
+						gw_sm_interconnectivity(e) = (gw_sm_interconnectivity(e) + inf_gw)
 					END IF
-					WRITE(lu,*) "gw_sw_interconnectivity is", gw_sw_interconnectivity(e)
+					WRITE(lu,*) "gw_sm_interconnectivity is", gw_sm_interconnectivity(e)
 					WRITE(lu,*) "interconnectivity_ratio is", interconnectivity_ratio
 					WRITE(lu,*) "k_inf_gw is", k_inf_gw
 					WRITE(lu,*) "inf_gw is", inf_gw
@@ -150,7 +150,7 @@ SUBROUTINE run()
 					WRITE(lu,*) "new sm_eq", sm_eq
 					k_inf_gw = kUS(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
 					WRITE(lu,*) "k_inf_gw remaining", k_inf_gw
-					interconnectivity_ratio = min(1.0, max(gw_sw_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
+					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (max(k_inf_gw*dt,0.0))*interconnectivity_ratio, (sm(e,t)-sm_eq))
 					IF(gws(e,t) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), k_inf_gw*dt)
@@ -158,8 +158,8 @@ SUBROUTINE run()
 							sm(e,t) = 0
 						END IF
 					END IF
-					IF(inf_gw /= 0) THEN
-						gw_sw_interconnectivity(e) = max((gw_sw_interconnectivity(e) + inf_gw), 0.0)
+					IF(inf_gw < 0) THEN
+						gw_sm_interconnectivity(e) = (gw_sm_interconnectivity(e) + inf_gw)
 					END IF
 					WRITE(lu,*) "addnl inf_gw", inf_gw
 					sm(e,t) = sm(e,t) - inf_gw

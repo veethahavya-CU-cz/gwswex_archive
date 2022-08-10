@@ -27,7 +27,7 @@ SUBROUTINE build()
 	dt = attribs(3)
 	CLOSE(tu, status='keep')
 
-	allocate(gok(elems), bot(elems), n(elems), k(elems), chd(elems), gw_sw_interconnectivity(elems), macropore_inf_degree(elems), &
+	allocate(gok(elems), bot(elems), n(elems), k(elems), chd(elems), gw_sm_interconnectivity(elems), macropore_inf_degree(elems), &
 		p(elems,nts), et(elems,nts))
 	allocate(gws(elems,nts), sws(elems,nts), sm(elems,nts), epv(elems,nts), gw_dis(elems,nts), sw_dis(elems,nts), sm_dis(elems,nts), &
 		Qin(elems,nts), Qout(elems,nts), QdIFf(elems,nts))

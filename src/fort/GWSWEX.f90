@@ -19,7 +19,7 @@ MODULE core
 
 	INTEGER*4  :: elems, nts, dt
 	logical, allocatable  :: chd(:)
-	REAL*8, allocatable :: gok(:), bot(:), n(:), k(:), gw_sw_interconnectivity(:), macropore_inf_degree(:), p(:,:), et(:,:)
+	REAL*8, allocatable :: gok(:), bot(:), n(:), k(:), gw_sm_interconnectivity(:), macropore_inf_degree(:), p(:,:), et(:,:)
 	REAL*8, allocatable :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
 		Qin(:,:), Qout(:,:), QdIFf(:,:)
 	
