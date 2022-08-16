@@ -12,9 +12,9 @@ while getopts ":drh" opt; do
     case $opt in
         d)
             echo "removing old figs and I/O files"
-            rm -rf output/figs/*.*
-            rm -rf exe/input
-            rm -rf exe/output
+            rm -rf output/fort/figs/*.*
+            rm -rf exe/fort/input
+            rm -rf exe/fort/output
             rm output/*.npz
             ;;
         r)
