@@ -98,8 +98,13 @@ Qin = fread('Qin.op')
 Qout = fread('Qout.op')
 Qdiff = fread('Qdiff.op')
 
+op_path = 'output/'
+if not os.path.exists(op_path):
+	os.makedirs(op_path)
+np.savez(os.path.join(op_path, 'GWSWEX.npz'), gws=gws, sws=sws, sm=sm, epv=epv, gw_dis=gw_dis, sw_dis=sw_dis, sm_dis=sm_dis, Qin=Qin, Qout=Qout, Qdiff=Qdiff)
+
 #%%
-fig_path = 'output/figs/'
+fig_path = os.path.join(op_path, 'figs/')
 if not os.path.exists(fig_path):
 	os.makedirs(fig_path)
 elem = 0
@@ -162,17 +167,17 @@ def balPlot():
 if plotDis:
 	disPlot(0)
 	if savefig:
-		plt.savefig(fig_path+"discharges."+format, format=format, dpi=pDPI)
+		plt.savefig(os.path.join(fig_path,"discharges."+format), format=format, dpi=pDPI)
 
 if plotWlev:
 	wlevPlot(0,gws,sws,sm)
 	if savefig:
-		plt.savefig(fig_path+"water_levels."+format, format=format, dpi=pDPI)
+		plt.savefig(os.path.join(fig_path,"water_levels."+format), format=format, dpi=pDPI)
 
 if plotBal:
 	balPlot()
 	if savefig:
-		plt.savefig(fig_path+"mBal."+format, format=format, dpi=pDPI)
+		plt.savefig(os.path.join(fig_path,"mBal."+format), format=format, dpi=pDPI)
 
 #%%
 influx = (p[0].sum()-p[0,0])*dt - (et[0].sum()-et[0,0])*dt
