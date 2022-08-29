@@ -36,7 +36,7 @@ SUBROUTINE run()
 
 	!$OMP PARALLEL DO SHARED(gws, sws, sm, epv, gw_dis, sw_dis, sm_dis, Qin, Qout) &
 	!$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
-	!$OMP PRIVATE(et_deficit, sw_et)
+	!$OMP PRIVATE(et_deficit, sw_et, interconnectivity_ratio)
 	DO e = 1, elems
 		WRITE(lu,*) "outer loop entered. elem ", e
 		DO t = 2, nts

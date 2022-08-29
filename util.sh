@@ -30,6 +30,9 @@ while getopts ":drh" opt; do
                 mv -v "$f" "${f%.*}_$simname.${f##*.}"
             done
             ;;
+        g)
+            git fetch --prune
+            ;;
         h)
             help
             ;;

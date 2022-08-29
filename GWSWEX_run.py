@@ -51,6 +51,7 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 		alpha=alpha_scatter, s=scatter_size)
 		plt.legend(loc='best', fontsize='small')
 		plt.tight_layout()
+		plt.xticks(range(0,nts,24*30))
 
 	def wlevPlot(elem,gws,sws,sm):
 		plt.figure(dpi=dDPI)
@@ -76,6 +77,7 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 		plt.plot(range(0,nts+1), np.full(nts+1,bot[elem]), color='black', linewidth=0.5, label="Bottom")
 		plt.legend(loc='lower right', fontsize=3)
 		plt.tight_layout()
+		plt.xticks(range(0,nts,24*30))
 
 	def balPlot():
 		plt.figure(dpi=dDPI)
@@ -84,6 +86,7 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 		plt.ylabel("Mass Balance Error (Total = {:.2g})".format(Qdiff[ind].sum()))
 		plt.plot(Qdiff[ind], "r")
 		plt.tight_layout()
+		plt.xticks(range(0,nts,24*30))
 
 	if plotDis:
 		disPlot(0)
@@ -108,8 +111,8 @@ if os.path.exists('exe/fort/input/'):
 os.mkdir('exe/fort/input/')
 
 elems = int(1)
-nts = int(24*30*4)
-dt = int(60*60)
+nts = int(24*30*6) #1h interval over 6 months
+dt = int(60*60) #60 minute aka 1h intervals
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
 gok = np.random.default_rng().uniform(-3, 3, elems)+150
@@ -128,11 +131,12 @@ macropore_inf_degree = np.full(elems, 0, dtype=np.float64)
 fwrite('macropore_inf_degree.ip', np.array(macropore_inf_degree, dtype=np.float64, order='F'))
 p = np.full((elems,nts+1), 2.5*(1e-3/3600))
 #p[:,int(-nts/2):] = 0*(1e-3/3600)
+p[:,0:500] = 3.5*(1e-3/3600)
 p[:,500:750] = 0*(1e-3/3600)
 p[:,1000:1250] = 0*(1e-3/3600)
 p[:,1000:1250] = 0*(1e-3/3600)
 p[:,1750:2000] = 0*(1e-3/3600)
-p[:,2300:3000] = 0*(1e-3/3600)
+p[:,2100:nts] = 0*(1e-3/3600)
 fwrite('p.ip', np.array(p, dtype=np.float64, order='F'))
 et = np.full((elems,nts+1), 0.33*(1e-3/3600))
 fwrite('et.ip', np.array(et, dtype=np.float64, order='F'))
@@ -170,6 +174,8 @@ op_path = 'output/'
 if not os.path.exists(op_path):
 	os.makedirs(op_path)
 np.savez(os.path.join(op_path, 'GWSWEX.npz'), gws=gws, sws=sws, sm=sm, epv=epv, gw_dis=gw_dis, sw_dis=sw_dis, sm_dis=sm_dis, Qin=Qin, Qout=Qout, Qdiff=Qdiff)
+
+plot(0, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig=True) #True False
 
 #%%
 influx = (p[0].sum()-p[0,0])*dt - (et[0].sum()-et[0,0])*dt
