@@ -1,7 +1,7 @@
 SUBROUTINE init(self)
     CLASS(logger_type), INTENT(INOUT) :: self
 
-    IF (self%flag) THEN
+    IF (self%switch) THEN
         OPEN(UNIT=self%lu, FILE=self%fname, STATUS='REPLACE', ACTION='WRITE')
     END IF
 
@@ -13,7 +13,7 @@ SUBROUTINE log_real(self, msg, val, addnl_val)
     REAL*8, INTENT(IN) :: val
     REAL*8, OPTIONAL :: addnl_val
 
-    IF (self%flag) THEN
+    IF (self%switch) THEN
         IF (PRESENT(addnl_val)) THEN
             WRITE(self%lu,*) msg, val, addnl_val
         ELSE
@@ -28,7 +28,7 @@ SUBROUTINE log_int(self, msg, val, addnl_val)
     INTEGER, INTENT(IN) :: val
     INTEGER, OPTIONAL :: addnl_val
 
-    IF (self%flag) THEN
+    IF (self%switch) THEN
         IF (PRESENT(addnl_val)) THEN
             WRITE(self%lu,*) msg, val, addnl_val
         ELSE
@@ -41,7 +41,7 @@ SUBROUTINE log_str(self, msg)
     CLASS(logger_type), INTENT(INOUT) :: self
     CHARACTER(len=*), INTENT(IN) :: msg
 
-    IF (self%flag) THEN
+    IF (self%switch) THEN
         WRITE(self%lu,*) msg
     END IF
 END SUBROUTINE log_str

@@ -1,7 +1,7 @@
 MODULE logger_mod
 
 	TYPE :: logger_type
-		LOGICAL:: flag
+		LOGICAL:: switch
 		INTEGER :: lu
 		CHARACTER(len=255) :: fname
 		CONTAINS
