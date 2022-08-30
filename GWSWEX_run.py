@@ -115,6 +115,9 @@ nts = int(24*30*6) #1h interval over 6 months
 dt = int(60*60) #60 minute aka 1h intervals
 np.savetxt('exe/fort/input/build.dat', np.array([elems, nts, dt], dtype=np.int32), fmt='%d')
 
+logger = True
+fwrite('logger_switch.ip', np.array(logger, dtype=np.float64, order='F'))
+
 gok = np.random.default_rng().uniform(-3, 3, elems)+150
 fwrite('gok.ip', np.array(gok, dtype=np.float64, order='F'))
 bot = gok - 30
@@ -175,7 +178,7 @@ if not os.path.exists(op_path):
 	os.makedirs(op_path)
 np.savez(os.path.join(op_path, 'GWSWEX.npz'), gws=gws, sws=sws, sm=sm, epv=epv, gw_dis=gw_dis, sw_dis=sw_dis, sm_dis=sm_dis, Qin=Qin, Qout=Qout, Qdiff=Qdiff)
 
-plot(0, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig=True) #True False
+plot(0, plotWlev=False, plotPrec=False, plotDis=False, plotBal=False, savefig=False) #True False
 
 #%%
 influx = (p[0].sum()-p[0,0])*dt - (et[0].sum()-et[0,0])*dt

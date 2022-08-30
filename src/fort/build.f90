@@ -1,13 +1,20 @@
 SUBROUTINE build()
-	USE helpers, only : intgrt_n
 
 	INTEGER*4 :: attribs(3)
-	CHARACTER(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, macropore_inf_degree_file, vanG_pars_file
+	CHARACTER(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, macropore_inf_degree_file, vanG_pars_file, logger_switch_file
 
 	CALL getcwd(wd)
 	input_path = TRIM(wd)//'/input/'
 	output_path = TRIM(wd)//'/output/'
-	log_file = TRIM(output_path)//'fort.log'
+
+	logger_switch_file = TRIM(input_path)//'logger_switch.ip'
+	OPEN(tu, file=logger_switch_file, form='unformatted', action='READ')
+	READ(tu) logger%flag
+	!logger%flag = .FALSE.
+	logger%lu = lu
+	logger%fname = TRIM(output_path)//'fort.log'
+	CALL logger%init()
+
 
 	build_file = TRIM(input_path)//"build.dat"
 	gok_file = TRIM(input_path)//"gok.ip"
@@ -17,8 +24,8 @@ SUBROUTINE build()
 	macropore_inf_degree_file = TRIM(input_path)//"macropore_inf_degree.ip"
 	vanG_pars_file = TRIM(input_path)//"vanG_pars.ip"
 
-	OPEN(unit=lu, file=log_file, status="replace")
-	WRITE(lu,*) "build initialized"
+	CALL logger%log("build initialised")
+
 
 	OPEN(tu, file=build_file, action='READ')
 	READ(tu, *) attribs
@@ -51,5 +58,5 @@ SUBROUTINE build()
 	READ(tu) vanG_pars
 	CLOSE(tu, status='keep')
 
-	WRITE(lu,*) "built"
+	CALL logger%log("built")
 END SUBROUTINE

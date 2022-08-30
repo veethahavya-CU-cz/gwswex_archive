@@ -15,5 +15,5 @@ SUBROUTINE init()
 	READ(tu) et
 	CLOSE(tu, status='keep')
 
-	WRITE(lu,*) "initialised"
+	CALL logger%log("initialised")
 END SUBROUTINE

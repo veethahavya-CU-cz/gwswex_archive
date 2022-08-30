@@ -16,7 +16,7 @@ SUBROUTINE run()
 	epv_ini_file = TRIM(input_path)//"epv_ini.ip"
 	gw_sm_interconnectivity_file = TRIM(input_path)//"gw_sm_interconnectivity.ip"
 
-	WRITE(lu,*) "run entered"
+	CALL logger%log("run entered")
 
 	OPEN(tu, file=gws_ini_file, form='unformatted', action='READ')
 	READ(tu) gws(:,1)
@@ -38,28 +38,28 @@ SUBROUTINE run()
 	!$OMP PRIVATE(L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, k_inf_gw, inf_gw) &
 	!$OMP PRIVATE(et_deficit, sw_et, interconnectivity_ratio)
 	DO e = 1, elems
-		WRITE(lu,*) "outer loop entered. elem ", e
+		CALL logger%log("outer loop entered. elem ", e)
 		DO t = 2, nts
 		!$OMP CRITICAL
-			WRITE(lu,*) "inner loop entered. ts", t-1
-			WRITE(lu,*) "gok", gok(e)
-			WRITE(lu,*) "bot", bot(e)
+			CALL logger%log("inner loop entered. ts", t-1)
+			CALL logger%log("gok", gok(e))
+			CALL logger%log("bot", bot(e))
 			IF(.NOT. chd(e)) THEN
 				L = gok(e) - gws(e,t-1) !prev. GW depth
 				IF(L<0 .OR. L==0) THEN !NO UZ case
-					WRITE(lu,*) "noUZ entered"
-					WRITE(lu,*) "gws is ", gws(e,t-1)
-					WRITE(lu,*) "sws is ", sws(e,t-1)
-					WRITE(lu,*) "sm is ", sm(e,t-1)
+					CALL logger%log("noUZ entered")
+					CALL logger%log("gws is ", gws(e,t-1))
+					CALL logger%log("sws is ", sws(e,t-1))
+					CALL logger%log("sm is ", sm(e,t-1))
 					excess_gw_vol = -L*n(e) + sm(e,t-1)
 					gws(e,t) = gok(e)
 					sm(e,t) = 0
 					epv(e,t) = 0
 					sws(e,t) = sws(e,t-1) + excess_gw_vol + p(e,t)*dt
-					WRITE(lu,*) "excess_gw_vol ", excess_gw_vol
-					WRITE(lu,*) "gws after +p ", gws(e,t)
-					WRITE(lu,*) "sws after +p", sws(e,t)
-					WRITE(lu,*) "sm after +p", sm(e,t)
+					CALL logger%log("excess_gw_vol ", excess_gw_vol)
+					CALL logger%log("gws after +p ", gws(e,t))
+					CALL logger%log("sws after +p", sws(e,t))
+					CALL logger%log("sm after +p", sm(e,t))
 					!ET extraction
 					IF (sws(e,t)>et(e,t)*dt) THEN
 						sws(e,t) = sws(e,t) - et(e,t)*dt
@@ -69,9 +69,9 @@ SUBROUTINE run()
 						gws(e,t) = gws(e,t) - (sw_et_deficit/n(e))
 						epv(e,t) = (gok(e) - gws(e,t))*n(e)
 					END IF
-					WRITE(lu,*) "gws after -et ", gws(e,t)
-					WRITE(lu,*) "sws after -et", sws(e,t)
-					WRITE(lu,*) "sm after -et", sm(e,t)
+					CALL logger%log("gws after -et ", gws(e,t))
+					CALL logger%log("sws after -et", sws(e,t))
+					CALL logger%log("sm after -et", sm(e,t))
 					!calc storage discharges
 					gw_dis(e,t) = (gws(e,t) - gws(e,t-1))*n(e)
 					sm_dis(e,t) = (sm(e,t)) - sm(e,t-1)
@@ -80,39 +80,39 @@ SUBROUTINE run()
 					Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
 					sw_et_deficit = 0
 				ELSE
-					WRITE(lu,*) "UZ entered"
+					CALL logger%log("UZ entered")
 					!P dist and SW push
-					WRITE(lu,*) "L is", L
-					WRITE(lu,*) "P is", p(e,t)*dt
-					WRITE(lu,*) "sm is", sm(e,t-1)
-					WRITE(lu,*) "epv is", epv(e,t-1)
-					WRITE(lu,*) "sm/epv", sm(e,t-1)/epv(e,t-1)
+					CALL logger%log("L is", L)
+					CALL logger%log("P is", p(e,t)*dt)
+					CALL logger%log("sm is", sm(e,t-1))
+					CALL logger%log("epv is", epv(e,t-1))
+					CALL logger%log("sm/epv", sm(e,t-1)/epv(e,t-1))
 					k_inf = kUS(min(sm(e,t-1)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from wetness at the begining of this dt i.e. END of last dt
-					WRITE(lu,*) "got k", k_inf
+					CALL logger%log("got k", k_inf)
 					inf = min(k_inf*dt, p(e,t)*dt)
-					WRITE(lu,*) "inf aka p_sm is ", inf
+					CALL logger%log("inf aka p_sm is ", inf)
 					excess_p = p(e,t)*dt - inf
-					WRITE(lu,*) "excess p aka p_sw is ", excess_p
-					WRITE(lu,*) "sws is", sws(e,t-1)
-					WRITE(lu,*) "ET is", et(e,t)*dt
+					CALL logger%log("excess p aka p_sw is ", excess_p)
+					CALL logger%log("sws is", sws(e,t-1))
+					CALL logger%log("ET is", et(e,t)*dt)
 					sw_et = min(sws(e,t-1)+excess_p, et(e,t)*dt)
 					inf_deficit = k_inf*dt - inf
-					WRITE(lu,*) "inf_deficit", inf_deficit
+					CALL logger%log("inf_deficit", inf_deficit)
 					sw_inf = min(inf_deficit, sws(e,t-1)+excess_p-sw_et)
-					WRITE(lu,*) "sw_inf", sw_inf
+					CALL logger%log("sw_inf", sw_inf)
 					sws(e,t) = sws(e,t-1) - sw_inf + excess_p - sw_et
 					et_deficit = et(e,t)*dt - sw_et
 					IF(gws(e,t-1) <= bot(e)) THEN
 						et_deficit = 0
 					END IF
-					WRITE(lu,*) "sw et removed", sw_et
-					WRITE(lu,*) "sws calcd", sws(e,t)
+					CALL logger%log("sw et removed", sw_et)
+					CALL logger%log("sws calcd", sws(e,t))
 					sm(e,t) = sm(e,t-1) + inf + sw_inf - et_deficit
-					WRITE(lu,*) "sm et removed", et_deficit
-					WRITE(lu,*) "sm calcd", sm(e,t)
+					CALL logger%log("sm et removed", et_deficit)
+					CALL logger%log("sm calcd", sm(e,t))
 					sm_eq = vanGI_fgsl(L)
-					WRITE(lu,*) "gws is ", gws(e,t-1)
-					WRITE(lu,*) "vanGI_fgsl called. sm_eq is ", sm_eq
+					CALL logger%log("gws is ", gws(e,t-1))
+					CALL logger%log("vanGI_fgsl called. sm_eq is ", sm_eq)
 					IF(inf /= 0) THEN
 						gw_sm_interconnectivity(e) = max((gw_sm_interconnectivity(e) + k_inf*dt), 0.0)
 					END IF
@@ -125,20 +125,20 @@ SUBROUTINE run()
 					IF(inf_gw < 0) THEN
 						gw_sm_interconnectivity(e) = (gw_sm_interconnectivity(e) + inf_gw)
 					END IF
-					WRITE(lu,*) "gw_sm_interconnectivity is", gw_sm_interconnectivity(e)
-					WRITE(lu,*) "interconnectivity_ratio is", interconnectivity_ratio
-					WRITE(lu,*) "k_inf_gw is", k_inf_gw
-					WRITE(lu,*) "inf_gw is", inf_gw
+					CALL logger%log("gw_sm_interconnectivity is", gw_sm_interconnectivity(e))
+					CALL logger%log("interconnectivity_ratio is", interconnectivity_ratio)
+					CALL logger%log("k_inf_gw is", k_inf_gw)
+					CALL logger%log("inf_gw is", inf_gw)
 					sm(e,t) = sm(e,t) - inf_gw !... deficit sm gets added to sm from gw
-					WRITE(lu,*) "sm recalcd ", sm(e,t)
+					CALL logger%log("sm recalcd ", sm(e,t))
 					gws(e,t) = gws(e,t-1) + inf_gw/n(e) !... and subtracted from gw
-					WRITE(lu,*) "gws calcd", gws(e,t)
+					CALL logger%log("gws calcd", gws(e,t))
 					IF(gws(e,t)>gok(e)) THEN
 						excess_gw_vol = (gws(e,t)-gok(e))*n(e) + sm(e,t)
 						gws(e,t) = gok(e)
 						sm(e,t) = 0
 						sws(e,t) = sws(e,t) + excess_gw_vol
-						WRITE(lu,*) "gws recalcd", gws(e,t)
+						CALL logger%log("gws recalcd", gws(e,t))
 					END IF
 					epv(e,t) = (gok(e) - gws(e,t))*n(e)
 					IF(sm(e,t)>epv(e,t)) THEN
@@ -147,9 +147,9 @@ SUBROUTINE run()
 					END IF
 					L = gok(e) - gws(e,t)
 					sm_eq = vanGI_fgsl(L) !!!gw-sm balancing: consider adding a convergence criteria here
-					WRITE(lu,*) "new sm_eq", sm_eq
+					CALL logger%log("new sm_eq", sm_eq)
 					k_inf_gw = kUS(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
-					WRITE(lu,*) "k_inf_gw remaining", k_inf_gw
+					CALL logger%log("k_inf_gw remaining", k_inf_gw)
 					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (max(k_inf_gw*dt,0.0))*interconnectivity_ratio, (sm(e,t)-sm_eq))
 					IF(gws(e,t) + inf_gw/n(e) < bot(e)) THEN
@@ -161,10 +161,10 @@ SUBROUTINE run()
 					IF(inf_gw < 0) THEN
 						gw_sm_interconnectivity(e) = (gw_sm_interconnectivity(e) + inf_gw)
 					END IF
-					WRITE(lu,*) "addnl inf_gw", inf_gw
+					CALL logger%log("addnl inf_gw", inf_gw)
 					sm(e,t) = sm(e,t) - inf_gw
 					gws(e,t) = gws(e,t) + inf_gw/n(e)
-					WRITE(lu,*) "sm-gw balanced", sm(e,t), gws(e,t)
+					CALL logger%log("sm-gw balanced", sm(e,t), gws(e,t))
 
 					epv(e,t) = (gok(e) - gws(e,t))*n(e)
 					gw_dis(e,t) = (gws(e,t) - gws(e,t-1))*n(e)
