@@ -1,5 +1,5 @@
 FUNCTION theta_c(h_c, ptr_c) bind(c)
-	USE, intrinsic :: iso_c_binding
+	USE, INTRINSIC :: iso_c_binding
 	USE fgsl
 	
 	REAL(c_DOuble), value :: h_c
@@ -20,7 +20,7 @@ END FUNCTION theta_c
 
 FUNCTION vanGI_fgsl(d)
 	USE fgsl
-	USE, intrinsic :: iso_c_binding
+	USE, INTRINSIC :: iso_c_binding
 	IMPLICIT NONE
 	REAL*8 :: vanGI_fgsl
 	REAL*8, intent(inout) :: d
