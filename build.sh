@@ -18,6 +18,8 @@ while getopts ":pnh" opt; do
                 echo "successfully compiled GWSWEX"
                 (rm -rf ../../exe/fort/* && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
                 echo "placed the program in exe/fort"
+                echo "cleaning up"
+                rm -rf *.mod
                 cd ../../
             else
                 echo "GWSWEX compilation failed"
@@ -31,6 +33,8 @@ while getopts ":pnh" opt; do
                 echo "successfully compiled GWSWEX"
                 (rm -rf ../../exe/fort/* && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
                 echo "placed the program in exe/fort"
+                echo "cleaning up"
+                rm -rf *.mod
                 cd ../../
             else
                 echo "GWSWEX compilation failed"
@@ -58,7 +62,9 @@ if (( $OPTIND == 1 )); then
 		echo "successfully compiled GWSWEX (with OpenMP by default)"
 		(mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
 		echo "placed the program in exe/fort"
-		cd ~/GWSWEX
+        echo "cleaning up"
+        rm -rf *.mod
+		cd ../../
 	else
 		echo "GWSWEX compilation failed"
 	fi
