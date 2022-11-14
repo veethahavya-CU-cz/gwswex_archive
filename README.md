@@ -7,5 +7,5 @@
 # Installation
 Run build.sh (tweak the fgsl lib and include locations as applicable) to compile the standalone program.   
 Build Flags:  
--n: with OMP  
+-n: without OMP  
 -p: with OMP support (default)
