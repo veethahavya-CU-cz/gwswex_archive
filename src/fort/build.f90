@@ -1,7 +1,9 @@
 SUBROUTINE build()
 
-	INTEGER*4 :: attribs(4), logger_switch
+	INTEGER*4 :: attribs(4)
 	CHARACTER(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, macropore_inf_degree_file, vanG_pars_file
+
+	tlocal_start = timefetch()
 
 	CALL getcwd(wd)
 	input_path = TRIM(wd)//'/input/'
@@ -20,19 +22,14 @@ SUBROUTINE build()
 	elems = attribs(1)
 	nts = attribs(2)
 	dt = attribs(3)
-	logger_switch = attribs(4)
+	logger%level = INT(attribs(4), kind=1)
 	CLOSE(tu, status='keep')
 
-	IF (logger_switch == 1) THEN
-		logger%switch = .TRUE.
-	ELSE
-		logger%switch = .FALSE.
-	END IF
-	logger%lu = lu
-	logger%fname = TRIM(output_path)//'fort.log'
+	logger%fname = TRIM(output_path)//'GWSWEX.log'
 	CALL logger%init()
-	
-	CALL logger%log("build initialised")
+
+	CALL logger%log(logger%info, "Program called")
+	CALL logger%log(logger%info, "building model")
 
 	allocate(gok(elems), bot(elems), n(elems), k(elems), chd(elems), gw_sm_interconnectivity(elems), macropore_inf_degree(elems), &
 		p(elems,nts), et(elems,nts))
@@ -58,5 +55,9 @@ SUBROUTINE build()
 	READ(tu) vanG_pars
 	CLOSE(tu, status='keep')
 
-	CALL logger%log("built")
+	tlocal_end = timefetch()
+
+	write(strbuffer,*) (tlocal_end-tlocal_start)
+	strbuffer = "model built in "//TRIM(strbuffer)//" s"//achar(10)
+	CALL logger%log(logger%info, TRIM(strbuffer))
 END SUBROUTINE

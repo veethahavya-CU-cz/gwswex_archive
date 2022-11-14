@@ -2,9 +2,11 @@
 import numpy as np
 from scipy.io import FortranFile
 from scipy.integrate import quad
-import os, shutil
+import os, shutil, psutil
 import subprocess as sp
 import matplotlib.pyplot as plt
+
+os.environ['OMP_NUM_THREADS'] = str(psutil.cpu_count(logical = False))
 
 vanG_pars = np.array([0.02, 0.42, 0.35, 1.25], dtype=np.float64, order='F')
 

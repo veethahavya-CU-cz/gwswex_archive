@@ -13,13 +13,13 @@ while getopts ":pnh" opt; do
         p)
             echo "compiling with openMP"
             cd src/fort/
-            gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -lgomp -fopenmp -o GWSWEX
+            gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -lgomp -fopenmp -o GWSWEX -O3 -xtarget=amd64 -xarch=amd64
             if [ $? -eq 0 ]; then
                 echo "successfully compiled GWSWEX"
-                (rm -rf ../../exe/fort/* && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
+                (rm -f ../../exe/fort/* 2>/dev/null && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
                 echo "placed the program in exe/fort"
                 echo "cleaning up"
-                rm -rf *.mod
+                rm -f *.mod
                 cd ../../
             else
                 echo "GWSWEX compilation failed"
@@ -28,13 +28,13 @@ while getopts ":pnh" opt; do
         n)
             echo "compiling without openMP"
             cd src/fort/
-            gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -o GWSWEX
+            gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -o GWSWEX -O3 -xtarget=amd64 -xarch=amd64
             if [ $? -eq 0 ]; then
                 echo "successfully compiled GWSWEX"
-                (rm -rf ../../exe/fort/* && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
+                (rm -f ../../exe/fort/* 2>/dev/null && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
                 echo "placed the program in exe/fort"
                 echo "cleaning up"
-                rm -rf *.mod
+                rm -f *.mod
                 cd ../../
             else
                 echo "GWSWEX compilation failed"
@@ -57,13 +57,13 @@ done
 # Defaults to compiling with openMP
 if (( $OPTIND == 1 )); then
 	cd src/fort/
-	gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -o GWSWEX
+	gfortran GWSWEX.f90 -L/usr/local/lib/ -lfgsl -I/usr/local/include/fgsl/ -lgomp -fopenmp -o GWSWEX -O3 -xtarget=amd64 -xarch=amd64
 	if [ $? -eq 0 ]; then
 		echo "successfully compiled GWSWEX (with OpenMP by default)"
-		(mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
+		(rm -f ../../exe/fort/* 2>/dev/null && mv GWSWEX ../../exe/fort) || (mkdir -p ../../exe/fort && mv GWSWEX ../../exe/fort && echo "dir created")
 		echo "placed the program in exe/fort"
         echo "cleaning up"
-        rm -rf *.mod
+        rm -f *.mod
 		cd ../../
 	else
 		echo "GWSWEX compilation failed"

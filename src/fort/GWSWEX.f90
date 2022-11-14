@@ -1,8 +1,20 @@
-MODULE logger_mod
+MODULE timing
+	USE OMP_LIB
+	REAL(8) :: tglobal_start, tglobal_end, tlocal_start, tlocal_end, ttemp_mark1, ttemp_mark2
+	REAL(4) :: telapsed, timenow
+	CONTAINS
+		FUNCTION timefetch()
+			IMPLICIT NONE
+			REAL(8) :: timefetch
+			timefetch = omp_get_wtime()
+		END FUNCTION timefetch
+END MODULE timing
 
+
+MODULE logger_mod
+	USE timing, only: tglobal_start, timefetch
 	TYPE :: logger_type
-		LOGICAL:: switch
-		INTEGER :: lu
+		INTEGER(1) :: lu, level, info, moreinfo, trace, debug, warn, error, fatal
 		CHARACTER(len=255) :: fname
 		CONTAINS
 			PROCEDURE :: init
@@ -14,11 +26,10 @@ MODULE logger_mod
 
 	CONTAINS
 	INCLUDE 'logger.f90'
-
 END MODULE logger_mod
 
+
 MODULE helpers
-	USE OMP_LIB
 	IMPLICIT NONE
 
 	REAL*8 :: vanG_pars(4)
@@ -30,8 +41,8 @@ END MODULE helpers
 
 
 MODULE core
-	USE OMP_LIB
 	USE helpers, only: vanG_pars
+	USE timing
 	USE logger_mod, only: logger_type
 
 	IMPLICIT NONE
@@ -42,7 +53,7 @@ MODULE core
 	REAL*8, ALLOCATABLE :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
 		Qin(:,:), Qout(:,:), QdIFf(:,:)
 	
-	CHARACTER(255) :: input_path, output_path
+	CHARACTER(255) :: input_path, output_path, strbuffer
 	INTEGER, PARAMETER  :: lu=42, tu=99
 
 	TYPE(logger_type) :: logger
@@ -55,9 +66,19 @@ END MODULE core
 
 
 PROGRAM GWSWEX
-	USE core, only: build, init, run
+	USE core, only: build, init, run, logger, strbuffer
+	USE timing
+
+	tglobal_start = timefetch()
 
 	CALL build()
 	CALL init()
 	CALL run()
+
+	tglobal_end = timefetch()
+	telapsed = tglobal_end - tglobal_start
+
+	WRITE(strbuffer,*) (tlocal_end-tlocal_start)
+	strbuffer = "Program terminated successfully in "//TRIM(strbuffer)//" s"
+	CALL logger%log(logger%info, TRIM(strbuffer))
 END PROGRAM GWSWEX
