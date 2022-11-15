@@ -3,6 +3,7 @@ SUBROUTINE build()
 	INTEGER*4 :: attribs(4)
 	CHARACTER(255) :: wd, build_file, gok_file, bot_file, n_file, k_file, macropore_inf_degree_file, vanG_pars_file
 
+	tglobal_start = timefetch()
 	tlocal_start = timefetch()
 
 	CALL getcwd(wd)

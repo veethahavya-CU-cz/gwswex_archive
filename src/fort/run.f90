@@ -251,4 +251,10 @@ SUBROUTINE run()
 	write(strbuffer,*) (tlocal_end-tlocal_start)
 	strbuffer = "run terminated successfully in "//TRIM(strbuffer)//" s"//achar(10)
 	CALL logger%log(logger%info, strbuffer)
+
+	tglobal_end = timefetch()
+	telapsed = tglobal_end - tglobal_start
+	WRITE(strbuffer,*) (tlocal_end-tlocal_start)
+	strbuffer = "Program terminated successfully in "//TRIM(strbuffer)//" s"
+	CALL logger%log(logger%info, TRIM(strbuffer))
 END SUBROUTINE
