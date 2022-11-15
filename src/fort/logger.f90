@@ -1,7 +1,6 @@
 SUBROUTINE init(self)
     CLASS(logger_type), INTENT(INOUT) :: self
 
-    self%lu = lu
 	self%info = 0
 	self%moreinfo = 1
 	self%trace = 2
