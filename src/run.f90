@@ -1,40 +1,24 @@
-SUBROUTINE run()
+SUBROUTINE run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
 	USE helpers, only: kUS, vanGI_fgsl, vanG_pars
 
 	IMPLICIT NONE
 
-	REAL*8 :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
+	REAL(8) :: L, sw_et_deficit, excess_gw_vol, sm_eq, k_inf, inf, excess_p, inf_deficit, sw_inf, &
 		k_inf_gw, inf_gw, et_deficit, sw_et, interconnectivity_ratio
+	REAL(8), INTENT(INOUT) :: gws_l(:,:), sws_l(:,:), sm_l(:,:), epv_l(:,:), gw_sm_interconnectivity_l(:)
 	INTEGER :: e, t
 
-	CHARACTER(255) :: gws_file, gws_ini_file, sws_file, sws_ini_file, sm_file, sm_ini_file, epv_file, epv_ini_file, &
-		gw_sm_interconnectivity_file, gw_dis_file, sw_dis_file, sm_dis_file, Qin_file, Qout_file, Qdiff_file
+	CHARACTER(255) :: Qin_file, Qout_file, Qdiff_file
 
 	tlocal_start = timefetch()
 
 	CALL logger%log(logger%info, "initializing run")
 
-	gws_ini_file = TRIM(input_path)//"gws_ini.ip"
-	sws_ini_file = TRIM(input_path)//"sws_ini.ip"
-	sm_ini_file = TRIM(input_path)//"sm_ini.ip"
-	epv_ini_file = TRIM(input_path)//"epv_ini.ip"
-	gw_sm_interconnectivity_file = TRIM(input_path)//"gw_sm_interconnectivity.ip"
-
-	OPEN(tu, file=gws_ini_file, form='unformatted', action='READ')
-	READ(tu) gws(:,1)
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=sws_ini_file, form='unformatted', action='READ')
-	READ(tu) sws(:,1)
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=sm_ini_file, form='unformatted', action='READ')
-	READ(tu) sm(:,1)
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=epv_ini_file, form='unformatted', action='READ')
-	READ(tu) epv(:,1)
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=gw_sm_interconnectivity_file, form='unformatted', action='READ')
-	READ(tu) gw_sm_interconnectivity
-	CLOSE(tu, status='keep')
+	gws = gws_l
+	sws = sws_l
+	sm = sm_l
+	epv = epv_l
+	gw_sm_interconnectivity = gw_sm_interconnectivity_l
 
 	CALL logger%log(logger%moreinfo, "run initialised")
 
@@ -44,8 +28,8 @@ SUBROUTINE run()
 	!$OMP PRIVATE(et_deficit, sw_et, interconnectivity_ratio)
 	DO e = 1, elems
 		CALL logger%log(logger%trace, "outer loop entered. elem ", e)
-		DO t = 2, nts
-		!$OMP CRITICAL
+		DO t = 2, nts+1
+		!NOMP CRITICAL
 			CALL logger%log(logger%trace, "inner loop entered. ts", t-1)
 			CALL logger%log(logger%debug, "gok", gok(e))
 			CALL logger%log(logger%debug, "bot", bot(e))
@@ -118,6 +102,7 @@ SUBROUTINE run()
 					sm_eq = vanGI_fgsl(L)
 					CALL logger%log(logger%debug, "gws is ", gws(e,t-1))
 					CALL logger%log(logger%debug, "vanGI_fgsl called. sm_eq is ", sm_eq)
+					! consider capping gw_sm_interconnectivity to L
 					IF(inf /= 0) THEN
 						gw_sm_interconnectivity(e) = max((gw_sm_interconnectivity(e) + k_inf*dt), 0.0)
 					END IF
@@ -190,59 +175,22 @@ SUBROUTINE run()
 				Qin(e,t) = p(e,t)*dt - et(e,t)*dt
 				Qout(e,t) = gw_dis(e,t) + sw_dis(e,t) + sm_dis(e,t)
 			END IF
-		!$OMP END CRITICAL
+		!NOMP END CRITICAL
 		END DO
 	END DO
 	!$OMP END PARALLEL DO
+
 	CALL logger%log(logger%moreinfo, "solver terminated successfully")
 
-	! $OMP WORKSHARE
+	!$OMP WORKSHARE
 	Qdiff = Qin - Qout
-	! $OMP END WORKSHARE
+	gws_l = gws
+	sws_l = sws
+	sm_l = sm
+	epv_l = epv
+	!$OMP END WORKSHARE
 
 	CALL logger%log(logger%moreinfo, "writing output files")
-
-	gws_file = TRIM(output_path)//"gws.op"
-	gw_dis_file = TRIM(output_path)//"gw_dis.op"
-	sws_file = TRIM(output_path)//"sws.op"
-	sw_dis_file = TRIM(output_path)//"sw_dis.op"
-	sm_file = TRIM(output_path)//"sm.op"
-	sm_dis_file = TRIM(output_path)//"sm_dis.op"
-	epv_file = TRIM(output_path)//"epv.op"
-	Qin_file = TRIM(output_path)//"Qin.op"
-	Qout_file = TRIM(output_path)//"Qout.op"
-	Qdiff_file = TRIM(output_path)//"Qdiff.op"
-
-	OPEN(tu, file=gws_file, form='unformatted', action='WRITE')
-	WRITE(tu) gws
-	CLOSE(tu)
-	OPEN(tu, file=gw_dis_file, form='unformatted', action='WRITE')
-	WRITE(tu) gw_dis
-	CLOSE(tu)
-	OPEN(tu, file=sws_file, form='unformatted', action='WRITE')
-	WRITE(tu) sws
-	CLOSE(tu)
-	OPEN(tu, file=sw_dis_file, form='unformatted', action='WRITE')
-	WRITE(tu) sw_dis
-	CLOSE(tu)
-	OPEN(tu, file=sm_file, form='unformatted', action='WRITE')
-	WRITE(tu) sm
-	CLOSE(tu)
-	OPEN(tu, file=sm_dis_file, form='unformatted', action='WRITE')
-	WRITE(tu) sm_dis
-	CLOSE(tu)
-	OPEN(tu, file=epv_file, form='unformatted', action='WRITE')
-	WRITE(tu) epv
-	CLOSE(tu)
-	OPEN(tu, file=Qin_file, form='unformatted', action='WRITE')
-	WRITE(tu) Qin
-	CLOSE(tu)
-	OPEN(tu, file=Qout_file, form='unformatted', action='WRITE')
-	WRITE(tu) Qout
-	CLOSE(tu)
-	OPEN(tu, file=Qdiff_file, form='unformatted', action='WRITE')
-	WRITE(tu) Qdiff
-	CLOSE(tu)
 
 	CALL logger%log(logger%moreinfo, "output files written successfully")
 	
@@ -257,4 +205,5 @@ SUBROUTINE run()
 	WRITE(strbuffer,*) (tlocal_end-tlocal_start)
 	strbuffer = "Program terminated successfully in "//TRIM(strbuffer)//" s"
 	CALL logger%log(logger%info, TRIM(strbuffer))
+	flush(logger%unit)
 END SUBROUTINE

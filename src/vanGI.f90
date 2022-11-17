@@ -6,7 +6,7 @@ FUNCTION theta_c(h_c, ptr_c) bind(c)
 	TYPE(c_ptr), value :: ptr_c
 	REAL(c_DOuble), pointer :: ptr_f
 	REAL(c_DOuble) :: theta_c
-	REAL*8 :: theta_r, theta_s, alpha, n, m
+	REAL(8) :: theta_r, theta_s, alpha, n, m
 
 	CALL c_f_pointer(ptr_c, ptr_f)
 
@@ -22,9 +22,9 @@ FUNCTION vanGI_fgsl(d)
 	USE fgsl
 	USE, INTRINSIC :: iso_c_binding
 	IMPLICIT NONE
-	REAL*8 :: vanGI_fgsl
-	REAL*8, intent(inout) :: d
-	INTEGER(fgsl_size_t), parameter :: nmax=1000
+	REAL(8) :: vanGI_fgsl
+	REAL(8), INTENT(INOUT) :: d
+	INTEGER(fgsl_size_t), PARAMETER :: nmax=1000
 	REAL(fgsl_DOuble), target :: ptr
 	REAL(fgsl_DOuble) :: result, error
 	INTEGER(fgsl_int) :: status

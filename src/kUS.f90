@@ -1,7 +1,7 @@
 FUNCTION kUS(s, ks)
 	! add Horton_inf regime effects. only capilary/vG-M considered here
-		REAL*8, INTENT(IN) :: s, ks
-		REAL*8 :: kUS, theta_r, theta_s, n, m, sat
+		REAL(8), INTENT(IN) :: s, ks
+		REAL(8) :: kUS, theta_r, theta_s, n, m, sat
 		theta_r = vanG_pars(1)
 		theta_s = vanG_pars(2)
 		n = vanG_pars(4)

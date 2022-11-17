@@ -1,26 +1,18 @@
-SUBROUTINE init()
-	CHARACTER(255) :: chd_file, p_file, et_file
+SUBROUTINE init(chd_l, p_l, et_l)
+	LOGICAL, INTENT(IN)  :: chd_l(:)
+	REAL(8), INTENT(IN) :: p_l(:,:), et_l(:,:)
 
 	tlocal_start = timefetch()
 	CALL logger%log(logger%info, "initialising")
 
-	chd_file = TRIM(input_path)//"chd.ip"
-	p_file = TRIM(input_path)//"p.ip"
-	et_file = TRIM(input_path)//"et.ip"
-
-	OPEN(tu, file=chd_file, form='unformatted', action='READ')
-	READ(tu) chd
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=p_file, form='unformatted', action='READ')
-	READ(tu) p
-	CLOSE(tu, status='keep')
-	OPEN(tu, file=et_file, form='unformatted', action='READ')
-	READ(tu) et
-	CLOSE(tu, status='keep')
+	chd = chd_l
+	p = p_l
+    et = et_l
 
 	tlocal_end = timefetch()
 	
 	write(strbuffer,*) (tlocal_end-tlocal_start)
 	strbuffer = "initialised in "//TRIM(strbuffer)//" s"//achar(10)
 	CALL logger%log(logger%info, strbuffer)
+	flush(logger%unit)
 END SUBROUTINE

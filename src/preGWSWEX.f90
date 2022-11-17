@@ -14,7 +14,7 @@ END MODULE timing
 MODULE logger_mod
 	USE timing, only: tglobal_start, timefetch
 	TYPE :: logger_type
-		INTEGER(1) :: lu, level, info, moreinfo, trace, debug, warn, error, fatal
+		INTEGER(1) :: unit, level, info, moreinfo, trace, debug, warn, error, fatal
 		CHARACTER(len=255) :: fname
 		CONTAINS
 			PROCEDURE :: init
@@ -32,7 +32,7 @@ END MODULE logger_mod
 MODULE helpers
 	IMPLICIT NONE
 
-	REAL*8 :: vanG_pars(4)
+	REAL(8) :: vanG_pars(4)
 
 	CONTAINS
 		INCLUDE 'kUS.f90'
@@ -47,10 +47,10 @@ MODULE core
 
 	IMPLICIT NONE
 
-	INTEGER*4  :: elems, nts, dt
+	INTEGER(4)  :: elems, nts, dt
 	LOGICAL, ALLOCATABLE  :: chd(:)
-	REAL*8, ALLOCATABLE :: gok(:), bot(:), n(:), k(:), gw_sm_interconnectivity(:), macropore_inf_degree(:), p(:,:), et(:,:)
-	REAL*8, ALLOCATABLE :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
+	REAL(8), ALLOCATABLE :: gok(:), bot(:), n(:), k(:), gw_sm_interconnectivity(:), macropore_inf_degree(:), p(:,:), et(:,:)
+	REAL(8), ALLOCATABLE :: gws(:,:), sws(:,:), sm(:,:), epv(:,:), gw_dis(:,:), sw_dis(:,:), sm_dis(:,:), &
 		Qin(:,:), Qout(:,:), QdIFf(:,:)
 	
 	CHARACTER(255) :: input_path, output_path, strbuffer

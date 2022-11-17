@@ -9,7 +9,7 @@ SUBROUTINE init(self)
 	self%error = -2
 	self%fatal = -3
 
-    OPEN(UNIT=self%lu, FILE=self%fname, STATUS='REPLACE', ACTION='WRITE')
+    OPEN(UNIT=self%unit, FILE=self%fname, STATUS='REPLACE', ACTION='WRITE')
 END SUBROUTINE init
 
 
@@ -41,8 +41,8 @@ SUBROUTINE log_real(self, lv, msg, val, addnl_val)
     INTEGER(1), INTENT(IN) :: lv
     CHARACTER(len=*), INTENT(IN) :: msg
     CHARACTER(len=20) :: buffer
-    REAL*8, INTENT(IN) :: val
-    REAL*8, OPTIONAL :: addnl_val
+    REAL(8), INTENT(IN) :: val
+    REAL(8), OPTIONAL :: addnl_val
 
     timenow = timefetch()-tglobal_start
     WRITE(buffer, '(f6.2)') timenow
@@ -50,9 +50,9 @@ SUBROUTINE log_real(self, lv, msg, val, addnl_val)
 
     IF (lv<self%level .OR. lv==self%level) THEN
         IF (PRESENT(addnl_val)) THEN
-            WRITE(self%lu,*) buffer, ": ", lv, msg, val, addnl_val
+            WRITE(self%unit,*) buffer, ": ", lv, msg, val, addnl_val
         ELSE
-            WRITE(self%lu,*) buffer, ": ", msg, val
+            WRITE(self%unit,*) buffer, ": ", msg, val
         ENDIF
     END IF
 END SUBROUTINE log_real
@@ -72,9 +72,9 @@ SUBROUTINE log_int(self, lv, msg, val, addnl_val)
 
     IF (lv<self%level .OR. lv==self%level) THEN
         IF (PRESENT(addnl_val)) THEN
-            WRITE(self%lu,*) buffer, ": ", lv, msg, val, addnl_val
+            WRITE(self%unit,*) buffer, ": ", lv, msg, val, addnl_val
         ELSE
-            WRITE(self%lu,*) buffer, ": ", msg, val
+            WRITE(self%unit,*) buffer, ": ", msg, val
         ENDIF
     END IF
 END SUBROUTINE log_int
@@ -91,6 +91,6 @@ SUBROUTINE log_str(self, lv, msg)
     buffer = "["//TRIM(lv_name(lv))//"] " // "["//TRIM(buffer)// " s]"
 
     IF (lv<self%level .OR. lv==self%level) THEN
-        WRITE(self%lu,*) buffer, ": ", msg
+        WRITE(self%unit,*) buffer, ": ", msg
     END IF
 END SUBROUTINE log_str
