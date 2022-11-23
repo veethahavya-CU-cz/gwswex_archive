@@ -1,0 +1,15 @@
+model:
+  domain:
+      nelements: 1
+      nts: 4320
+      dt: 3600
+
+paths:
+    dirs:
+        root: /home/gwswex_dev/GWSWEX
+        input: na 
+        output: na
+
+utils:
+    logger:
+        level: 1

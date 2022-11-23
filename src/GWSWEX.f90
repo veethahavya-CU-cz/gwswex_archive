@@ -1,23 +1,19 @@
 MODULE GWSWEX
 	USE core, only: build, init, run
-	USE timing
-    USE logger_mod, only: logger_type
 
 	IMPLICIT NONE
 
-    INTEGER(4), PUBLIC :: ne, nt
-
     CONTAINS
-        SUBROUTINE initialize(attribs, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l, chd_l, p_l, et_l)
+        SUBROUTINE initialize(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l, chd_l, p_l, et_l)
+            !USE iso_c_binding, only: c_char
+
             IMPLICIT NONE
-            INTEGER(4), INTENT(IN) :: attribs(4)
+            !CHARACTER(kind=c_char), DIMENSION(*), INTENT(IN) :: fyaml_path
+            CHARACTER(*), INTENT(IN) :: fyaml_path
             LOGICAL, INTENT(IN)  :: chd_l(:)
 	        REAL(8), INTENT(IN) :: gok_l(:), bot_l(:), n_l(:), k_l(:), macropore_inf_degree_l(:), vanG_pars_l(4), p_l(:,:), et_l(:,:)
 
-            ne = attribs(1)
-            nt = attribs(2)
-
-            CALL build(attribs, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l)
+            CALL build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l)
             CALL init(chd_l, p_l, et_l)
         END SUBROUTINE initialize
 

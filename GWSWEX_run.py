@@ -3,11 +3,14 @@ import os, sys, psutil
 import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
+from ctypes import cdll
 
 os.environ['OMP_NUM_THREADS'] = str(psutil.cpu_count(logical = False))
+# os.environ['OMP_NUM_THREADS'] = str(1)
 
-sys.path.append('libs/')
-from gwswex_wrapper import gwswex
+cdll.LoadLibrary('/usr/local/lib/libyaml-wrapper.so')
+sys.path.append(os.path.abspath('libs/'))
+from gwswex_wrapper import gwswex as GWSWEX
 
 def vanGI(d):
 	def theta(h_c):
@@ -91,11 +94,9 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 			plt.savefig(os.path.join(fig_path,"mBal."+format), format=format, dpi=pDPI)
 
 #%%
-logger_level = 1
 elems = int(1)
 nts = int(24*30*6) #one every 20 minutes
-dt = int(60*60*1) #2 hours
-attribs = np.array([elems, nts, dt, logger_level], dtype=np.int32)
+dt = 3600
 vanG_pars = np.array([0.02, 0.42, 0.35, 1.25], dtype=np.float64, order='F')
 gok = np.random.default_rng().uniform(-3, 3, elems)+150
 bot = gok - 30
@@ -121,25 +122,25 @@ epv = np.zeros((elems,nts+1), dtype=np.float64, order='F')
 epv[:,0] = (gok-gws[:,0])*n
 for x in range(elems):
 	sm[x,0] = (vanGI(gok[x]-gws[x,0]))
-gw_sm_interconnectivity = np.full(elems, vanG_pars[0], dtype=np.float64, order='F')
-
-gwswex.initialize(attribs, gok, bot, n, k, macropore_inf_degree, vanG_pars, chd, p, et)
+gw_sm_interconnectivity = np.full(elems, vanG_pars[0], dtype=np.float64, order='F') #incorrect - you are mistaking gw_sm_IC with IC ratio! this is abs value
+fyaml_path = '/home/gwswex_dev/GWSWEX/gwswex.yml'
+GWSWEX.initialize(fyaml_path, gok, bot, n, k, macropore_inf_degree, vanG_pars, chd, p, et)
 
 #%%
-gwswex.finalize(gws, sws, sm, epv, gw_sm_interconnectivity)
-gwswex.fetch_1d('gw_sm_interconnectivity', gw_sm_interconnectivity)
+GWSWEX.finalize(gws, sws, sm, epv, gw_sm_interconnectivity)
+GWSWEX.fetch_1d('gw_sm_interconnectivity', gw_sm_interconnectivity)
 gw_dis = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('gw_dis', gw_dis)
+GWSWEX.fetch_2d('gw_dis', gw_dis)
 sw_dis = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('sw_dis', sw_dis)
+GWSWEX.fetch_2d('sw_dis', sw_dis)
 sm_dis = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('sm_dis', sm_dis)
+GWSWEX.fetch_2d('sm_dis', sm_dis)
 Qin = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('Qin', Qin)
+GWSWEX.fetch_2d('Qin', Qin)
 Qout = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('Qout', Qout)
+GWSWEX.fetch_2d('Qout', Qout)
 Qdiff = np.zeros((elems,nts), dtype=np.float64, order='F')
-gwswex.fetch_2d('Qdiff', Qdiff)
+GWSWEX.fetch_2d('Qdiff', Qdiff)
 
 influx = (p[0].sum()-p[0,0])*dt - (et[0].sum()-et[0,0])*dt
 delta_storages = sm[0,-1]-sm[0,0] + (gws[0,-1]-gws[0,0])*vanG_pars[1] + sws[0,-1]-sws[0,0]

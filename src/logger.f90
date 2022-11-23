@@ -18,14 +18,14 @@ FUNCTION lv_name(lv)
     CHARACTER(len=10) :: lv_name
 
     SELECT CASE(lv)
-    CASE(0)
-        lv_name = 'INFO'
-    CASE(1)
-        lv_name = 'INFO'
+    CASE(3)
+        lv_name = 'DEBUG'    
     CASE(2)
         lv_name = 'TRACE'
-    CASE(3)
-        lv_name = 'DEBUG'
+    CASE(1)
+        lv_name = 'INFO'
+    CASE(0)
+        lv_name = 'INFO'
     CASE(-1)
         lv_name = 'WARN'
     CASE(-2)
