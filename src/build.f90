@@ -1,38 +1,42 @@
-SUBROUTINE build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l)
+SUBROUTINE build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l)
 	USE YAMLInterface
 	USE YAMLRead
-	!USE iso_c_binding, only: c_char
 
 	!CHARACTER(kind=c_char), DIMENSION(*), INTENT(IN) :: fyaml_path
 	CHARACTER(*), INTENT(IN) :: fyaml_path
 	TYPE(YAMLHandler) :: fyaml  ! be sure to close
-	TYPE(YAMLMap) :: ymodel_args, yutil_args, ymodel_domain_args, yutil_logger_args
+	TYPE(YAMLMap) :: ymodel_args, yutil_args, ymodel_domain_args, ymodel_vanG_args, yutil_logger_args
 	INTEGER :: ires
 
 	REAL(8), INTENT(IN) :: gok_l(:), bot_l(:), n_l(:), k_l(:), macropore_inf_degree_l(:)
-	REAL(8) :: vanG_pars_l(4)
 	CHARACTER(255) :: wd
 
 	tglobal_start = timefetch()
 	tlocal_start = timefetch()
 
 	fyaml = yaml_open_file(fyaml_path)
+
 	ymodel_args = yaml_start_from_map(fyaml, 'model')
-	! yutil_args = yaml_start_from_map(fyaml, 'utils')
-
 	ymodel_domain_args = ymodel_args%value_map('domain')
-	! yutil_logger_args = yutil_args%value_map('logger')
-
+	ymodel_vanG_args = ymodel_args%value_map('vanG')
+	write(*,*) "map read"
 	elems = ymodel_domain_args%value_int("nelements", ires)
+	write(*,*) "elems", elems
 	nts = ymodel_domain_args%value_int("nts", ires)
+	write(*,*) "nts", nts
 	dt = ymodel_domain_args%value_int("dt", ires)
-	! logger%level = INT(yutil_logger_args%value_int("dt", ires), kind=1)
-	logger%level = INT(1, kind=1)
-
+	write(*,*) "dt", dt
+	CALL vanG% init(ymodel_vanG_args)
 	call ymodel_args%destroy()
-	! call yutil_args%destroy()
 	call ymodel_domain_args%destroy()
-	! call yutil_logger_args%destroy()
+
+	yutil_args = yaml_start_from_map(fyaml, 'utils')
+	yutil_logger_args = yutil_args%value_map('logger')
+	write(*,*) "map read again"
+	logger% level = INT(yutil_logger_args%value_int("level", ires), kind=1)
+	call yutil_args%destroy()
+	call yutil_logger_args%destroy()
+
 	call yaml_close_file(fyaml)
 
 	CALL getcwd(wd)
@@ -56,7 +60,6 @@ SUBROUTINE build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, van
 	n = n_l
 	k = k_l
 	macropore_inf_degree = macropore_inf_degree_l
-	vanG_pars = vanG_pars_l
 	
 	tlocal_end = timefetch()
 

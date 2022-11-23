@@ -1,5 +1,5 @@
 SUBROUTINE init(self)
-    CLASS(logger_type), INTENT(INOUT) :: self
+    CLASS(Clogger), INTENT(INOUT) :: self
 
 	self%info = 0
 	self%moreinfo = 1
@@ -37,7 +37,7 @@ END FUNCTION lv_name
 
 
 SUBROUTINE log_real(self, lv, msg, val, addnl_val)
-    CLASS(logger_type), INTENT(INOUT) :: self
+    CLASS(Clogger), INTENT(INOUT) :: self
     INTEGER(1), INTENT(IN) :: lv
     CHARACTER(len=*), INTENT(IN) :: msg
     CHARACTER(len=20) :: buffer
@@ -59,7 +59,7 @@ END SUBROUTINE log_real
 
 
 SUBROUTINE log_int(self, lv, msg, val, addnl_val)
-    CLASS(logger_type), INTENT(INOUT) :: self
+    CLASS(Clogger), INTENT(INOUT) :: self
     INTEGER(1), INTENT(IN) :: lv
     CHARACTER(len=*), INTENT(IN) :: msg
     CHARACTER(len=20) :: buffer
@@ -81,7 +81,7 @@ END SUBROUTINE log_int
 
 
 SUBROUTINE log_str(self, lv, msg)
-    CLASS(logger_type), INTENT(INOUT) :: self
+    CLASS(Clogger), INTENT(INOUT) :: self
     INTEGER(1), INTENT(IN) :: lv
     CHARACTER(len=*), INTENT(IN) :: msg
     CHARACTER(len=20) :: buffer

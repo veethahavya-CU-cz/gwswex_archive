@@ -1,5 +1,5 @@
 SUBROUTINE run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
-	USE helpers, only: kUS, vanGI_fgsl, vanG_pars
+	USE sm_helpers, only: kUS
 
 	IMPLICIT NONE
 
@@ -99,7 +99,7 @@ SUBROUTINE run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
 					sm(e,t) = sm(e,t-1) + inf + sw_inf - et_deficit
 					CALL logger%log(logger%debug, "sm et removed", et_deficit)
 					CALL logger%log(logger%debug, "sm calcd", sm(e,t))
-					sm_eq = vanGI_fgsl(L)
+					sm_eq = vanG% integrate(L)
 					CALL logger%log(logger%debug, "gws is ", gws(e,t-1))
 					CALL logger%log(logger%debug, "vanGI_fgsl called. sm_eq is ", sm_eq)
 					! consider capping gw_sm_interconnectivity to L
@@ -107,7 +107,7 @@ SUBROUTINE run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
 						gw_sm_interconnectivity(e) = max((gw_sm_interconnectivity(e) + k_inf*dt), 0.0)
 					END IF
 					k_inf_gw = kUS(min(sm(e,t)/epv(e,t-1), 1.0)*n(e), k(e)) !calc K from current wetness (after P and SW inf)
-					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
+					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG% theta_r+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (k_inf_gw*dt)*interconnectivity_ratio, (sm(e,t)-sm_eq)) !IF sm<sm_eq, inf_gw is -ve ...
 					IF(gws(e,t-1) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t-1) - bot(e)))*n(e), abs(k_inf_gw*dt))
@@ -136,11 +136,11 @@ SUBROUTINE run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
 						sm(e,t) = epv(e,t)
 					END IF
 					L = gok(e) - gws(e,t)
-					sm_eq = vanGI_fgsl(L) !!!gw-sm balancing: consider adding a convergence criteria here
+					sm_eq = vanG% integrate(L) !!!gw-sm balancing: consider adding a convergence criteria here
 					CALL logger%log(logger%debug, "new sm_eq", sm_eq)
 					k_inf_gw = kUS(min(sm(e,t)/epv(e,t), 1.0)*n(e), k(e))*dt - max(inf_gw, 0.00) !subtract k_inf_gw alREADy utilized and allow freely capilary rise beyond k_inf_gw
 					CALL logger%log(logger%debug, "k_inf_gw remaining", k_inf_gw)
-					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG_pars(1)+macropore_inf_degree(e)))
+					interconnectivity_ratio = min(1.0, max(gw_sm_interconnectivity(e)/abs(L), vanG% theta_r+macropore_inf_degree(e)))
 					inf_gw = min((sm(e,t)-sm_eq)*interconnectivity_ratio, (max(k_inf_gw*dt,0.0))*interconnectivity_ratio, (sm(e,t)-sm_eq))
 					IF(gws(e,t) + inf_gw/n(e) < bot(e)) THEN
 						inf_gw = - min(abs((gws(e,t) - bot(e)))*n(e), k_inf_gw*dt)

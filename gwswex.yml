@@ -1,8 +1,13 @@
 model:
-  domain:
-      nelements: 1
-      nts: 4320
-      dt: 3600
+    domain:
+        nelements: 1
+        nts: 4320
+        dt: 3600
+    vanG:
+        alpha: 0.35
+        n: 1.25
+        theta_r: 0.02
+        theta_s: 0.42
 
 paths:
     dirs:

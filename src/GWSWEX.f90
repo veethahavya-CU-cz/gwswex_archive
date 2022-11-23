@@ -13,7 +13,7 @@ MODULE GWSWEX
             LOGICAL, INTENT(IN)  :: chd_l(:)
 	        REAL(8), INTENT(IN) :: gok_l(:), bot_l(:), n_l(:), k_l(:), macropore_inf_degree_l(:), vanG_pars_l(4), p_l(:,:), et_l(:,:)
 
-            CALL build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l, vanG_pars_l)
+            CALL build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l)
             CALL init(chd_l, p_l, et_l)
         END SUBROUTINE initialize
 
@@ -21,7 +21,7 @@ MODULE GWSWEX
         SUBROUTINE finalize(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l)
             IMPLICIT NONE
             !custom type usage (not def) possible here
-            !TYPE(logger_type), DIMENSION(7) :: logger_array
+            !TYPE(Clogger), DIMENSION(7) :: logger_array
             REAL(8), INTENT(INOUT) :: gws_l(:,:), sws_l(:,:), sm_l(:,:), epv_l(:,:), gw_sm_interconnectivity_l(:)
 
             CALL run(gws_l, sws_l, sm_l, epv_l, gw_sm_interconnectivity_l(:))

@@ -4,6 +4,7 @@ import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 from ctypes import cdll
+from dataclasses import dataclass
 
 os.environ['OMP_NUM_THREADS'] = str(psutil.cpu_count(logical = False))
 # os.environ['OMP_NUM_THREADS'] = str(1)
@@ -97,6 +98,14 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 elems = int(1)
 nts = int(24*30*6) #one every 20 minutes
 dt = 3600
+
+@dataclass
+class pvanGI:
+	theta_r: float = 0.02
+	theta_s: float = 0.42
+	alpha: float = 0.35
+	n: float = 1.25
+
 vanG_pars = np.array([0.02, 0.42, 0.35, 1.25], dtype=np.float64, order='F')
 gok = np.random.default_rng().uniform(-3, 3, elems)+150
 bot = gok - 30
