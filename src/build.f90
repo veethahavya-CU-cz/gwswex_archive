@@ -2,7 +2,6 @@ SUBROUTINE build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l)
 	USE YAMLInterface
 	USE YAMLRead
 
-	!CHARACTER(kind=c_char), DIMENSION(*), INTENT(IN) :: fyaml_path
 	CHARACTER(*), INTENT(IN) :: fyaml_path
 	TYPE(YAMLHandler) :: fyaml  ! be sure to close
 	TYPE(YAMLMap) :: ymodel_args, yutil_args, ymodel_domain_args, ymodel_vanG_args, yutil_logger_args
@@ -19,20 +18,16 @@ SUBROUTINE build(fyaml_path, gok_l, bot_l, n_l, k_l, macropore_inf_degree_l)
 	ymodel_args = yaml_start_from_map(fyaml, 'model')
 	ymodel_domain_args = ymodel_args%value_map('domain')
 	ymodel_vanG_args = ymodel_args%value_map('vanG')
-	write(*,*) "map read"
 	elems = ymodel_domain_args%value_int("nelements", ires)
-	write(*,*) "elems", elems
 	nts = ymodel_domain_args%value_int("nts", ires)
-	write(*,*) "nts", nts
 	dt = ymodel_domain_args%value_int("dt", ires)
-	write(*,*) "dt", dt
 	CALL vanG% init(ymodel_vanG_args)
 	call ymodel_args%destroy()
 	call ymodel_domain_args%destroy()
 
 	yutil_args = yaml_start_from_map(fyaml, 'utils')
 	yutil_logger_args = yutil_args%value_map('logger')
-	write(*,*) "map read again"
+
 	logger% level = INT(yutil_logger_args%value_int("level", ires), kind=1)
 	call yutil_args%destroy()
 	call yutil_logger_args%destroy()

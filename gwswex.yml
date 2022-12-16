@@ -1,8 +1,10 @@
 model:
     domain:
         nelements: 1
-        nts: 4320
+        nts: 4320 # 6 months
         dt: 3600
+        tstart: 
+        tstop: 
     vanG:
         alpha: 0.35
         n: 1.25

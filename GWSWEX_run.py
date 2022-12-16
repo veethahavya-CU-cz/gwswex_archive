@@ -7,7 +7,6 @@ from ctypes import cdll
 from dataclasses import dataclass
 
 os.environ['OMP_NUM_THREADS'] = str(psutil.cpu_count(logical = False))
-# os.environ['OMP_NUM_THREADS'] = str(1)
 
 cdll.LoadLibrary('/usr/local/lib/libyaml-wrapper.so')
 sys.path.append(os.path.abspath('libs/'))
@@ -96,7 +95,7 @@ def plot(elem, plotWlev=True, plotPrec=True, plotDis=True, plotBal=True, savefig
 
 #%%
 elems = int(1)
-nts = int(24*30*6) #one every 20 minutes
+nts = int(24*30*6) #one every hour for 6 months
 dt = 3600
 
 @dataclass
